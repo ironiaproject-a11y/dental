@@ -274,8 +274,12 @@ section {
     text-align: center;
     line-height: 1.5;
     flex-wrap: wrap;
+    gap: 4px;
     justify-content: center;
-    gap: 8px;
+  }
+  .top-bar .top-bar-cta {
+    font-size: 11px;
+    padding: 4px 10px;
   }
 
   /* NAVBAR */
@@ -286,29 +290,85 @@ section {
   .nav-phone  { display: none; }
   .nav-cta    { font-size: 13px; padding: 10px 16px; }
 
-  /* HERO */
+  /* Hero content — reposicionar */
   .hero-content {
-    left: 0 !important;
-    padding: 0 24px !important;
-    top: auto !important;
-    bottom: 140px !important;
-    transform: none !important;
-    max-width: 100% !important;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    padding: 0 24px;
+    top: auto;
+    transform: none;
+    max-width: 100%;
+    text-align: left;
   }
-  .hero-title       { font-size: 36px !important; line-height: 1.15 !important; }
-  .hero-description { font-size: 16px !important; max-width: 100% !important; }
-  .hero-buttons     { flex-direction: column !important; gap: 12px !important; }
-  .hero-buttons > * { width: 100% !important; text-align: center !important; min-height: 52px !important; }
 
-  /* STATS BAR */
-  .hero-stats-bar {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 20px 24px !important;
-    gap: 16px 0 !important;
+  /* Headline — tamanho certo para 375px */
+  .hero-content h1 {
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 16px;
   }
-  .stat-item:nth-child(2) { border-right: none !important; }
-  .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.1) !important; }
-  .stat-number { font-size: 28px !important; }
+
+  /* Parágrafo */
+  .hero-content p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  /* Botões — empilhar verticalmente */
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .hero-buttons > * {
+    width: 100%;
+    text-align: center;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Prova social — compactar */
+  .hero-social-proof {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 8px;
+  }
+  .hero-social-proof .avatars img {
+    width: 32px;
+    height: 32px;
+  }
+  .hero-social-proof span {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Stats bar — 2x2 grid */
+  .hero-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px 24px;
+    gap: 12px 0;
+  }
+  .stat-item {
+    text-align: center;
+    border-right: none !important;
+  }
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 12px;
+  }
+  .stat-number { font-size: 26px; }
+  .stat-label  { font-size: 10px; letter-spacing: 0.04em; }
 
   /* TRUST BAR */
   .trust-bar { flex-direction: column !important; padding: 24px !important; gap: 16px !important; }

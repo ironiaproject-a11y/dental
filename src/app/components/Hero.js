@@ -83,12 +83,19 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
-      <video 
-        autoPlay 
-        muted 
-        loop 
+      <video
+        autoPlay
+        muted
+        loop
         playsInline
-        className={styles.videoBg}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0
+        }}
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
@@ -98,7 +105,7 @@ export default function Hero() {
 
       {/* 3. Hero Content */}
       <div className={`container ${styles.container}`}>
-        <div className={`${styles.leftCol} hero-parallax`}>
+        <div className={`${styles.leftCol} hero-parallax hero-content`}>
           
           <h1 className={styles.title}>
             Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span> Começa Aqui.
@@ -109,7 +116,7 @@ export default function Hero() {
             Agende sua avaliação gratuita e descubra o tratamento ideal para você.
           </p>
           
-          <div className={styles.ctaRow}>
+          <div className={`${styles.ctaRow} hero-buttons`}>
             <button ref={btnRef} className="btn btn-primary">Agendar Avaliação Gratuita →</button>
             <a href="#servicos" className={styles.secondaryLink}>Ver nossos serviços</a>
           </div>
@@ -133,22 +140,22 @@ export default function Hero() {
       </div>
 
       {/* 4. Stats Bar */}
-      <div className={styles.statsBar}>
-        <div className={styles.statItem}>
-          <span className={styles.statNumber}>2.400+</span>
-          <span className={styles.statLabel}>Pacientes</span>
+      <div className={`${styles.statsBar} hero-stats-bar`}>
+        <div className={`${styles.statItem} stat-item`}>
+          <span className={`${styles.statNumber} stat-number`}>2.400+</span>
+          <span className={`${styles.statLabel} stat-label`}>Pacientes</span>
         </div>
-        <div className={styles.statItem}>
-          <span className={styles.statNumber}>98%</span>
-          <span className={styles.statLabel}>Satisfação</span>
+        <div className={`${styles.statItem} stat-item`}>
+          <span className={`${styles.statNumber} stat-number`}>98%</span>
+          <span className={`${styles.statLabel} stat-label`}>Satisfação</span>
         </div>
-        <div className={styles.statItem}>
-          <span className={styles.statNumber}>15 anos</span>
-          <span className={styles.statLabel}>Experiência</span>
+        <div className={`${styles.statItem} stat-item`}>
+          <span className={`${styles.statNumber} stat-number`}>15 anos</span>
+          <span className={`${styles.statLabel} stat-label`}>Experiência</span>
         </div>
-        <div className={styles.statItem}>
-          <span className={styles.statNumber}>12</span>
-          <span className={styles.statLabel}>Especialistas</span>
+        <div className={`${styles.statItem} stat-item`}>
+          <span className={`${styles.statNumber} stat-number`}>12</span>
+          <span className={`${styles.statLabel} stat-label`}>Especialistas</span>
         </div>
       </div>
 

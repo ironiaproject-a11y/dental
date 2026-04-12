@@ -5,9 +5,8 @@
   position: relative;
   overflow: hidden;
   color: #FFFFFF;
-  background-image: url('/images/hero-fallback.jpg');
-  background-size: cover;
-  background-position: center top;
+  /* Fallback if video fails to load */
+  background: #0F1B2D;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
