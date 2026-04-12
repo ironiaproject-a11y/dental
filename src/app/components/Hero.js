@@ -88,14 +88,8 @@ export default function Hero() {
         muted
         loop
         playsInline
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0
-        }}
+        preload="auto"
+        className={styles.videoBg}
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
@@ -108,20 +102,25 @@ export default function Hero() {
         <div className={`${styles.leftCol} hero-parallax hero-content`}>
           
           <h1 className={styles.title}>
-            Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span> Começa Aqui.
+            <span className="anim-hero-left" style={{ display: 'block' }}>
+              Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span>
+            </span>
+            <span className="anim-hero-left" style={{ display: 'block' }}>
+              Começa Aqui.
+            </span>
           </h1>
           
-          <p className={styles.description}>
+          <p className={`${styles.description} anim-hero-left`}>
             Atendimento humanizado, tecnologia de última geração e resultados reais. 
             Agende sua avaliação gratuita e descubra o tratamento ideal para você.
           </p>
           
-          <div className={`${styles.ctaRow} hero-buttons`}>
+          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
             <button ref={btnRef} className="btn btn-primary">Agendar Avaliação Gratuita →</button>
             <a href="#servicos" className={styles.secondaryLink}>Ver nossos serviços</a>
           </div>
 
-          <div className={`${styles.socialProofPill} hero-social-proof`}>
+          <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
             <div className={`${styles.pillAvatars} avatars`}>
               {[
                 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=40&auto=format&fit=crop',
@@ -133,29 +132,11 @@ export default function Hero() {
                 <div key={i} className={styles.pillAvatar} style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover' }} />
               ))}
             </div>
-            <span className={styles.pillStars}>★★★★★</span>
-            <span className={styles.pillLabel}>+2.400 pacientes satisfeitos</span>
+            <div className={styles.pillText}>
+              <span className={styles.pillStars}>★★★★★</span>
+              <span className={styles.pillLabel}>+2.400 pacientes satisfeitos</span>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* 4. Stats Bar */}
-      <div className={`${styles.statsBar} hero-stats-bar`}>
-        <div className={`${styles.statItem} stat-item`}>
-          <span className={`${styles.statNumber} stat-number`}>2.400+</span>
-          <span className={`${styles.statLabel} stat-label`}>Pacientes</span>
-        </div>
-        <div className={`${styles.statItem} stat-item`}>
-          <span className={`${styles.statNumber} stat-number`}>98%</span>
-          <span className={`${styles.statLabel} stat-label`}>Satisfação</span>
-        </div>
-        <div className={`${styles.statItem} stat-item`}>
-          <span className={`${styles.statNumber} stat-number`}>15 anos</span>
-          <span className={`${styles.statLabel} stat-label`}>Experiência</span>
-        </div>
-        <div className={`${styles.statItem} stat-item`}>
-          <span className={`${styles.statNumber} stat-number`}>12</span>
-          <span className={`${styles.statLabel} stat-label`}>Especialistas</span>
         </div>
       </div>
 
