@@ -5,9 +5,9 @@
   position: relative;
   overflow: hidden;
   color: #FFFFFF;
-  background-image: url('/hero.png');
+  background-image: url('/images/hero-fallback.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
@@ -169,4 +169,58 @@
   object-fit: cover;
   object-position: center top;
   z-index: 1;
+}
+.statsBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 2rem 3.75rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  z-index: 10;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.statItem:last-child {
+  border-right: none;
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.statLabel {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+}
+
+@media (max-width: 768px) {
+  .statsBar {
+    grid-template-columns: repeat(2, 2fr);
+    padding: 1.5rem;
+    position: relative;
+    background: rgba(10, 22, 40, 0.9);
+  }
+  .statItem:nth-child(2) {
+    border-right: none;
+  }
+  .statItem:nth-child(3), .statItem:nth-child(4) {
+    margin-top: 1.5rem;
+  }
 }
