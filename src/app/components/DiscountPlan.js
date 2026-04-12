@@ -1,0 +1,102 @@
+"use client";
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import styles from './DiscountPlan.module.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+export default function DiscountPlan() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.anim-left', {
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%'
+        }
+      });
+      
+      gsap.from('.anim-right', {
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%'
+        }
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  const avatars = [
+    '/images/patients/carlos.png',
+    '/images/patients/fernanda.png',
+    '/images/patients/juliana.png',
+    '/images/patients/patient-4.png',
+    '/images/patients/patient-5.png'
+  ];
+
+  return (
+    <section className={styles.section} id="planos" ref={sectionRef}>
+      <div className={`container ${styles.container}`}>
+        <div className={`${styles.leftCol} anim-left`}>
+          <span className="tag">Assinatura SmilePro Plus</span>
+          <h2 className={styles.plansTitle}>A democratização do <span>sorriso premium</span></h2>
+          <p className={styles.plansText}>
+            Criamos um modelo de assinatura exclusivo para quem não abre mão da excelência. Economia real em todos os procedimentos, sem carência e com atendimento prioritário.
+          </p>
+          
+          <div className={styles.socialProof}>
+            <div className={styles.avatars}>
+              {avatars.map((av, idx) => (
+                <div key={idx} className={styles.avatar}>
+                  <Image 
+                    src={av} 
+                    alt={`Avatar ${idx}`} 
+                    width={40} 
+                    height={40} 
+                    className={styles.avatarImg}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className={styles.arrow}>→</div>
+            <div className={styles.plansSocialText}>Junte-se a +500 famílias</div>
+          </div>
+          
+          <button className="btn btn-primary">Conhecer Benefícios Exclusivos</button>
+        </div>
+
+        <div className={styles.rightCol}>
+          <div className={`${styles.cardBlue} anim-right`}>
+            <div className={styles.percentTextWhite}>80%</div>
+            <h3 className={styles.cardTitleWhite}>Prevenção Completa</h3>
+            <p className={styles.cardDescWhite}>
+              Consultas, limpezas semestrais e exames preventivos com 80% de desconto para assinantes.
+            </p>
+          </div>
+          
+          <div className={`${styles.cardOutlined} anim-right`}>
+            <div className={styles.percentTextBlue}>40%</div>
+            <h3 className={styles.cardTitleDark}>Procedimentos Estéticos</h3>
+            <p className={styles.cardDescDark}>
+              Lentes de contato, Invisalign e Implantes com 40% de desconto direto, sem burocracia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

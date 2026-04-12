@@ -1,0 +1,241 @@
+.section {
+  padding: 8.75rem 0;
+  background-color: #F8F9FF !important;
+  position: relative;
+  overflow: hidden;
+  background-image: none !important;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 90% 10%, rgba(79, 70, 229, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+  }
+}
+
+.leftCol {
+  flex: 1;
+}
+
+.rightCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.plansTag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563EB;
+  margin-bottom: 1.25rem;
+}
+
+.plansTitle {
+  font-family: var(--font-display);
+  font-size: 2.75rem; /* 44px */
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: #0F1B2D;
+}
+
+.plansTitle span {
+  background: var(--color-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.plansText {
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* 18px */
+  color: #6B7280;
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+  max-width: 31.25rem;
+}
+
+.socialProof {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+  padding: 0.875rem 1.25rem;
+  background: #FFFFFF;
+  border-radius: 100px;
+  width: fit-content;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border: 1px solid #F3F4F6;
+}
+
+.avatars {
+  display: flex;
+  padding-left: 0.75rem;
+}
+
+.avatar {
+  width: 3rem; /* 48px */
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin-left: -0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.arrow {
+  color: #60A5FA;
+  font-size: 1.125rem;
+}
+
+.plansSocialText {
+  font-family: var(--font-display);
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: #0F1B2D;
+}
+
+.cardBlue {
+  background: #2563EB;
+  border-radius: 20px;
+  padding: 2.25rem;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(37, 99, 235, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.cardBlue::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: rotate(45deg);
+}
+
+.cardOutlined {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 2.25rem;
+  border: 2px solid #E5E7EB;
+  transition: transform 0.3s ease;
+}
+
+.cardBlue:hover, .cardOutlined:hover {
+  transform: scale(1.02);
+}
+
+.percentTextWhite {
+  font-family: var(--font-display);
+  font-size: 5rem; /* 80px */
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.percentTextBlue {
+  font-family: var(--font-display);
+  font-size: 5rem; /* 80px */
+  font-weight: 800;
+  line-height: 1;
+  color: #2563EB;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cardTitleWhite {
+  font-family: var(--font-display);
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700;
+  margin-bottom: 0.625rem;
+  color: #FFFFFF;
+}
+
+.cardTitleDark {
+  font-family: var(--font-display);
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700;
+  color: #0F1B2D;
+  margin-bottom: 0.625rem;
+}
+
+.cardDescWhite {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.6;
+}
+
+.cardDescDark {
+  font-family: var(--font-body);
+  color: #6B7280;
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .leftCol {
+    text-align: center;
+  }
+  
+  .plansText {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .socialProof {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+}

@@ -1,0 +1,51 @@
+.main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Base Utility Classes */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.titleInverse {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: #FFFFFF;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.title span {
+  color: var(--color-primary);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  letter-spacing: 0.0625rem;
+}
+
+.tagInverse {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+  letter-spacing: 0.0625rem;
+}
