@@ -21,8 +21,8 @@ export default function BeforeAfter() {
       title: 'Ortodontia Invisalign',
       result: 'Alinhamento preciso · 14 meses',
       quote: '"Tratamento discreto e resultado impecável. Valeu cada centavo." — Juliana S.',
-      before: '/images/before-after/whitening-before.png',
-      after: '/images/before-after/whitening-after.png'
+      before: '/images/before-after/invisalign-before.png',
+      after: '/images/before-after/invisalign-after.png'
     }
   ];
 

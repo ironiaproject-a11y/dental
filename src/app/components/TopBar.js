@@ -11,7 +11,7 @@ export default function TopBar() {
   return (
     <div className={styles.topBar}>
       <span className={styles.text}>
-        📍 Atendimento Exclusivo na Av. Paulista — Vallet Gratuito para Pacientes SmilePro
+        📍 Atendimento exclusivo na Av. Paulista — Valet gratuito para pacientes SmilePro
       </span>
       <div className={styles.rightActions}>
         <a href="#contato" className={styles.link}>Agendar Agora →</a>
