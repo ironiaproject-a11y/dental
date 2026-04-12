@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  cacheComponents: true,
   // Compress responses with gzip
   compress: true,
 

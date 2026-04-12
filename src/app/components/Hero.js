@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from 'react';
-import Head from 'next/head';
 import styles from './Hero.module.css';
 import gsap from 'gsap';
 
@@ -82,9 +81,6 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} ref={heroRef}>
-      <Head>
-        <link rel="preload" as="video" href="/videos/hero-bg.mp4" type="video/mp4" />
-      </Head>
 
       {/* Background Video */}
       <video 
