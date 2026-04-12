@@ -9,7 +9,7 @@ export default function TopBar() {
   if (!isVisible) return null;
 
   return (
-    <div className={styles.topBar}>
+    <div className={`${styles.topBar} top-bar`}>
       <span className={styles.text}>
         📍 Atendimento exclusivo na Av. Paulista — Valet gratuito para pacientes SmilePro
       </span>

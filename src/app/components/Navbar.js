@@ -33,7 +33,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={`navbar ${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.container}`}>
         {/* Logo */}
         <div className={styles.logo}>
@@ -46,7 +46,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className={styles.desktopLinks}>
+        <div className={`${styles.desktopLinks} nav-links`}>
           {navLinks.map((item) => (
             <a key={item.label} href={item.href} className={styles.link}>
               {item.label}
@@ -56,12 +56,12 @@ export default function Navbar() {
 
         {/* Desktop Right Actions */}
         <div className={styles.desktopRight}>
-          <div className={styles.phoneWrapper}>
+          <div className={`${styles.phoneWrapper} nav-phone`}>
             <FiPhone className={styles.phoneIcon} />
             <span className={styles.phoneText}>(11) 9 9999-9999</span>
           </div>
           <div className={styles.divider}></div>
-          <button className={`btn btn-primary ${styles.navBtn}`}>Agendar Consulta</button>
+          <button className={`btn btn-primary ${styles.navBtn} nav-cta`}>Agendar Consulta</button>
         </div>
 
         {/* Hamburger Menu Icon */}

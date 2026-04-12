@@ -24,7 +24,7 @@ export default function LocationContact() {
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={`${styles.grid} contact-grid`}>
           {/* Left: Info + CTAs */}
           <div className={styles.contactCol}>
             <div className={styles.infoBox}>

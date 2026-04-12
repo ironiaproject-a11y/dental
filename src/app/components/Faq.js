@@ -50,19 +50,19 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={`${styles.grid} faq-grid`}>
           {faqs.map((faq, index) => (
             <div 
               key={index} 
-              className={`${styles.item} ${activeIndex === index ? styles.active : ''}`}
+              className={`${styles.item} ${activeIndex === index ? styles.active : ''} faq-item`}
               onClick={() => toggleAccordion(index)}
             >
               <div className={styles.questionRow}>
-                <h3 className={styles.question}>{faq.q}</h3>
+                <h3 className={`${styles.question} faq-q`}>{faq.q}</h3>
                 <span className={styles.icon}><FiChevronDown /></span>
               </div>
               <div className={styles.answerWrapper}>
-                <div className={styles.answer}>
+                <div className={`${styles.answer} faq-answer`}>
                   {faq.a}
                 </div>
               </div>

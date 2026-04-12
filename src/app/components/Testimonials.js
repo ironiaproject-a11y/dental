@@ -34,6 +34,27 @@ export default function Testimonials() {
       location: "Santo André, SP", 
       duration: "cliente há 3 anos",
       avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=150&auto=format&fit=crop"
+    },
+    { 
+      quote: "Excelente tecnologia. Me senti muito segura com scanners 3D e o planejamento digital do meu caso. Recomendo muito!", 
+      name: "Ricardo A.", 
+      location: "Brooklin, SP", 
+      duration: "cliente há 1 ano",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop"
+    },
+    { 
+      quote: "Ambiente impecável e recepção muito acolhedora. Nem parece que estou no dentista. Nota 10!", 
+      name: "Beatriz M.", 
+      location: "Pinheiros, SP", 
+      duration: "cliente há 2 anos",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop"
+    },
+    { 
+      quote: "O melhor clareamento que já fiz. Sem sensibilidade nenhuma e o ambiente é muito relaxante.", 
+      name: "Gustavo P.", 
+      location: "Vila Mariana, SP", 
+      duration: "cliente há 6 meses",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop"
     }
   ];
 
@@ -65,7 +86,7 @@ export default function Testimonials() {
           <p className={styles.subtext}>Resultados reais de pacientes que confiaram na SmilePro para transformar seus sorrisos.</p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={`${styles.grid} testimonials-grid`}>
           {testimonials.map((test, i) => (
             <div 
               key={i} 

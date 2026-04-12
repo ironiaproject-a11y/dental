@@ -89,6 +89,7 @@ export default function Hero() {
         muted 
         playsInline 
         preload="auto"
+        poster="/hero.png"
         className={styles.videoBg}
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
@@ -99,9 +100,9 @@ export default function Hero() {
 
       <div className={`container ${styles.container}`}>
         {/* Left Column Content */}
-        <div className={`${styles.leftCol} hero-parallax`}>
+        <div className={`${styles.leftCol} hero-parallax hero-content`}>
           
-          <h1 className={styles.title}>
+          <h1 className={`${styles.title} hero-title`}>
             <span className="anim-hero-left" style={{ display: 'block' }}>
               Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span>
             </span>
@@ -110,14 +111,34 @@ export default function Hero() {
             </span>
           </h1>
           
-          <p className={`${styles.description} anim-hero-left`}>
+          <p className={`${styles.description} anim-hero-left hero-description`}>
             Atendimento humanizado, tecnologia de última geração e resultados reais. 
             Agende sua avaliação gratuita e descubra o tratamento ideal para você.
           </p>
           
-          <div className={`${styles.ctaRow} anim-hero-left`}>
+          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
             <button ref={btnRef} className={`btn btn-primary ${styles.mainCta}`}>Agendar Avaliação Gratuita →</button>
             <a href="#servicos" className={styles.secondaryLink}>Ver nossos serviços</a>
+          </div>
+
+          {/* Stats Bar */}
+          <div className="hero-stats-bar anim-hero-left" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
+            <div className="stat-item" style={{ borderRight: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="stat-number" style={{ fontWeight: 700, fontSize: '32px' }}>15+</div>
+              <div style={{ fontSize: '12px', opacity: 0.8, textTransform: 'uppercase' }}>Anos de história</div>
+            </div>
+            <div className="stat-item" style={{ borderRight: '1px solid rgba(255,255,255,0.1)', paddingLeft: '10px' }}>
+              <div className="stat-number" style={{ fontWeight: 700, fontSize: '32px' }}>5k+</div>
+              <div style={{ fontSize: '12px', opacity: 0.8, textTransform: 'uppercase' }}>Pacientes felizes</div>
+            </div>
+            <div className="stat-item" style={{ borderRight: '1px solid rgba(255,255,255,0.1)', paddingLeft: '10px' }}>
+              <div className="stat-number" style={{ fontWeight: 700, fontSize: '32px' }}>100%</div>
+              <div style={{ fontSize: '12px', opacity: 0.8, textTransform: 'uppercase' }}>Tecnologia digital</div>
+            </div>
+            <div className="stat-item" style={{ paddingLeft: '10px' }}>
+              <div className="stat-number" style={{ fontWeight: 700, fontSize: '32px' }}>24h</div>
+              <div style={{ fontSize: '12px', opacity: 0.8, textTransform: 'uppercase' }}>Suporte pós-op</div>
+            </div>
           </div>
 
           {/* Social Proof Pill — separated from buttons */}

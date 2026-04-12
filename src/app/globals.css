@@ -261,9 +261,103 @@ section {
 }
 
 @media (max-width: 768px) {
-  section {
-    padding: 6.25rem 0;
-    scroll-margin-top: 5rem;
+  /* GLOBAL */
+  .container { padding: 0 24px; }
+  section { padding: 60px 24px !important; }
+  h2 { font-size: clamp(28px, 7vw, 36px) !important; }
+  p  { font-size: 16px !important; }
+
+  /* TOP BAR */
+  .top-bar {
+    font-size: 11px;
+    padding: 8px 16px;
+    text-align: center;
+    line-height: 1.5;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
+
+  /* NAVBAR */
+  /* Remove duplicate navbar — keep only first */
+  .navbar:nth-of-type(2) { display: none !important; }
+  
+  .nav-links { display: none; }
+  .nav-phone  { display: none; }
+  .nav-cta    { font-size: 13px; padding: 10px 16px; }
+
+  /* HERO */
+  .hero-content {
+    left: 0 !important;
+    padding: 0 24px !important;
+    top: auto !important;
+    bottom: 140px !important;
+    transform: none !important;
+    max-width: 100% !important;
+  }
+  .hero-title       { font-size: 36px !important; line-height: 1.15 !important; }
+  .hero-description { font-size: 16px !important; max-width: 100% !important; }
+  .hero-buttons     { flex-direction: column !important; gap: 12px !important; }
+  .hero-buttons > * { width: 100% !important; text-align: center !important; min-height: 52px !important; }
+
+  /* STATS BAR */
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 20px 24px !important;
+    gap: 16px 0 !important;
+  }
+  .stat-item:nth-child(2) { border-right: none !important; }
+  .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.1) !important; }
+  .stat-number { font-size: 28px !important; }
+
+  /* TRUST BAR */
+  .trust-bar { flex-direction: column !important; padding: 24px !important; gap: 16px !important; }
+  .trust-label { border-right: none !important; border-bottom: 1px solid #E5E7EB !important; padding: 0 0 16px !important; text-align: center !important; }
+  .trust-logos { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; justify-items: center !important; padding: 0 !important; }
+
+  /* TECNOLOGIA */
+  .tech-section { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .tech-image   { order: 2 !important; }
+  .tech-content { order: 1 !important; }
+
+  /* SERVIÇOS */
+  .services-grid { grid-template-columns: 1fr !important; }
+
+  /* ANTES E DEPOIS */
+  .ba-grid { grid-template-columns: 1fr !important; }
+
+  /* PLANOS */
+  .plans-section { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* EQUIPE */
+  .team-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  .team-card img { height: 200px !important; }
+
+  /* DEPOIMENTOS */
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+
+  /* FAQ */
+  .faq-grid    { grid-template-columns: 1fr !important; }
+  .faq-item    { padding: 20px !important; }
+  .faq-q       { font-size: 16px !important; }
+  .faq-answer  { font-size: 15px !important; }
+
+  /* FORMULÁRIO */
+  .contact-grid { grid-template-columns: 1fr !important; }
+  input, select { font-size: 16px !important; /* previne zoom no iOS */ }
+
+  /* CTA BANNER */
+  .cta-section  { grid-template-columns: 1fr !important; padding: 48px 24px !important; }
+  .cta-title    { font-size: 32px !important; }
+  .cta-image    { display: none !important; /* remove foto no mobile */ }
+  .cta-buttons  { flex-direction: column !important; gap: 12px !important; }
+  .cta-buttons > * { width: 100% !important; text-align: center !important; }
+
+  /* FOOTER */
+  .footer-grid  { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* WHATSAPP */
+  .whatsapp-float { bottom: 20px !important; right: 20px !important; width: 52px !important; height: 52px !important; }
+  .whatsapp-tooltip { display: none !important; }
 }
 

@@ -54,6 +54,7 @@ export default function DiscountPlan() {
         <div className={`${styles.leftCol} anim-left`}>
           <span className="tag">Assinatura SmilePro Plus</span>
           <h2 className={styles.plansTitle}>A democratização do <span>sorriso premium</span></h2>
+          <div className={styles.priceTag}>A partir de R$ 89/mês</div>
           <p className={styles.plansText}>
             Criamos um modelo de assinatura exclusivo para quem não abre mão da excelência. Economia real em todos os procedimentos, sem carência e com atendimento prioritário.
           </p>
@@ -79,7 +80,7 @@ export default function DiscountPlan() {
           <button className="btn btn-primary">Conhecer Benefícios Exclusivos</button>
         </div>
 
-        <div className={styles.rightCol}>
+        <div className={`${styles.rightCol} plans-section`}>
           <div className={`${styles.cardBlue} anim-right`}>
             <div className={styles.percentTextWhite}>80%</div>
             <h3 className={styles.cardTitleWhite}>Prevenção Completa</h3>
@@ -94,6 +95,14 @@ export default function DiscountPlan() {
             <p className={styles.cardDescDark}>
               Lentes de contato, Invisalign e Implantes com 40% de desconto direto, sem burocracia.
             </p>
+          </div>
+
+          <div className={`${styles.cardPrioritario} anim-right`}>
+            <div className={styles.iconCircle}>⚡</div>
+            <div>
+              <h3 className={styles.cardTitleWhiteCompact}>Atendimento Prioritário</h3>
+              <p className={styles.cardDescWhite}>Acesso à nossa agenda VIP com espera zero e concierge 24h.</p>
+            </div>
           </div>
         </div>
       </div>

@@ -3,15 +3,15 @@ import styles from './CtaBanner.module.css';
 
 export default function CtaBanner() {
   return (
-    <section className={styles.banner}>
+    <section className={`${styles.banner} cta-section`}>
       <div className={`container ${styles.container}`}>
         <div className={styles.content}>
           <div className={styles.tag}>Exclusivo para Novos Pacientes</div>
-          <h2 className={styles.title}>Seu novo sorriso começa com uma <span>consultoria gratuita</span></h2>
+          <h2 className={`${styles.title} cta-title`}>Seu novo sorriso começa com uma <span>consultoria gratuita</span></h2>
           <p className={styles.text}>
             Descubra o potencial do seu sorriso com nossa equipe de especialistas. Tecnologia 3D, diagnóstico preciso e zero compromisso.
           </p>
-          <div className={styles.actions}>
+          <div className={`${styles.actions} cta-buttons`}>
             <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className={styles.btnWhite}>
               Agendar via WhatsApp
             </a>
@@ -21,7 +21,7 @@ export default function CtaBanner() {
           </div>
         </div>
         
-        <div className={styles.imageRight}>
+        <div className={`${styles.imageRight} cta-image`}>
           <div className={styles.circleBg}></div>
           <Image 
             src="/images/cta-person.png" 

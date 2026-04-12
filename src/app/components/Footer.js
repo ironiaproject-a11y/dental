@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
-        <div className={styles.grid}>
+        <div className={`${styles.grid} footer-grid`}>
           <div className={styles.brandCol}>
             <div className={styles.logo}>Smile<span>Pro</span></div>
             <p className={styles.desc}>

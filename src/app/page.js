@@ -33,8 +33,8 @@ export default function Home() {
       <Services />
       <BeforeAfter />
       <DiscountPlan />
-      <Team />
       <ClinicInfrastructure />
+      <Team />
       <Testimonials />
       <Faq />
       <LocationContact />

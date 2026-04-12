@@ -39,7 +39,7 @@ export default function BeforeAfter() {
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ba-grid`}>
           {cases.map((item, index) => (
             <div key={index} className={styles.card}>
               <div className={styles.baImages}>

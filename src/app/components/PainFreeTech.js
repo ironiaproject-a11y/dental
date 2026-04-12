@@ -18,10 +18,10 @@ export default function PainFreeTech() {
   ];
 
   return (
-    <section className={styles.section} id="tecnologia">
+    <section className={`${styles.section} tech-section`} id="tecnologia">
       <div className="container">
         <div className={styles.grid}>
-          <div className={styles.content}>
+          <div className={`${styles.content} tech-content`}>
             <span className={styles.tag}>Padrão Ouro em Odontologia</span>
             <h2 className={styles.title}>Tecnologia de ponta para o seu <span>conforto absoluto</span></h2>
             <p className={styles.text}>
@@ -40,7 +40,7 @@ export default function PainFreeTech() {
             </ul>
             <a href="#contato" className="btn btn-primary">Agendar Experiência Premium</a>
           </div>
-          <div className={styles.visual}>
+          <div className={`${styles.visual} tech-image`}>
             <div className={styles.imageWrapper}>
               <Image
                 src="/images/tech-room.png"

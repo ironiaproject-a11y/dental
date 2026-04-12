@@ -4,10 +4,10 @@ export default function TrustBar() {
   const partners = ['Unimed', 'Amil', 'Bradesco Saúde', 'SulAmérica', 'Porto Seguro', 'Particular'];
   
   return (
-    <section className={styles.trustBar}>
+    <section className={`${styles.trustBar} trust-bar`}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.label}>Convênios e parceiros aceitos:</div>
-        <div className={styles.logos}>
+        <div className={`${styles.label} trust-label`}>Convênios e parceiros aceitos:</div>
+        <div className={`${styles.logos} trust-logos`}>
           {partners.map(partner => (
             <div key={partner} className={styles.logoItem}>{partner}</div>
           ))}

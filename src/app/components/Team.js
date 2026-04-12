@@ -77,9 +77,9 @@ export default function Team() {
           <h2 className="title">Conheça os especialistas por trás do seu <span>novo sorriso</span></h2>
         </div>
 
-        <div className={styles.grid}>
+        <div className={`${styles.grid} team-grid`}>
           {team.map((doc, i) => (
-            <div key={i} className={`${styles.card} anim-team-card`}>
+            <div key={i} className={`${styles.card} anim-team-card team-card`}>
               <div className={styles.photo}>
                 <Image 
                   src={doc.photo} 

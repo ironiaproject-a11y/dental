@@ -5,6 +5,9 @@
   position: relative;
   overflow: hidden;
   color: #FFFFFF;
+  background-image: url('/hero.png');
+  background-size: cover;
+  background-position: center;
 }
 
 /* Base container for content — using absolute placement for precise alignment */

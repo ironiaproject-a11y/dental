@@ -122,7 +122,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className={styles.servicesGrid} ref={bentoRef}>
+        <div className={`${styles.servicesGrid} services-grid`} ref={bentoRef}>
           {services.map((service) => (
             <div key={service.id} className={`${styles.serviceCard} service-card-anim`}>
               <div className={styles.cardHeader}>
