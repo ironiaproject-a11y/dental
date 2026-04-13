@@ -88,8 +88,15 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
-        className={styles.videoBg}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center top',
+          zIndex: 0
+        }}
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>

@@ -1,12 +1,7 @@
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
   position: relative;
   overflow: hidden;
-  color: #FFFFFF;
-  /* Fallback if video fails to load */
-  background: #0F1B2D;
+  background: #0a1628;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
