@@ -494,3 +494,43 @@ section {
   .nav-links, .nav-phone { display: none !important; }
   input, select, textarea { font-size: 16px !important; }
 }
+
+@media (max-width: 768px) {
+  .hero-content {
+    left: 0 !important;
+    padding: 0 24px !important;
+    bottom: 110px !important;
+    top: auto !important;
+    transform: none !important;
+    max-width: 100% !important;
+    position: absolute !important;
+  }
+  .hero-content h1 {
+    font-size: 34px !important;
+    line-height: 1.15 !important;
+  }
+  .hero-content p {
+    font-size: 15px !important;
+  }
+  .hero-buttons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .hero-buttons > * {
+    width: 100% !important;
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 16px 24px !important;
+  }
+  .stat-item {
+    border-right: none !important;
+    text-align: center !important;
+  }
+  .stat-number { font-size: 26px !important; }
+  .stat-label  { font-size: 10px !important; }
+}
