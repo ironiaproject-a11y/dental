@@ -6,18 +6,8 @@ import gsap from 'gsap';
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoRef = useRef(null);
 
   useEffect(() => {
-    // Forçar autoplay no mobile/iOS 
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(error => {
-        console.log("Autoplay impedido pelo navegador:", error);
-      });
-    }
-
     if (typeof window !== 'undefined') {
        const ctx = gsap.context(() => {
          const tl = gsap.timeline();
@@ -93,25 +83,22 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        webkit-playsinline="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center top',
-          zIndex: 0
+      <div
+        style={{ position: 'absolute', inset: 0, zIndex: 0 }}
+        dangerouslySetInnerHTML={{
+          __html: `
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"
+            >
+              <source src="/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+          `
         }}
-      >
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
-      </video>
+      />
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
