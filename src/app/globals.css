@@ -476,3 +476,21 @@ section {
   }
 }
 
+
+@media (max-width: 768px) {
+  section { padding: 60px 24px !important; }
+  h2 { font-size: 28px !important; line-height: 1.2 !important; }
+  p  { font-size: 16px !important; }
+  .hero-content { left: 0 !important; padding: 0 24px !important; bottom: 110px !important; top: auto !important; transform: none !important; max-width: 100% !important; }
+  .hero-content h1 { font-size: 34px !important; line-height: 1.15 !important; }
+  .hero-buttons { flex-direction: column !important; gap: 10px !important; }
+  .hero-buttons > * { width: 100% !important; min-height: 50px !important; justify-content: center !important; }
+  .hero-stats-bar { grid-template-columns: repeat(2,1fr) !important; padding: 16px 24px !important; }
+  .stat-item { border-right: none !important; text-align: center !important; }
+  .trust-logos { display: grid !important; grid-template-columns: repeat(3,1fr) !important; }
+  .services-grid { grid-template-columns: 1fr !important; }
+  .team-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+  .nav-links, .nav-phone { display: none !important; }
+  input, select, textarea { font-size: 16px !important; }
+}
