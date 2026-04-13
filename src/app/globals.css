@@ -574,3 +574,27 @@ section {
     align-items: center !important;
   }
 }
+
+@media (max-width: 768px) {
+  /* Top bar — texto curto */
+  .top-bar {
+    font-size: 11px !important;
+    padding: 6px 16px !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Mover prova social para DEPOIS dos botões */
+  .hero-social-proof {
+    order: 3 !important;
+    margin-top: 20px !important;
+  }
+  .hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .hero-content h1   { order: 0 !important; }
+  .hero-content p    { order: 1 !important; }
+  .hero-buttons      { order: 2 !important; }
+  .hero-social-proof { order: 3 !important; }
+}
