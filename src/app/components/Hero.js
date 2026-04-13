@@ -6,8 +6,18 @@ import gsap from 'gsap';
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
+    // Forçar autoplay no mobile/iOS 
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(error => {
+        console.log("Autoplay impedido pelo navegador:", error);
+      });
+    }
+
     if (typeof window !== 'undefined') {
        const ctx = gsap.context(() => {
          const tl = gsap.timeline();
@@ -84,10 +94,12 @@ export default function Hero() {
 
       {/* 1. Background Video */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        webkit-playsinline="true"
         style={{
           position: 'absolute',
           inset: 0,
