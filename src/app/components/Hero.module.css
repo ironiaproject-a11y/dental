@@ -1,7 +1,11 @@
 .hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
   background: #0a1628;
+  color: #FFFFFF;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
@@ -55,6 +59,7 @@
   align-items: center;
   gap: 1.25rem; /* 20px */
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
@@ -63,9 +68,25 @@
     right: 1.5rem;
     max-width: 100%;
     width: auto;
+    text-align: center;
+    align-items: center;
   }
   .title {
     font-size: 2.25rem !important; /* 36px */
+    text-align: center;
+  }
+  .description {
+    text-align: center;
+  }
+  .ctaRow {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .socialProofPill {
+    flex-direction: column;
+    text-align: center;
+    border-radius: 1rem;
   }
 }
 
@@ -152,6 +173,17 @@
     rgba(0, 0, 0, 0) 100%
   );
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .videoOverlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
 }
 
 .videoBg {
