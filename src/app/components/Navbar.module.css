@@ -1,6 +1,6 @@
 .navbar {
   position: fixed;
-  top: 2.5rem;
+  top: 36px; /* altura exata do TopBar */
   left: 0;
   width: 100%;
   background: rgba(10, 20, 60, 0.45);

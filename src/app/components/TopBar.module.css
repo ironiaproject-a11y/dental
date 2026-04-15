@@ -1,57 +1,100 @@
-.topBar, .topBar * {
-  background: var(--color-primary-gradient);
-  color: #FFFFFF;
-  padding: 0.5rem 2.5rem;
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: 0.875rem; /* 14px */
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: none;
+/* ── TopBar: faixa fina flutuando sobre o hero ── */
+.topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1002;
+
+  /* Glassmorphism escuro — integrado ao hero */
+  background: rgba(5, 12, 28, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  /* Layout */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  position: relative;
-  z-index: 1001;
+  gap: 1.5rem;
+  padding: 0.45rem 2rem;
+
+  /* Tipografia refinada */
+  font-family: var(--font-display);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.82);
+
+  /* Altura definida para o Navbar compensar */
+  height: 36px;
+}
+
+/* Destaque pontual: ícone / texto em azul claro */
+.topBar strong,
+.topBar b {
+  color: #93C5FD; /* azul claro — mesmo tom do titleHighlight no hero */
+  font-weight: 600;
 }
 
 .rightActions {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
+/* Separador vertical */
+.separator {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* Link CTA sutil */
 .link {
-  color: #FFFFFF;
-  text-decoration: underline;
-  text-underline-offset: 0.25rem;
-  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #93C5FD;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  border-radius: 100px;
+  padding: 0.15rem 0.65rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .link:hover {
-  opacity: 0.8;
+  background: rgba(147, 197, 253, 0.12);
+  border-color: rgba(147, 197, 253, 0.6);
+  color: #FFFFFF;
 }
 
+/* Botão fechar */
 .closeBtn {
   background: transparent;
   border: none;
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0.25rem;
   border-radius: 50%;
   transition: all 0.2s ease;
-  margin-right: -0.625rem;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 
 .closeBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.1);
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
 }
 
+/* Mobile: ocultar completamente */
 @media (max-width: 768px) {
   .topBar {
     display: none !important;

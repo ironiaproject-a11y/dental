@@ -4,7 +4,7 @@ import styles from './Navbar.module.css';
 import { FiPhone } from 'react-icons/fi';
 import { HiMenu, HiX } from 'react-icons/hi';
 
-const TOPBAR_HEIGHT = 40; // px — keep in sync with TopBar padding
+const TOPBAR_HEIGHT = 36; // px — altura exata do TopBar (keep in sync)
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
