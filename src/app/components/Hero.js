@@ -6,11 +6,11 @@ import styles from './Hero.module.css';
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // Entrance slide-in from left
+      // Premium entrance: fade up, blur remove, slight scale up
       gsap.timeline().fromTo(
         '.anim-hero-left',
-        { x: -60, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.6, stagger: 0.35, ease: 'power3.out', clearProps: 'transform' }
+        { y: 40, opacity: 0, filter: 'blur(12px)', scale: 0.96 },
+        { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.5, stagger: 0.15, ease: 'power3.out', clearProps: 'all' }
       );
 
       // Desktop parallax on mouse move
