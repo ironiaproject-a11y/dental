@@ -25,13 +25,10 @@ export default function Hero() {
     const promise = v.play();
     if (promise !== undefined) {
       promise.catch(() => {
-        // Low Power Mode blocked it — hide it so we don't show Safari's play button
-        v.style.opacity = '0';
+        // Low Power Mode blocked it
         
         const recoverPlay = () => {
-          v.play().then(() => {
-            v.style.opacity = '1';
-          }).catch(() => {});
+          v.play().catch(() => {});
           document.removeEventListener('touchstart', recoverPlay);
           document.removeEventListener('scroll', recoverPlay);
         };
@@ -96,7 +93,6 @@ export default function Hero() {
           playsInline
           preload="auto"
           fetchPriority="high"
-          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           style={{
             width: '100%',
             height: '100%',
