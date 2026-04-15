@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors - Richer Palette */
+  /* - */
   --color-primary: #2563EB;
   --color-primary-light: #60A5FA;
   --color-primary-dark: #1D4ED8;
   --color-primary-gradient: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
   
-  /* Accent: mapped to primary blue for consistent single-brand palette */
+  /* mapped */
   --color-accent: #2563EB;
   --color-accent-light: #60A5FA;
   --color-accent-dark: #1D4ED8;
@@ -20,7 +20,7 @@
   --color-bg-dark: #0a1628;
   --color-bg-dark-elem: #0d1e35;
   --color-text-primary: #0F1B2D;
-  --color-text-secondary: #4B5563; /* slightly darker for better contrast */
+  --color-text-secondary: #4B5563; /* darker */
   --color-text-light: #9CA3AF;
   --color-cta-hover: #1E40AF;
   --color-success: #10B981;
@@ -45,7 +45,7 @@
   --radius-image: 24px;
   --radius-badge: 100px;
 
-  /* Shadows - More ethereal and fluid */
+  /* - */
   --shadow-card: 0 10px 40px -10px rgba(37, 99, 235, 0.06);
   --shadow-card-hover: 0 20px 60px -15px rgba(37, 99, 235, 0.18);
   --shadow-button: 0 8px 24px -4px rgba(37, 99, 235, 0.4);
@@ -53,7 +53,7 @@
   --shadow-glow: 0 0 30px rgba(79, 70, 229, 0.3);
   --shadow-glow-accent: 0 0 30px rgba(79, 70, 229, 0.3);
   
-  /* Glassmorphism utility variables */
+  /* utility */
   --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-bg-dark: rgba(10, 22, 40, 0.65);
   --glass-border: 1px solid rgba(255, 255, 255, 0.5);
@@ -205,7 +205,7 @@ a {
   background-color: rgba(15, 27, 45, 0.05);
 }
 
-/* Global Typography & Components */
+/* Typography */
 .tag {
   display: inline-block;
   font-family: var(--font-display);
@@ -262,7 +262,7 @@ section {
 
 @media (max-width: 768px) {
 
-  /* â”€â”€ GLOBAL â”€â”€ */
+  /* GLOBAL */
   section {
     padding: 60px 24px !important;
   }
@@ -275,7 +275,7 @@ section {
     line-height: 1.65 !important;
   }
 
-  /* â”€â”€ TOP BAR â”€â”€ */
+  /* TOP */
   .top-bar {
     font-size: 11px !important;
     padding: 8px 16px !important;
@@ -285,11 +285,11 @@ section {
     line-height: 1.5 !important;
   }
 
-  /* â”€â”€ NAVBAR â”€â”€ */
+  /* NAVBAR */
   .nav-links { display: none !important; }
   .nav-phone  { display: none !important; }
 
-  /* â”€â”€ HERO â”€â”€ */
+  /* HERO */
   .hero-content {
     position: absolute !important;
     bottom: 110px !important;
@@ -329,7 +329,7 @@ section {
     font-size: 13px !important;
   }
 
-  /* â”€â”€ STATS BAR â”€â”€ */
+  /* STATS */
   .hero-stats-bar {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -348,7 +348,7 @@ section {
   .stat-number { font-size: 26px !important; }
   .stat-label  { font-size: 10px !important; }
 
-  /* â”€â”€ TRUST BAR â”€â”€ */
+  /* TRUST */
   .trust-bar {
     flex-direction: column !important;
     padding: 24px !important;
@@ -368,7 +368,7 @@ section {
     justify-items: center !important;
   }
 
-  /* â”€â”€ TECNOLOGIA â”€â”€ */
+  /* TECNOLOGIA */
   .tech-section,
   [class*="tech"] > .grid,
   [class*="tech"] > .flex {
@@ -379,21 +379,21 @@ section {
   .tech-image { order: 2 !important; }
   .tech-content { order: 1 !important; }
 
-  /* â”€â”€ SERVIÃ‡OS â”€â”€ */
+  /* SERVIÃ‡OS */
   .services-grid,
   [class*="service"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* â”€â”€ ANTES E DEPOIS â”€â”€ */
+  /* ANTES */
   [class*="before-after"],
   [class*="ba-grid"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
 
-  /* â”€â”€ PLANOS â”€â”€ */
+  /* PLANOS */
   [class*="plans"],
   [class*="plan"] > .grid,
   [class*="plan"] > .flex {
@@ -402,7 +402,7 @@ section {
     gap: 32px !important;
   }
 
-  /* â”€â”€ EQUIPE â”€â”€ */
+  /* EQUIPE */
   .team-grid,
   [class*="team"] > .grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -412,14 +412,14 @@ section {
     height: 180px !important;
   }
 
-  /* â”€â”€ DEPOIMENTOS â”€â”€ */
+  /* DEPOIMENTOS */
   .testimonials-grid,
   [class*="testimonial"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* â”€â”€ FAQ â”€â”€ */
+  /* FAQ */
   [class*="faq"] > .grid {
     grid-template-columns: 1fr !important;
   }
@@ -427,7 +427,7 @@ section {
     padding: 20px !important;
   }
 
-  /* â”€â”€ CONTATO / CTA â”€â”€ */
+  /* CONTATO */
   [class*="contact"] > .grid,
   [class*="cta"] > .grid,
   [class*="cta"] > .flex {
@@ -448,20 +448,20 @@ section {
     text-align: center !important;
     min-height: 52px !important;
   }
-  /* Esconder imagem da paciente no CTA mobile */
+  /* imagem */
   [class*="cta-image"],
   [class*="cta-person"] {
     display: none !important;
   }
 
-  /* â”€â”€ FOOTER â”€â”€ */
+  /* FOOTER */
   [class*="footer"] > .grid,
   footer > .grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
 
-  /* â”€â”€ WHATSAPP â”€â”€ */
+  /* WHATSAPP */
   .whatsapp-float {
     bottom: 20px !important;
     right: 20px !important;
@@ -470,7 +470,7 @@ section {
   }
   .whatsapp-tooltip { display: none !important; }
 
-  /* â”€â”€ INPUTS â€” previne zoom no iOS â”€â”€ */
+  /* INPUTS */
   input, select, textarea {
     font-size: 16px !important;
   }
@@ -537,7 +537,7 @@ section {
 
 @media (max-width: 768px) {
 
-  /* Top bar â€” compactar e esconder CTA */
+  /* bar */
   .top-bar {
     flex-direction: column !important;
     padding: 8px 16px !important;
@@ -550,7 +550,7 @@ section {
     display: none !important;
   }
 
-  /* Hero content â€” centralizar verticalmente */
+  /* content */
   .hero-content {
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -576,7 +576,7 @@ section {
 }
 
 @media (max-width: 768px) {
-  /* Top bar — texto curto */
+  /* bar */
   .top-bar {
     font-size: 11px !important;
     padding: 6px 16px !important;
@@ -584,7 +584,7 @@ section {
     line-height: 1.4 !important;
   }
 
-  /* Mover prova social para DEPOIS dos botões */
+  /* prova */
   .hero-social-proof {
     order: 3 !important;
     margin-top: 20px !important;
