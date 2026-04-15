@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -262,7 +262,7 @@ section {
 
 @media (max-width: 768px) {
 
-  /* ── GLOBAL ── */
+  /* â”€â”€ GLOBAL â”€â”€ */
   section {
     padding: 60px 24px !important;
   }
@@ -275,7 +275,7 @@ section {
     line-height: 1.65 !important;
   }
 
-  /* ── TOP BAR ── */
+  /* â”€â”€ TOP BAR â”€â”€ */
   .top-bar {
     font-size: 11px !important;
     padding: 8px 16px !important;
@@ -285,11 +285,11 @@ section {
     line-height: 1.5 !important;
   }
 
-  /* ── NAVBAR ── */
+  /* â”€â”€ NAVBAR â”€â”€ */
   .nav-links { display: none !important; }
   .nav-phone  { display: none !important; }
 
-  /* ── HERO ── */
+  /* â”€â”€ HERO â”€â”€ */
   .hero-content {
     position: absolute !important;
     bottom: 110px !important;
@@ -329,7 +329,7 @@ section {
     font-size: 13px !important;
   }
 
-  /* ── STATS BAR ── */
+  /* â”€â”€ STATS BAR â”€â”€ */
   .hero-stats-bar {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -348,7 +348,7 @@ section {
   .stat-number { font-size: 26px !important; }
   .stat-label  { font-size: 10px !important; }
 
-  /* ── TRUST BAR ── */
+  /* â”€â”€ TRUST BAR â”€â”€ */
   .trust-bar {
     flex-direction: column !important;
     padding: 24px !important;
@@ -368,7 +368,7 @@ section {
     justify-items: center !important;
   }
 
-  /* ── TECNOLOGIA ── */
+  /* â”€â”€ TECNOLOGIA â”€â”€ */
   .tech-section,
   [class*="tech"] > .grid,
   [class*="tech"] > .flex {
@@ -379,21 +379,21 @@ section {
   .tech-image { order: 2 !important; }
   .tech-content { order: 1 !important; }
 
-  /* ── SERVIÇOS ── */
+  /* â”€â”€ SERVIÃ‡OS â”€â”€ */
   .services-grid,
   [class*="service"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* ── ANTES E DEPOIS ── */
+  /* â”€â”€ ANTES E DEPOIS â”€â”€ */
   [class*="before-after"],
   [class*="ba-grid"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
 
-  /* ── PLANOS ── */
+  /* â”€â”€ PLANOS â”€â”€ */
   [class*="plans"],
   [class*="plan"] > .grid,
   [class*="plan"] > .flex {
@@ -402,7 +402,7 @@ section {
     gap: 32px !important;
   }
 
-  /* ── EQUIPE ── */
+  /* â”€â”€ EQUIPE â”€â”€ */
   .team-grid,
   [class*="team"] > .grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -412,14 +412,14 @@ section {
     height: 180px !important;
   }
 
-  /* ── DEPOIMENTOS ── */
+  /* â”€â”€ DEPOIMENTOS â”€â”€ */
   .testimonials-grid,
   [class*="testimonial"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* ── FAQ ── */
+  /* â”€â”€ FAQ â”€â”€ */
   [class*="faq"] > .grid {
     grid-template-columns: 1fr !important;
   }
@@ -427,7 +427,7 @@ section {
     padding: 20px !important;
   }
 
-  /* ── CONTATO / CTA ── */
+  /* â”€â”€ CONTATO / CTA â”€â”€ */
   [class*="contact"] > .grid,
   [class*="cta"] > .grid,
   [class*="cta"] > .flex {
@@ -454,14 +454,14 @@ section {
     display: none !important;
   }
 
-  /* ── FOOTER ── */
+  /* â”€â”€ FOOTER â”€â”€ */
   [class*="footer"] > .grid,
   footer > .grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
 
-  /* ── WHATSAPP ── */
+  /* â”€â”€ WHATSAPP â”€â”€ */
   .whatsapp-float {
     bottom: 20px !important;
     right: 20px !important;
@@ -470,7 +470,7 @@ section {
   }
   .whatsapp-tooltip { display: none !important; }
 
-  /* ── INPUTS — previne zoom no iOS ── */
+  /* â”€â”€ INPUTS â€” previne zoom no iOS â”€â”€ */
   input, select, textarea {
     font-size: 16px !important;
   }
@@ -537,7 +537,7 @@ section {
 
 @media (max-width: 768px) {
 
-  /* Top bar — compactar e esconder CTA */
+  /* Top bar â€” compactar e esconder CTA */
   .top-bar {
     flex-direction: column !important;
     padding: 8px 16px !important;
@@ -550,7 +550,7 @@ section {
     display: none !important;
   }
 
-  /* Hero content — centralizar verticalmente */
+  /* Hero content â€” centralizar verticalmente */
   .hero-content {
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -561,7 +561,7 @@ section {
     max-width: 100% !important;
   }
 
-  /* Botões empilhados */
+  /* BotÃµes empilhados */
   .hero-buttons {
     flex-direction: column !important;
     gap: 12px !important;
@@ -576,7 +576,7 @@ section {
 }
 
 @media (max-width: 768px) {
-  /* Top bar � texto curto */
+  /* Top bar — texto curto */
   .top-bar {
     font-size: 11px !important;
     padding: 6px 16px !important;
@@ -584,7 +584,7 @@ section {
     line-height: 1.4 !important;
   }
 
-  /* Mover prova social para DEPOIS dos bot�es */
+  /* Mover prova social para DEPOIS dos botões */
   .hero-social-proof {
     order: 3 !important;
     margin-top: 20px !important;
