@@ -12,15 +12,15 @@ export default function Hero() {
        const ctx = gsap.context(() => {
          const tl = gsap.timeline();
 
-         // Entrance Animation - Cinematic Fade Up
+         // Entrance Animation - Smooth Slow Slide from Left
          tl.fromTo('.anim-hero-left', 
-           { y: 40, opacity: 0 }, 
+           { x: -60, opacity: 0 }, 
            { 
-             y: 0, 
+             x: 0, 
              opacity: 1, 
-             duration: 1.4, 
-             stagger: 0.2, 
-             ease: 'expo.out',
+             duration: 1.6, 
+             stagger: 0.35, 
+             ease: 'power3.out',
              clearProps: 'transform' // Avoid conflicts with parallax transform later
            }
          );
