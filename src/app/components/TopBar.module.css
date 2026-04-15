@@ -1,100 +1,113 @@
-/* ── TopBar: faixa fina flutuando sobre o hero ── */
+/* ── TopBar: pill flutuante centralizado sobre o hero ── */
+
 .topBar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1002;
 
-  /* Glassmorphism escuro — integrado ao hero */
-  background: rgba(5, 12, 28, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-
-  /* Layout */
-  display: flex;
-  justify-content: center;
+  /* Pill shape */
+  display: inline-flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0.45rem 2rem;
+  gap: 0.5rem;
+  white-space: nowrap;
 
-  /* Tipografia refinada */
+  /* Glass refinado */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 100px;
+
+  /* Tamanho compacto */
+  padding: 0.35rem 1rem 0.35rem 0.75rem;
+
+  /* Tipografia */
   font-family: var(--font-display);
-  font-size: 0.8125rem; /* 13px */
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.01em;
 
-  /* Altura definida para o Navbar compensar */
-  height: 36px;
+  /* Sombra sutil para profundidade */
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Destaque pontual: ícone / texto em azul claro */
-.topBar strong,
-.topBar b {
-  color: #93C5FD; /* azul claro — mesmo tom do titleHighlight no hero */
+/* Ponto animado — live indicator */
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34D399; /* verde esmeralda */
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* Texto principal */
+.text {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Destaque em azul claro */
+.text strong {
+  color: #93C5FD;
   font-weight: 600;
 }
 
-.rightActions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Separador vertical */
-.separator {
+/* Separador */
+.sep {
   width: 1px;
-  height: 12px;
+  height: 10px;
   background: rgba(255, 255, 255, 0.2);
+  margin: 0 0.125rem;
   flex-shrink: 0;
 }
 
-/* Link CTA sutil */
+/* Link CTA inline */
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.2rem;
   color: #93C5FD;
   font-weight: 600;
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   text-decoration: none;
-  border: 1px solid rgba(147, 197, 253, 0.35);
-  border-radius: 100px;
-  padding: 0.15rem 0.65rem;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .link:hover {
-  background: rgba(147, 197, 253, 0.12);
-  border-color: rgba(147, 197, 253, 0.6);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-/* Botão fechar */
+/* Botão X — discreto */
 .closeBtn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem;
+  padding: 0.15rem;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  margin-left: 0.25rem;
+  transition: color 0.2s ease;
   flex-shrink: 0;
-  margin-left: 0.5rem;
 }
 
 .closeBtn:hover {
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Mobile: ocultar completamente */
+/* Mobile: ocultar */
 @media (max-width: 768px) {
   .topBar {
     display: none !important;

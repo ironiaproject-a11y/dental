@@ -10,24 +10,25 @@ export default function TopBar() {
 
   return (
     <div className={`${styles.topBar} top-bar`}>
-      <span>
-        📍 Atendimento exclusivo na <strong>Av. Paulista</strong> — Valet gratuito para pacientes SmilePro
+      {/* Ponto verde pulsante — indica disponibilidade */}
+      <span className={styles.liveDot} aria-hidden="true" />
+
+      <span className={styles.text}>
+        📍 <strong>Av. Paulista</strong> — Valet gratuito SmilePro
       </span>
 
-      <div className={styles.separator} />
+      <span className={styles.sep} aria-hidden="true" />
 
-      <div className={styles.rightActions}>
-        <a href="#contato" className={styles.link}>
-          Agendar Agora →
-        </a>
-      </div>
+      <a href="#contato" className={styles.link}>
+        Agendar →
+      </a>
 
       <button
         className={styles.closeBtn}
         onClick={() => setIsVisible(false)}
         aria-label="Fechar aviso"
       >
-        <HiX size={14} />
+        <HiX size={12} />
       </button>
     </div>
   );
