@@ -6,6 +6,7 @@ import gsap from 'gsap';
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -80,31 +81,27 @@ export default function Hero() {
 
   useEffect(() => {
     const playVideo = () => {
-      const video = document.querySelector('.hero-video-el');
-      if (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.setAttribute('playsinline', '');
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+        videoRef.current.defaultMuted = true;
+        videoRef.current.playsInline = true;
         
-        const playPromise = video.play();
+        const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch(e => console.log('Autoplay prevented by browser: ', e));
         }
       }
     };
     
-    // Play immediately on mount
+    // Attempt play immediately on mount
     playVideo();
     
-    // Fallback events just in case
-    document.addEventListener('touchstart', playVideo, { once: true });
-    document.addEventListener('click', playVideo, { once: true });
-    document.addEventListener('scroll', playVideo, { once: true });
+    // Add interactions as fallbacks
+    const events = ['touchstart', 'click', 'scroll'];
+    events.forEach(evt => document.addEventListener(evt, playVideo, { once: true }));
     
     return () => {
-      document.removeEventListener('touchstart', playVideo);
-      document.removeEventListener('click', playVideo);
-      document.removeEventListener('scroll', playVideo);
+      events.forEach(evt => document.removeEventListener(evt, playVideo));
     };
   }, []);
 
@@ -112,26 +109,17 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video - dangerouslySetInnerHTML is strictly required for iOS Safari to see muted attribute before React hydration */}
-      <div 
-        className={styles.videoWrapper} 
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `
-            <video
-              class="hero-video-el"
-              autoplay
-              loop
-              muted
-              playsinline
-              webkit-playsinline
-              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none;"
-            >
-              <source src="/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-          `
-        }}
-      />
+      <video
+        ref={videoRef}
+        className={styles.videoWrapper}
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
