@@ -84,7 +84,7 @@ export default function Hero() {
 
       {/* 1. Background Video */}
       <div
-        style={{ position: 'absolute', inset: 0, zIndex: 0 }}
+        className={styles.videoWrapper}
         dangerouslySetInnerHTML={{
           __html: `
             <video

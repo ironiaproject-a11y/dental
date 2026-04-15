@@ -14,8 +14,13 @@
 .hero video::-webkit-media-controls {
   display: none !important;
   -webkit-appearance: none !important;
-  opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.videoWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
@@ -74,14 +79,41 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: auto;
+  }
+  
+  .videoWrapper {
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    flex-shrink: 0;
+    max-height: 400px;
+  }
+
+  .videoOverlay {
+    display: none !important;
+  }
+
+  .container {
+    padding: 0 !important;
+    height: auto !important;
+  }
+
   .leftCol {
-    left: 1.5rem; /* 24px */
-    right: 1.5rem;
+    position: relative;
+    top: 0;
+    transform: none;
+    left: 0;
+    right: 0;
     max-width: 100%;
-    width: auto;
+    width: 100%;
     text-align: center;
     align-items: center;
-    top: 48%; /* Slightly adjust to handle longer vertical content */
+    margin: 0;
   }
   
   /* Mobile Hierarchy Re-ordering */
