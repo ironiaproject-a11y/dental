@@ -2,6 +2,12 @@
 "use client";
 import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
+import gsap from 'gsap';
+
+export default function Hero() {
+  const heroRef = useRef(null);
+  const btnRef = useRef(null);
+
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
