@@ -6,6 +6,7 @@ import gsap from 'gsap';
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -80,24 +81,29 @@ export default function Hero() {
 
   useEffect(() => {
     const playVideo = () => {
-      const videos = document.querySelectorAll('.hero-video-el');
-      videos.forEach(video => {
-        if (video.paused) {
-          video.play().catch(e => console.log('Autoplay prevented by browser: ', e));
+      if (videoRef.current) {
+        videoRef.current.defaultMuted = true;
+        videoRef.current.muted = true;
+        
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(e => console.log('Autoplay prevented by browser: ', e));
         }
-      });
+      }
     };
     
-    // Play on mount
+    // Play immediately on mount
     playVideo();
     
-    // Attempt to play on first interaction if blocked
+    // Fallback events just in case
     document.addEventListener('touchstart', playVideo, { once: true });
     document.addEventListener('click', playVideo, { once: true });
+    document.addEventListener('scroll', playVideo, { once: true });
     
     return () => {
       document.removeEventListener('touchstart', playVideo);
       document.removeEventListener('click', playVideo);
+      document.removeEventListener('scroll', playVideo);
     };
   }, []);
 
@@ -106,25 +112,19 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
-      <div
-        className={styles.videoWrapper}
-        dangerouslySetInnerHTML={{
-          __html: `
-            <video
-              class="hero-video-el"
-              autoplay="autoplay"
-              loop="loop"
-              muted="muted"
-              playsinline="true"
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none;"
-            >
-              <source src="/videos/hero-bg.mp4" type="video/mp4" />
-            </video>
-          `
-        }}
-      />
+      <div className={styles.videoWrapper}>
+        <video
+          ref={videoRef}
+          className="hero-video-el"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none' }}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
