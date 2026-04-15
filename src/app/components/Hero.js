@@ -1,44 +1,6 @@
 "use client";
 import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
-import gsap from 'gsap';
-
-export default function Hero() {
-  const videoRef = useRef(null);
-  const heroRef = useRef(null);
-  const btnRef = useRef(null);
-
-  // ── Video Autoplay & Fallback Handling ─────────
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-
-    // Force property muting just in case
-    v.muted = true;
-    v.defaultMuted = true;
-    
-    // Ensure playsinline
-    v.setAttribute('playsinline', 'playsinline');
-    v.setAttribute('webkit-playsinline', 'playsinline');
-
-    // Try playing
-    const promise = v.play();
-    if (promise !== undefined) {
-      promise.catch(() => {
-        // Low Power Mode blocked it
-        
-        const recoverPlay = () => {
-          v.play().catch(() => {});
-          document.removeEventListener('touchstart', recoverPlay);
-          document.removeEventListener('scroll', recoverPlay);
-        };
-        // Add listeners to naturally resume video on any touch or scroll
-        document.addEventListener('touchstart', recoverPlay, { passive: true });
-        document.addEventListener('scroll', recoverPlay, { passive: true });
-      });
-    }
-  }, []);
-
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -81,18 +43,14 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video */}
+      {/* 1. Background Animation (GIF instead of MP4 to bypass Battery Saver blocks) */}
       <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
+        <img
           className="hero-video-el"
-          src="/videos/hero-bg.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+          src="/videos/hero-bg.gif"
+          alt="Clínica Odontológica"
           fetchPriority="high"
+          decoding="async"
           style={{
             width: '100%',
             height: '100%',
@@ -103,7 +61,6 @@ export default function Hero() {
             top: 0,
             left: 0,
             zIndex: 0,
-            transition: 'opacity 0.5s ease',
           }}
         />
       </div>
