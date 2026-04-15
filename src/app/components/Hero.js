@@ -7,33 +7,52 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
-  // ── Video Autoplay Fallback for Mobile (Low Power Mode) ─────────
+  const videoContainerRef = useRef(null);
+
+  // ── Video Autoplay Guarantee via Raw DOM ─────────
   useEffect(() => {
-    const videoEl = document.querySelector('.hero-video-el');
-    if (!videoEl) return;
+    if (typeof window === 'undefined') return;
+    const container = videoContainerRef.current;
+    if (!container) return;
 
-    const tryPlay = () => {
-      if (videoEl.paused) {
-        const promise = videoEl.play();
-        if (promise !== undefined) {
-          promise.catch(() => {});
-        }
-      }
-    };
+    // Remove existing video if re-running
+    container.innerHTML = '';
 
-    const evts = ['touchstart', 'scroll', 'click'];
-    const onInteraction = () => {
-      tryPlay();
-      // Remove listeners after first successful attempt
-      evts.forEach(evt => document.removeEventListener(evt, onInteraction));
-    };
+    const v = document.createElement('video');
+    v.className = 'hero-video-el';
+    v.src = '/videos/hero-bg.mp4';
+    v.playsInline = true;
+    v.autoplay = true;
+    v.loop = true;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.preload = 'auto';
+    
+    // Crucial explicitly set attributes for iOS
+    v.setAttribute('playsinline', 'playsinline');
+    v.setAttribute('webkit-playsinline', 'playsinline');
+    v.setAttribute('muted', 'muted');
+    
+    v.style.cssText = "width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0;";
 
-    evts.forEach(evt => document.addEventListener(evt, onInteraction, { once: true, passive: true }));
+    container.appendChild(v);
 
-    return () => {
-      evts.forEach(evt => document.removeEventListener(evt, onInteraction));
-    };
+    // Force play immediately after appending
+    const promise = v.play();
+    if (promise !== undefined) {
+      promise.catch((err) => {
+        // If it still fails (Low Power Mode), listen for any touch to recover it
+        const recoverPlay = () => {
+          v.play();
+          document.removeEventListener('touchstart', recoverPlay);
+        };
+        document.addEventListener('touchstart', recoverPlay, { passive: true });
+      });
+    }
+
+    return () => { container.innerHTML = ''; };
   }, []);
+
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -77,34 +96,8 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
-      <div className={styles.videoWrapper}>
-        {/*
-          IMPORTANT: Using dangerouslySetInnerHTML is a proven workaround for mobile 
-          browsers (especially iOS Safari). React has a known bug where it doesn't 
-          serialize the `muted` attribute into the SSR HTML string. Without the literal
-          `muted` and `playsinline` attributes present in the initial HTML payload,
-          iOS immediately blocks autoplay and shows a big play button.
-        */}
-        <div
-          style={{ width: '100%', height: '100%' }}
-          dangerouslySetInnerHTML={{
-            __html: `
-              <video
-                class="hero-video-el"
-                autoplay
-                loop
-                muted
-                playsinline
-                webkit-playsinline
-                preload="auto"
-                disablePictureInPicture
-                style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0;"
-              >
-                <source src="/videos/hero-bg.mp4" type="video/mp4" />
-              </video>
-            `
-          }}
-        />
+      <div className={styles.videoWrapper} ref={videoContainerRef}>
+        {/* O vídeo será injetado pelo JavaScript aqui via DOM nativo */}
       </div>
 
       {/* 2. Overlay */}
