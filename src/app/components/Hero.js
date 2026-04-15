@@ -8,6 +8,36 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
+  // ── Video Autoplay & Fallback Handling ─────────
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    // Force property muting just in case
+    v.muted = true;
+    v.defaultMuted = true;
+    
+    // Ensure playsinline
+    v.setAttribute('playsinline', 'playsinline');
+    v.setAttribute('webkit-playsinline', 'playsinline');
+
+    // Try playing
+    const promise = v.play();
+    if (promise !== undefined) {
+      promise.catch(() => {
+        // Low Power Mode blocked it
+        const recoverPlay = () => {
+          v.play().catch(() => {});
+          document.removeEventListener('touchstart', recoverPlay);
+          document.removeEventListener('scroll', recoverPlay);
+        };
+        // Add listeners to naturally resume video on any touch or scroll
+        document.addEventListener('touchstart', recoverPlay, { passive: true });
+        document.addEventListener('scroll', recoverPlay, { passive: true });
+      });
+    }
+  }, []);
+
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -50,14 +80,18 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Animation (GIF instead of MP4 to bypass Battery Saver blocks) */}
+      {/* 1. Background Video */}
       <div className={styles.videoWrapper}>
-        <img
+        <video
+          ref={videoRef}
           className="hero-video-el"
-          src="/videos/hero-bg.gif"
-          alt="Clínica Odontológica"
+          src="/videos/hero-bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
           fetchPriority="high"
-          decoding="async"
           style={{
             width: '100%',
             height: '100%',
