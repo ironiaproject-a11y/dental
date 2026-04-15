@@ -92,7 +92,7 @@ export default function Hero() {
               loop
               muted
               playsinline
-              style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none;"
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
             </video>
@@ -117,13 +117,11 @@ export default function Hero() {
           </h1>
           
           <p className={`${styles.description} anim-hero-left`}>
-            Atendimento humanizado, tecnologia de última geração e resultados reais. 
-            Agende sua avaliação gratuita e descubra o tratamento ideal para você.
+            Tecnologia de ponta e atendimento humanizado para transformar seu sorriso. Agende sua avaliação gratuita.
           </p>
           
           <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
             <button ref={btnRef} className="btn btn-primary">Agendar Avaliação Gratuita →</button>
-            <a href="#servicos" className={styles.secondaryLink}>Ver nossos serviços</a>
           </div>
 
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
