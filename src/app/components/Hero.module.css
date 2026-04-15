@@ -130,7 +130,7 @@
     text-align: left;
     align-items: flex-start;
     margin: 0;
-    padding: 0 1.5rem 2.5rem; /* padding lateral + espaço do fundo */
+    padding: 0 1.5rem 5.5rem; /* padding lateral + espaço do nav ribbon do fundo */
   }
 
   /* H1: display grande, máximo impacto */
