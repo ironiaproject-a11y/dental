@@ -79,80 +79,90 @@
 }
 
 @media (max-width: 768px) {
+  /* ── FULLSCREEN HERO NO MOBILE ── */
   .hero {
     flex-direction: column;
-    align-items: stretch;
-    height: auto;
-    min-height: auto;
+    align-items: center;
+    min-height: 100svh; /* usa svh para excluir a barra do browser */
+    height: 100svh;
   }
-  
+
+  /* Vídeo volta para posição absoluta ocupando tudo */
   .videoWrapper {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 45vh;
-    flex-shrink: 0;
-    max-height: 400px;
+    height: 100%;
+    max-height: none;
   }
 
+  /* Overlay forte para legibilidade do texto no mobile */
   .videoOverlay {
-    display: none !important;
+    display: block !important;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.65) 60%,
+      rgba(0, 0, 0, 0.82) 100%
+    ) !important;
+    z-index: 2;
   }
 
+  /* Container volta a ser relativo e ocupa altura toda */
   .container {
-    padding: 0 !important;
-    height: auto !important;
+    padding: 0 1.25rem !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  /* Coluna de conteúdo centralizada sobre o vídeo */
   .leftCol {
     position: relative;
-    top: 0;
+    top: auto;
     transform: none;
-    left: 0;
-    right: 0;
+    left: auto;
+    right: auto;
     max-width: 100%;
     width: 100%;
     text-align: center;
     align-items: center;
     margin: 0;
+    padding: 6rem 0 3rem; /* espaço para a navbar no topo e margem no fundo */
   }
-  
-  /* Mobile Hierarchy Re-ordering */
-  /* 1. Title Top */
+
   .title {
-    order: 1;
-    font-size: 2.25rem !important; /* 36px */
+    font-size: clamp(2rem, 8vw, 2.75rem) !important;
     text-align: center;
-    margin-bottom: 1.5rem; /* Increased spacing */
+    margin-bottom: 1rem;
   }
-  
-  /* 2. Description Middle */
+
   .description {
-    order: 2;
     text-align: center;
+    font-size: 15px !important;
     margin-top: 0;
-    margin-bottom: 24px !important; /* Forced spacing for mobile too */
-    font-size: 16px !important;
+    margin-bottom: 1.5rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
-  
-  /* 3. Action Row */
+
   .ctaRow {
-    order: 3;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-bottom: 2.5rem; /* Increased spacing */
+    margin-bottom: 1.75rem;
   }
 
-  /* 4. Social Proof Bottom */
   .socialProofPill {
-    order: 4;
     margin-top: 0;
     margin-bottom: 0;
-    flex-direction: row; /* Keep it inline for punchiness */
+    flex-direction: row;
     border-radius: 100px;
     padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.12);
   }
+
   .pillText {
     text-align: left;
   }
@@ -243,16 +253,7 @@
   z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .videoOverlay {
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.4) 100%
-    );
-  }
-}
+
 
 .videoBg {
   position: absolute;
