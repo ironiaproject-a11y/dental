@@ -101,36 +101,26 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      <video
-        className={styles.videoWrapper}
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        disablePictureInPicture
-        disableRemotePlayback
-        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
-        ref={(el) => {
-          if (el) {
-            // Forcefully set attributes at the DOM node level as soon as it's attached
-            el.setAttribute('muted', '');
-            el.setAttribute('playsinline', '');
-            el.defaultMuted = true;
-            el.muted = true;
-            // Delay the play call slightly to respect browser load sequence
-            setTimeout(() => {
-              if (el.paused) {
-                el.play().catch(() => {
-                  // Autoplay policy strictly denied it (e.g. Low Power Mode)
-                });
-              }
-            }, 100);
-          }
+      <div 
+        className={styles.videoWrapper} 
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `
+            <video
+              class="hero-video-el"
+              autoplay="autoplay"
+              loop="loop"
+              muted="muted"
+              playsinline="playsinline"
+              webkit-playsinline="true"
+              preload="auto"
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none; position: absolute; top: 0; left: 0; z-index: 0;"
+            >
+              <source src="/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+          `
         }}
-      >
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
-      </video>
+      />
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
