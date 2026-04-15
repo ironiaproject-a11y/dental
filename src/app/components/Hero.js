@@ -80,21 +80,46 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    // Only bind interaction fallbacks just in case the native autoplay still fails (e.g. low power mode)
-    const playVideo = () => {
-      const video = document.querySelector('.hero-video-el');
-      if (video && video.paused) {
+    const video = document.querySelector('.hero-video-el');
+    if (!video) return;
+
+    // Ensure all autoplay-friendly attributes are set programmatically
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+
+    const tryPlay = () => {
+      if (video.paused) {
         video.play().catch(() => {});
       }
     };
-    
-    // We intentionally DO NOT call playVideo() on mount, as JS forced playback can override 
-    // and break iOS Safari's native HTML5 autoplay policy.
-    const events = ['touchstart', 'click', 'scroll'];
-    events.forEach(evt => document.addEventListener(evt, playVideo, { once: true }));
-    
+
+    // 1. Attempt play immediately on mount
+    tryPlay();
+
+    // 2. IntersectionObserver: play whenever the video enters the viewport
+    //    (handles cases where the browser pauses off-screen elements)
+    let observer;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) tryPlay();
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(video);
+    }
+
+    // 3. User-interaction fallback for restrictive browsers (Low Power Mode, etc.)
+    const events = ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'];
+    const onInteraction = () => { tryPlay(); };
+    events.forEach(evt => document.addEventListener(evt, onInteraction, { once: true, passive: true }));
+
     return () => {
-      events.forEach(evt => document.removeEventListener(evt, playVideo));
+      if (observer) observer.disconnect();
+      events.forEach(evt => document.removeEventListener(evt, onInteraction));
     };
   }, []);
 
