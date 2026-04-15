@@ -5,6 +5,7 @@ import styles from './Hero.module.css';
 import gsap from 'gsap';
 
 export default function Hero() {
+  const videoRef = useRef(null);
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
