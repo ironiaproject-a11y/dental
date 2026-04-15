@@ -79,15 +79,15 @@
 }
 
 @media (max-width: 768px) {
-  /* ── FULLSCREEN HERO NO MOBILE ── */
+  /* ── FULLSCREEN HERO — CONTEÚDO ANCORADO NO FUNDO ── */
   .hero {
     flex-direction: column;
-    align-items: center;
-    min-height: 100svh; /* usa svh para excluir a barra do browser */
+    align-items: stretch;
+    min-height: 100svh;
     height: 100svh;
   }
 
-  /* Vídeo volta para posição absoluta ocupando tudo */
+  /* Vídeo cobre toda a tela */
   .videoWrapper {
     position: absolute;
     inset: 0;
@@ -96,28 +96,29 @@
     max-height: none;
   }
 
-  /* Overlay forte para legibilidade do texto no mobile */
+  /* Gradiente mais pesado na base para legibilidade do conteúdo */
   .videoOverlay {
-    display: block !important;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.65) 60%,
-      rgba(0, 0, 0, 0.82) 100%
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.15) 35%,
+      rgba(0, 0, 0, 0.60) 60%,
+      rgba(0, 0, 0, 0.88) 80%,
+      rgba(0, 0, 0, 0.95) 100%
     ) !important;
     z-index: 2;
   }
 
-  /* Container volta a ser relativo e ocupa altura toda */
+  /* Container ocupa 100% da altura com conteúdo no fundo */
   .container {
-    padding: 0 1.25rem !important;
+    padding: 0 !important;
     height: 100% !important;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end; /* ancora conteúdo no fundo */
+    justify-content: stretch;
   }
 
-  /* Coluna de conteúdo centralizada sobre o vídeo */
+  /* Coluna de conteúdo: ancorada no fundo, padding generoso */
   .leftCol {
     position: relative;
     top: auto;
@@ -126,45 +127,53 @@
     right: auto;
     max-width: 100%;
     width: 100%;
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
     margin: 0;
-    padding: 6rem 0 3rem; /* espaço para a navbar no topo e margem no fundo */
+    padding: 0 1.5rem 2.5rem; /* padding lateral + espaço do fundo */
   }
 
+  /* H1: display grande, máximo impacto, 2 linhas */
   .title {
-    font-size: clamp(2rem, 8vw, 2.75rem) !important;
-    text-align: center;
+    font-size: clamp(2.25rem, 9vw, 3rem) !important;
+    text-align: left;
     margin-bottom: 1rem;
+    line-height: 1.05 !important;
   }
 
+  /* Descrição: oculta no mobile para eliminar poluição visual */
   .description {
-    text-align: center;
-    font-size: 15px !important;
-    margin-top: 0;
-    margin-bottom: 1.5rem !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    display: none !important;
   }
 
+  /* CTA: botão full-width chamativo */
   .ctaRow {
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.25rem;
   }
 
+  /* Social proof: linha compacta e sutil no fundo */
   .socialProofPill {
     margin-top: 0;
     margin-bottom: 0;
     flex-direction: row;
     border-radius: 100px;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.12);
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    width: fit-content;
   }
 
   .pillText {
     text-align: left;
+  }
+
+  .pillLabel {
+    font-size: 0.75rem;
   }
 }
 

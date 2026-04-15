@@ -294,6 +294,7 @@ section {
 
   /* ── HERO ── */
   /* IMPORTANTE: sem background aqui — o vídeo deve aparecer atrás do conteúdo */
+  /* Layout: ancorado no fundo, alinhado à esquerda */
   .hero-content {
     position: relative !important;
     left: 0 !important;
@@ -302,28 +303,27 @@ section {
     bottom: auto !important;
     transform: none !important;
     max-width: 100% !important;
+    width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    order: 0 !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
   .hero-content h1 {
-    font-size: 34px !important;
-    line-height: 1.15 !important;
-    margin-bottom: 16px !important;
-    order: 0 !important;
+    font-size: clamp(2.25rem, 9vw, 3rem) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 1rem !important;
   }
+  /* Descrição oculta no mobile — reduz poluição visual */
   .hero-content p {
-    font-size: 15px !important;
-    margin-bottom: 24px !important;
-    order: 1 !important;
+    display: none !important;
   }
   .hero-buttons {
     flex-direction: column !important;
     gap: 12px !important;
-    margin-bottom: 20px !important;
-    order: 2 !important;
+    margin-bottom: 1.25rem !important;
+    width: 100% !important;
+    align-items: stretch !important;
   }
   .hero-buttons > * {
     width: 100% !important;
@@ -336,11 +336,9 @@ section {
   .hero-social-proof {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     gap: 8px !important;
     font-size: 13px !important;
-    order: 3 !important;
-    margin-top: 20px !important;
   }
 
   /* ── STATS ── */
