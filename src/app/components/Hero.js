@@ -4,60 +4,42 @@ import styles from './Hero.module.css';
 import gsap from 'gsap';
 
 export default function Hero() {
+  const videoRef = useRef(null);
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
-  const videoContainerRef = useRef(null);
-
-  // ── Video Autoplay Guarantee via Raw DOM ─────────
+  // ── Video Autoplay & Fallback Handling ─────────
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const container = videoContainerRef.current;
-    if (!container) return;
+    const v = videoRef.current;
+    if (!v) return;
 
-    // Remove existing video if re-running
-    container.innerHTML = '';
-
-    const v = document.createElement('video');
-    v.className = 'hero-video-el';
-    v.src = '/videos/hero-bg.mp4';
-    v.playsInline = true;
-    v.autoplay = true;
-    v.loop = true;
+    // Force property muting just in case
     v.muted = true;
     v.defaultMuted = true;
-    v.preload = 'auto';
-    // Transparent poster to mask system default boxes
-    v.poster = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     
-    // Crucial explicitly set attributes for iOS
+    // Ensure playsinline
     v.setAttribute('playsinline', 'playsinline');
     v.setAttribute('webkit-playsinline', 'playsinline');
-    v.setAttribute('muted', 'muted');
-    
-    v.style.cssText = "width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0; transition: opacity 0.5s ease;";
 
-    container.appendChild(v);
-
-    // Force play immediately after appending
+    // Try playing
     const promise = v.play();
     if (promise !== undefined) {
-      promise.catch((err) => {
-        // If it still fails (Low Power Mode), hide it completely to kill the play button
+      promise.catch(() => {
+        // Low Power Mode blocked it — hide it so we don't show Safari's play button
         v.style.opacity = '0';
         
-        // Listen for any touch to recover it smoothly behind the scenes
         const recoverPlay = () => {
           v.play().then(() => {
             v.style.opacity = '1';
           }).catch(() => {});
           document.removeEventListener('touchstart', recoverPlay);
+          document.removeEventListener('scroll', recoverPlay);
         };
+        // Add listeners to naturally resume video on any touch or scroll
         document.addEventListener('touchstart', recoverPlay, { passive: true });
+        document.addEventListener('scroll', recoverPlay, { passive: true });
       });
     }
-
-    return () => { container.innerHTML = ''; };
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -103,8 +85,31 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
-      <div className={styles.videoWrapper} ref={videoContainerRef}>
-        {/* O vídeo será injetado pelo JavaScript aqui via DOM nativo */}
+      <div className={styles.videoWrapper}>
+        <video
+          ref={videoRef}
+          className="hero-video-el"
+          src="/videos/hero-bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          fetchPriority="high"
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            pointerEvents: 'none',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            transition: 'opacity 0.5s ease',
+          }}
+        />
       </div>
 
       {/* 2. Overlay */}
