@@ -27,13 +27,15 @@ export default function Hero() {
     v.muted = true;
     v.defaultMuted = true;
     v.preload = 'auto';
+    // Transparent poster to mask system default boxes
+    v.poster = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     
     // Crucial explicitly set attributes for iOS
     v.setAttribute('playsinline', 'playsinline');
     v.setAttribute('webkit-playsinline', 'playsinline');
     v.setAttribute('muted', 'muted');
     
-    v.style.cssText = "width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0;";
+    v.style.cssText = "width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0; transition: opacity 0.5s ease;";
 
     container.appendChild(v);
 
@@ -41,9 +43,14 @@ export default function Hero() {
     const promise = v.play();
     if (promise !== undefined) {
       promise.catch((err) => {
-        // If it still fails (Low Power Mode), listen for any touch to recover it
+        // If it still fails (Low Power Mode), hide it completely to kill the play button
+        v.style.opacity = '0';
+        
+        // Listen for any touch to recover it smoothly behind the scenes
         const recoverPlay = () => {
-          v.play();
+          v.play().then(() => {
+            v.style.opacity = '1';
+          }).catch(() => {});
           document.removeEventListener('touchstart', recoverPlay);
         };
         document.addEventListener('touchstart', recoverPlay, { passive: true });
