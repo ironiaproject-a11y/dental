@@ -262,7 +262,7 @@ section {
 
 @media (max-width: 768px) {
 
-  /* GLOBAL */
+  /* ── GLOBAL ── */
   section {
     padding: 60px 24px !important;
   }
@@ -275,21 +275,25 @@ section {
     line-height: 1.65 !important;
   }
 
-  /* TOP */
+  /* ── TOP BAR ── */
   .top-bar {
     font-size: 11px !important;
-    padding: 8px 16px !important;
+    padding: 6px 16px !important;
     text-align: center !important;
     flex-wrap: wrap !important;
     gap: 4px !important;
-    line-height: 1.5 !important;
+    line-height: 1.4 !important;
+  }
+  .top-bar a {
+    display: none !important;
   }
 
-  /* NAVBAR */
+  /* ── NAVBAR ── */
   .nav-links { display: none !important; }
   .nav-phone  { display: none !important; }
 
-  /* HERO */
+  /* ── HERO ── */
+  /* IMPORTANTE: sem background aqui — o vídeo deve aparecer atrás do conteúdo */
   .hero-content {
     position: relative !important;
     left: 0 !important;
@@ -297,31 +301,33 @@ section {
     top: auto !important;
     bottom: auto !important;
     transform: none !important;
-    padding: 2.5rem 1.5rem !important;
     max-width: 100% !important;
-    background: #0a1628 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
+    order: 0 !important;
   }
   .hero-content h1 {
     font-size: 34px !important;
     line-height: 1.15 !important;
     margin-bottom: 16px !important;
+    order: 0 !important;
   }
   .hero-content p {
     font-size: 15px !important;
     margin-bottom: 24px !important;
+    order: 1 !important;
   }
   .hero-buttons {
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 12px !important;
     margin-bottom: 20px !important;
+    order: 2 !important;
   }
   .hero-buttons > * {
     width: 100% !important;
-    min-height: 50px !important;
+    min-height: 52px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -333,9 +339,11 @@ section {
     justify-content: center !important;
     gap: 8px !important;
     font-size: 13px !important;
+    order: 3 !important;
+    margin-top: 20px !important;
   }
 
-  /* STATS */
+  /* ── STATS ── */
   .hero-stats-bar {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -354,7 +362,7 @@ section {
   .stat-number { font-size: 26px !important; }
   .stat-label  { font-size: 10px !important; }
 
-  /* TRUST */
+  /* ── TRUST ── */
   .trust-bar {
     flex-direction: column !important;
     padding: 24px !important;
@@ -374,7 +382,7 @@ section {
     justify-items: center !important;
   }
 
-  /* TECNOLOGIA */
+  /* ── TECNOLOGIA ── */
   .tech-section,
   [class*="tech"] > .grid,
   [class*="tech"] > .flex {
@@ -385,21 +393,21 @@ section {
   .tech-image { order: 2 !important; }
   .tech-content { order: 1 !important; }
 
-  /* SERVIÃ‡OS */
+  /* ── SERVIÇOS ── */
   .services-grid,
   [class*="service"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* ANTES */
+  /* ── ANTES/DEPOIS ── */
   [class*="before-after"],
   [class*="ba-grid"] {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
 
-  /* PLANOS */
+  /* ── PLANOS ── */
   [class*="plans"],
   [class*="plan"] > .grid,
   [class*="plan"] > .flex {
@@ -408,7 +416,7 @@ section {
     gap: 32px !important;
   }
 
-  /* EQUIPE */
+  /* ── EQUIPE ── */
   .team-grid,
   [class*="team"] > .grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -418,14 +426,14 @@ section {
     height: 180px !important;
   }
 
-  /* DEPOIMENTOS */
+  /* ── DEPOIMENTOS ── */
   .testimonials-grid,
   [class*="testimonial"] > .grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
-  /* FAQ */
+  /* ── FAQ ── */
   [class*="faq"] > .grid {
     grid-template-columns: 1fr !important;
   }
@@ -433,7 +441,7 @@ section {
     padding: 20px !important;
   }
 
-  /* CONTATO */
+  /* ── CONTATO / CTA ── */
   [class*="contact"] > .grid,
   [class*="cta"] > .grid,
   [class*="cta"] > .flex {
@@ -454,20 +462,19 @@ section {
     text-align: center !important;
     min-height: 52px !important;
   }
-  /* imagem */
   [class*="cta-image"],
   [class*="cta-person"] {
     display: none !important;
   }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   [class*="footer"] > .grid,
   footer > .grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
 
-  /* WHATSAPP */
+  /* ── WHATSAPP ── */
   .whatsapp-float {
     bottom: 20px !important;
     right: 20px !important;
@@ -476,119 +483,8 @@ section {
   }
   .whatsapp-tooltip { display: none !important; }
 
-  /* INPUTS */
+  /* ── INPUTS ── */
   input, select, textarea {
     font-size: 16px !important;
   }
-}
-
-
-@media (max-width: 768px) {
-  section { padding: 60px 24px !important; }
-  h2 { font-size: 28px !important; line-height: 1.2 !important; }
-  p  { font-size: 16px !important; }
-  .hero-content { position: relative !important; }
-  .hero-content h1 { font-size: 34px !important; line-height: 1.15 !important; }
-  .hero-buttons { flex-direction: column !important; gap: 10px !important; }
-  .hero-buttons > * { width: 100% !important; min-height: 50px !important; justify-content: center !important; }
-  .hero-stats-bar { grid-template-columns: repeat(2,1fr) !important; padding: 16px 24px !important; }
-  .stat-item { border-right: none !important; text-align: center !important; }
-  .trust-logos { display: grid !important; grid-template-columns: repeat(3,1fr) !important; }
-  .services-grid { grid-template-columns: 1fr !important; }
-  .team-grid { grid-template-columns: repeat(2,1fr) !important; }
-  .testimonials-grid { grid-template-columns: 1fr !important; }
-  .nav-links, .nav-phone { display: none !important; }
-  input, select, textarea { font-size: 16px !important; }
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    position: relative !important;
-  }
-  .hero-content h1 {
-    font-size: 34px !important;
-    line-height: 1.15 !important;
-  }
-  .hero-content p {
-    font-size: 15px !important;
-  }
-  .hero-buttons {
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-  .hero-buttons > * {
-    width: 100% !important;
-    min-height: 50px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .hero-stats-bar {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 16px 24px !important;
-  }
-  .stat-item {
-    border-right: none !important;
-    text-align: center !important;
-  }
-  .stat-number { font-size: 26px !important; }
-  .stat-label  { font-size: 10px !important; }
-}
-
-@media (max-width: 768px) {
-
-  /* bar */
-  .top-bar {
-    flex-direction: column !important;
-    padding: 8px 16px !important;
-    font-size: 11px !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
-    gap: 0 !important;
-  }
-  .top-bar a {
-    display: none !important;
-  }
-
-  /* content */
-  .hero-content {
-    position: relative !important;
-  }
-
-  /* BotÃµes empilhados */
-  .hero-buttons {
-    flex-direction: column !important;
-    gap: 12px !important;
-  }
-  .hero-buttons > * {
-    width: 100% !important;
-    min-height: 52px !important;
-    justify-content: center !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-}
-
-@media (max-width: 768px) {
-  /* bar */
-  .top-bar {
-    font-size: 11px !important;
-    padding: 6px 16px !important;
-    text-align: center !important;
-    line-height: 1.4 !important;
-  }
-
-  /* prova */
-  .hero-social-proof {
-    order: 3 !important;
-    margin-top: 20px !important;
-  }
-  .hero-content {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .hero-content h1   { order: 0 !important; }
-  .hero-content p    { order: 1 !important; }
-  .hero-buttons      { order: 2 !important; }
-  .hero-social-proof { order: 3 !important; }
 }
