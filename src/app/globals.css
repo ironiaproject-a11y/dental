@@ -272,7 +272,10 @@ section {
 
   /* ── GLOBAL ── */
   section {
-    padding: 60px 24px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
   h2 {
     font-size: 28px !important;

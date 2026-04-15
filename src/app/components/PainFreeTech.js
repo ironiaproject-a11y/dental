@@ -43,7 +43,7 @@ export default function PainFreeTech() {
           <div className={`${styles.visual} tech-image`}>
             <div className={styles.imageWrapper}>
               <Image
-                src="/images/tech-room.png"
+                src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=600&auto=format&fit=crop"
                 alt="Tecnologia Odontológica Premium"
                 width={600}
                 height={800}

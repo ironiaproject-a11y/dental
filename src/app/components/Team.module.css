@@ -110,3 +110,37 @@
 .icon:hover {
   color: #2563EB;
 }
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .photo {
+    height: 11.25rem; /* 180px */
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .name {
+    font-size: 0.9375rem;
+  }
+
+  .role {
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .socials {
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+}

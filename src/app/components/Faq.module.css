@@ -3,6 +3,7 @@
   background-color: #FFFFFF !important;
   background-image: none !important;
   border-bottom: 1px solid #F3F4F6;
+  /* Disable global section padding override for this component */
 }
 
 .header {

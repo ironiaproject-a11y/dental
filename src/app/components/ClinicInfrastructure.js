@@ -6,15 +6,15 @@ import styles from './ClinicInfrastructure.module.css';
 export default function ClinicInfrastructure() {
   const images = [
     {
-      url: "/images/infrastructure/reception.png",
+      url: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop",
       caption: "Espaço de Recepção Consciente"
     },
     {
-      url: "/images/infrastructure/sterilization.png",
+      url: "https://images.unsplash.com/photo-1588776814546-1ffbb68b82de?q=80&w=1200&auto=format&fit=crop",
       caption: "Tecnologia e Esterilização de Ponta"
     },
     {
-      url: "/images/infrastructure/treatment-suite.png",
+      url: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1200&auto=format&fit=crop",
       caption: "Suítes de Tratamento High-End"
     }
   ];
