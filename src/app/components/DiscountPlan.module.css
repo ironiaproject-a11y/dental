@@ -291,12 +291,27 @@
   .section {
     padding: 5rem 0;
   }
+  
   .plansTitle {
     font-size: 2.25rem;
   }
+  
+  .rightCol {
+    gap: 1.5rem;
+  }
+
+  .cardBlue, .cardOutlined {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .percentTextWhite, .percentTextBlue {
+    font-size: 4rem;
+  }
+
   .cardPrioritario {
     flex-direction: column;
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
   }
 }
