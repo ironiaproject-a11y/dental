@@ -1,70 +1,14 @@
 "use client";
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 import gsap from 'gsap';
 
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoRef = useRef(null);
 
-  // ── Video autoplay ──────────────────────────────────────────────────────────
-  // Using a ref CALLBACK (not useRef) so initVideo fires the instant React
-  // attaches the <video> element to the DOM — before any useEffect runs.
-  // This is critical: video.muted must be set imperatively because React does
-  // NOT serialize the `muted` attribute in SSR HTML (known React bug).
-  // Without muted, ALL mobile browsers block autoplay.
-  const initVideo = useCallback((videoEl) => {
-    if (!videoEl) return;
-    videoRef.current = videoEl;
-
-    // Force muted + inline attributes programmatically (required for mobile autoplay)
-    videoEl.muted = true;
-    videoEl.defaultMuted = true;
-    videoEl.setAttribute('playsinline', '');
-    videoEl.setAttribute('webkit-playsinline', ''); // Required for iOS < 10
-
-    const tryPlay = () => {
-      const promise = videoEl.play();
-      if (promise !== undefined) {
-        promise.catch(() => {
-          // Silently ignored — Low Power Mode / strict browser blocked it.
-          // The user-interaction listeners below will retry.
-        });
-      }
-    };
-
-    // Attempt 1: immediately (synchronously after mount)
-    tryPlay();
-
-    // Attempt 2: when video data is ready
-    videoEl.addEventListener('loadeddata', tryPlay, { once: true });
-    videoEl.addEventListener('canplay',    tryPlay, { once: true });
-
-    // Attempt 3: IntersectionObserver — browser may auto-pause off-screen videos
-    let observer;
-    if ('IntersectionObserver' in window) {
-      observer = new IntersectionObserver(
-        (entries) => { if (entries[0].isIntersecting) tryPlay(); },
-        { threshold: 0 }
-      );
-      observer.observe(videoEl);
-    }
-
-    // Attempt 4: first user interaction (last resort for Low Power Mode on iOS)
-    const onInteraction = () => tryPlay();
-    const evts = ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'];
-    evts.forEach(evt =>
-      document.addEventListener(evt, onInteraction, { once: true, passive: true })
-    );
-
-    // Attach cleanup to the element so we can call it on unmount
-    videoEl._heroCleanup = () => {
-      if (observer) observer.disconnect();
-      evts.forEach(evt => document.removeEventListener(evt, onInteraction));
-    };
-  }, []);
-
+  // ── Video Autoplay logic handled by dangerouslySetInnerHTML below ───────────
+  
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -104,46 +48,37 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // ── Cleanup video listeners on unmount ──────────────────────────────────────
-  useEffect(() => {
-    return () => {
-      videoRef.current?._heroCleanup?.();
-    };
-  }, []);
-
   return (
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background Video */}
       <div className={styles.videoWrapper}>
         {/*
-          IMPORTANT: ref={initVideo} is a callback ref — it fires immediately when
-          the element is inserted into the DOM, before useEffect runs.
-          This ensures video.muted = true is set BEFORE any play() call,
-          which is the only reliable way to enable autoplay on mobile.
+          IMPORTANT: Using dangerouslySetInnerHTML is a proven workaround for mobile 
+          browsers (especially iOS Safari). React has a known bug where it doesn't 
+          serialize the `muted` attribute into the SSR HTML string. Without the literal
+          `muted` and `playsinline` attributes present in the initial HTML payload,
+          iOS immediately blocks autoplay and shows a big play button.
         */}
-        <video
-          ref={initVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="hero-video-el"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-            pointerEvents: 'none',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 0,
+        <div
+          style={{ width: '100%', height: '100%' }}
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                webkit-playsinline
+                preload="auto"
+                disablePictureInPicture
+                style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0;"
+              >
+                <source src="/videos/hero-bg.mp4" type="video/mp4" />
+              </video>
+            `
           }}
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
+        />
       </div>
 
       {/* 2. Overlay */}
