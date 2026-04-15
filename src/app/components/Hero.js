@@ -101,31 +101,36 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 
-        Native HTML background video injection.
-        Why dangerouslySetInnerHTML? React sometimes sets muted as a DOM prop instead of an HTML attribute.
-        iOS Safari parser MUST see the 'muted' attribute on the raw HTML before hydration to allow autoplay. 
-        Also, we put 'src' directly on the video tag, and avoid forcing .play() via JS on mount.
-      */}
-      <div 
-        className={styles.videoWrapper} 
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `
-            <video
-              class="hero-video-el"
-              autoplay
-              loop
-              muted
-              playsinline
-              webkit-playsinline
-              preload="auto"
-              src="/videos/hero-bg.mp4"
-              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none; position: absolute; top: 0; left: 0; z-index: 0;"
-            ></video>
-          `
+      <video
+        className={styles.videoWrapper}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
+        ref={(el) => {
+          if (el) {
+            // Forcefully set attributes at the DOM node level as soon as it's attached
+            el.setAttribute('muted', '');
+            el.setAttribute('playsinline', '');
+            el.defaultMuted = true;
+            el.muted = true;
+            // Delay the play call slightly to respect browser load sequence
+            setTimeout(() => {
+              if (el.paused) {
+                el.play().catch(() => {
+                  // Autoplay policy strictly denied it (e.g. Low Power Mode)
+                });
+              }
+            }, 100);
+          }
         }}
-      />
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
