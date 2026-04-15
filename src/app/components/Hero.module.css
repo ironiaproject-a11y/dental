@@ -8,10 +8,14 @@
   color: #FFFFFF;
 }
 
+.hero video::-webkit-media-controls-play-button,
 .hero video::-webkit-media-controls-start-playback-button,
+.hero video::-webkit-media-controls-panel,
 .hero video::-webkit-media-controls {
   display: none !important;
-  -webkit-appearance: none;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Base container for content — using absolute placement for precise alignment */
@@ -51,12 +55,13 @@
 }
 
 .description {
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.125rem; /* 18px */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
   line-height: 1.7;
   text-align: left;
   max-width: 28.75rem; /* 460px */
-  margin: 1.25rem 0 2rem; /* 20px 0 32px */
+  margin: 1.25rem 0 24px !important; /* Spacing between H1 and btn */
   color: rgba(255, 255, 255, 0.95) !important;
 }
 
@@ -93,7 +98,8 @@
     order: 2;
     text-align: center;
     margin-top: 0;
-    margin-bottom: 2.5rem; /* Increased spacing */
+    margin-bottom: 24px !important; /* Forced spacing for mobile too */
+    font-size: 16px !important;
   }
   
   /* 3. Action Row */
