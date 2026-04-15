@@ -78,6 +78,29 @@ export default function Hero() {
     }
   }, []);
 
+  useEffect(() => {
+    const playVideo = () => {
+      const videos = document.querySelectorAll('.hero-video-el');
+      videos.forEach(video => {
+        if (video.paused) {
+          video.play().catch(e => console.log('Autoplay prevented by browser: ', e));
+        }
+      });
+    };
+    
+    // Play on mount
+    playVideo();
+    
+    // Attempt to play on first interaction if blocked
+    document.addEventListener('touchstart', playVideo, { once: true });
+    document.addEventListener('click', playVideo, { once: true });
+    
+    return () => {
+      document.removeEventListener('touchstart', playVideo);
+      document.removeEventListener('click', playVideo);
+    };
+  }, []);
+
 
   return (
     <section className={styles.hero} ref={heroRef}>
@@ -88,11 +111,14 @@ export default function Hero() {
         dangerouslySetInnerHTML={{
           __html: `
             <video
-              autoplay
-              loop
-              muted
-              playsinline
-              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none;"
+              class="hero-video-el"
+              autoplay="autoplay"
+              loop="loop"
+              muted="muted"
+              playsinline="true"
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none;"
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
             </video>
