@@ -80,23 +80,16 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    // Only bind interaction fallbacks just in case the native autoplay still fails (e.g. low power mode)
     const playVideo = () => {
-      if (videoRef.current) {
-        videoRef.current.muted = true;
-        videoRef.current.defaultMuted = true;
-        videoRef.current.playsInline = true;
-        
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(e => console.log('Autoplay prevented by browser: ', e));
-        }
+      const video = document.querySelector('.hero-video-el');
+      if (video && video.paused) {
+        video.play().catch(() => {});
       }
     };
     
-    // Attempt play immediately on mount
-    playVideo();
-    
-    // Add interactions as fallbacks
+    // We intentionally DO NOT call playVideo() on mount, as JS forced playback can override 
+    // and break iOS Safari's native HTML5 autoplay policy.
     const events = ['touchstart', 'click', 'scroll'];
     events.forEach(evt => document.addEventListener(evt, playVideo, { once: true }));
     
@@ -105,21 +98,34 @@ export default function Hero() {
     };
   }, []);
 
-
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      <video
-        ref={videoRef}
-        className={styles.videoWrapper}
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
-      >
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
-      </video>
+      {/* 
+        Native HTML background video injection.
+        Why dangerouslySetInnerHTML? React sometimes sets muted as a DOM prop instead of an HTML attribute.
+        iOS Safari parser MUST see the 'muted' attribute on the raw HTML before hydration to allow autoplay. 
+        Also, we put 'src' directly on the video tag, and avoid forcing .play() via JS on mount.
+      */}
+      <div 
+        className={styles.videoWrapper} 
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `
+            <video
+              class="hero-video-el"
+              autoplay
+              loop
+              muted
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              src="/videos/hero-bg.mp4"
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none; position: absolute; top: 0; left: 0; z-index: 0;"
+            ></video>
+          `
+        }}
+      />
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
