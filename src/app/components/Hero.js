@@ -6,7 +6,6 @@ import gsap from 'gsap';
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -81,11 +80,13 @@ export default function Hero() {
 
   useEffect(() => {
     const playVideo = () => {
-      if (videoRef.current) {
-        videoRef.current.defaultMuted = true;
-        videoRef.current.muted = true;
+      const video = document.querySelector('.hero-video-el');
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute('playsinline', '');
         
-        const playPromise = videoRef.current.play();
+        const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(e => console.log('Autoplay prevented by browser: ', e));
         }
@@ -111,20 +112,26 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video */}
-      <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
-          className="hero-video-el"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', border: 'none', outline: 'none' }}
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
-      </div>
+      {/* 1. Background Video - dangerouslySetInnerHTML is strictly required for iOS Safari to see muted attribute before React hydration */}
+      <div 
+        className={styles.videoWrapper} 
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `
+            <video
+              class="hero-video-el"
+              autoplay
+              loop
+              muted
+              playsinline
+              webkit-playsinline
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; border: none; outline: none;"
+            >
+              <source src="/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+          `
+        }}
+      />
       
       {/* 2. Overlay Gradient */}
       <div className={styles.videoOverlay}></div>
