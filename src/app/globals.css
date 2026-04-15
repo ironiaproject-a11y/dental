@@ -74,6 +74,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide native video controls globally (especially for mobile fallback) */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 12px;

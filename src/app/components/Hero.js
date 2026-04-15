@@ -7,8 +7,33 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
-  // ── Video Autoplay logic handled by dangerouslySetInnerHTML below ───────────
-  
+  // ── Video Autoplay Fallback for Mobile (Low Power Mode) ─────────
+  useEffect(() => {
+    const videoEl = document.querySelector('.hero-video-el');
+    if (!videoEl) return;
+
+    const tryPlay = () => {
+      if (videoEl.paused) {
+        const promise = videoEl.play();
+        if (promise !== undefined) {
+          promise.catch(() => {});
+        }
+      }
+    };
+
+    const evts = ['touchstart', 'scroll', 'click'];
+    const onInteraction = () => {
+      tryPlay();
+      // Remove listeners after first successful attempt
+      evts.forEach(evt => document.removeEventListener(evt, onInteraction));
+    };
+
+    evts.forEach(evt => document.addEventListener(evt, onInteraction, { once: true, passive: true }));
+
+    return () => {
+      evts.forEach(evt => document.removeEventListener(evt, onInteraction));
+    };
+  }, []);
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -65,6 +90,7 @@ export default function Hero() {
           dangerouslySetInnerHTML={{
             __html: `
               <video
+                class="hero-video-el"
                 autoplay
                 loop
                 muted
