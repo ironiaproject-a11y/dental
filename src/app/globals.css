@@ -278,11 +278,10 @@ section {
 }
 
 @media (max-width: 768px) {
-
   /* ── GLOBAL ── */
   section {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 60px;
     padding-bottom: 60px;
   }
@@ -295,201 +294,15 @@ section {
     line-height: 1.65 !important;
   }
 
-  /* ── TOP BAR ── */
-  .top-bar {
-    font-size: 11px !important;
-    padding: 6px 16px !important;
-    text-align: center !important;
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-    line-height: 1.4 !important;
-  }
-  .top-bar a {
-    display: none !important;
-  }
-
-  /* ── NAVBAR ── */
-  .nav-links { display: none !important; }
-  .nav-phone  { display: none !important; }
-
-  /* ── HERO ── */
-  /* IMPORTANTE: sem background aqui — o vídeo deve aparecer atrás do conteúdo */
-  /* Layout: ancorado no fundo, alinhado à esquerda */
+  /* ── HERO MOB ── */
   .hero-content {
-    position: relative !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-  }
-  .hero-content h1 {
-    font-size: clamp(2.25rem, 9vw, 3rem) !important;
-    line-height: 1.05 !important;
-    margin-bottom: 1rem !important;
-  }
-  /* Descrição oculta no mobile — reduz poluição visual */
-  .hero-content p {
-    display: none !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   .hero-buttons {
-    flex-direction: column !important;
-    gap: 12px !important;
-    margin-bottom: 1.25rem !important;
     width: 100% !important;
-    align-items: stretch !important;
-  }
-  .hero-buttons > * {
-    width: 100% !important;
-    min-height: 52px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 15px !important;
-  }
-  .hero-social-proof {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 8px !important;
-    font-size: 13px !important;
-  }
-
-  /* ── STATS ── */
-  .hero-stats-bar {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 16px 24px !important;
-    gap: 16px 0 !important;
-  }
-  .stat-item {
-    border-right: none !important;
-    text-align: center !important;
-  }
-  .stat-item:nth-child(1),
-  .stat-item:nth-child(2) {
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    padding-bottom: 14px !important;
-  }
-  .stat-number { font-size: 26px !important; }
-  .stat-label  { font-size: 10px !important; }
-
-  /* ── TRUST ── */
-  .trust-bar {
-    flex-direction: column !important;
-    padding: 24px !important;
-    gap: 16px !important;
-    text-align: center !important;
-  }
-  .trust-label {
-    border-right: none !important;
-    border-bottom: 1px solid #E5E7EB !important;
-    padding: 0 0 12px !important;
-  }
-  .trust-logos {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
-    padding: 0 !important;
-    justify-items: center !important;
-  }
-
-  /* ── TECNOLOGIA ── */
-  .tech-section,
-  [class*="tech"] > .grid,
-  [class*="tech"] > .flex {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-    gap: 40px !important;
-  }
-  .tech-image { order: 2 !important; }
-  .tech-content { order: 1 !important; }
-
-  /* ── SERVIÇOS ── */
-  .services-grid,
-  [class*="service"] > .grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* ── ANTES/DEPOIS ── */
-  [class*="before-after"],
-  [class*="ba-grid"] {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
-
-  /* ── PLANOS ── */
-  [class*="plans"],
-  [class*="plan"] > .grid,
-  [class*="plan"] > .flex {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-    gap: 32px !important;
-  }
-
-  /* ── EQUIPE ── */
-  .team-grid,
-  [class*="team"] > .grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
-  }
-  [class*="team-card"] img {
-    height: 180px !important;
-  }
-
-  /* ── DEPOIMENTOS ── */
-  .testimonials-grid,
-  [class*="testimonial"] > .grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* ── FAQ ── */
-  [class*="faq"] > .grid {
-    grid-template-columns: 1fr !important;
-  }
-  [class*="faq-item"] {
-    padding: 20px !important;
-  }
-
-  /* ── CONTATO / CTA ── */
-  [class*="contact"] > .grid,
-  [class*="cta"] > .grid,
-  [class*="cta"] > .flex {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-  }
-  [class*="cta"] h2 {
-    font-size: 28px !important;
-  }
-  [class*="cta-buttons"],
-  [class*="contact-buttons"] {
-    flex-direction: column !important;
-    gap: 12px !important;
-  }
-  [class*="cta-buttons"] > *,
-  [class*="contact-buttons"] > * {
-    width: 100% !important;
-    text-align: center !important;
-    min-height: 52px !important;
-  }
-  [class*="cta-image"],
-  [class*="cta-person"] {
-    display: none !important;
-  }
-
-  /* ── FOOTER ── */
-  [class*="footer"] > .grid,
-  footer > .grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   /* ── WHATSAPP ── */

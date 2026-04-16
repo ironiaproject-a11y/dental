@@ -15,21 +15,21 @@ export default function DiscountPlan() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.anim-left', {
-        x: -50,
+        y: 40,
         opacity: 0,
         duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%'
+          start: 'top 85%'
         }
       });
       
       gsap.from('.anim-right', {
-        x: 50,
+        y: 40,
         opacity: 0,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
