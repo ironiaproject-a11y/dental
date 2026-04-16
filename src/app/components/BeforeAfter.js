@@ -4,11 +4,10 @@ import styles from './BeforeAfter.module.css';
 export default function BeforeAfter() {
   const cases = [
     {
-      title: 'Lentes de Contato Dental',
-      result: 'Sorriso Premium · 2 sessões',
+      title: 'Clareamento Dental Avançado',
+      result: 'Dente Branco Uniforme · 1 sessão',
       quote: '"A mudança foi incrível! Recuperei minha segurança para sorrir e falar em público. O resultado ficou extremamente natural." — Carlos M.',
-      before: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=600&auto=format&fit=crop',
-      after:  'https://images.unsplash.com/photo-1588776814546-1ffbb68b82de?q=80&w=600&auto=format&fit=crop'
+      image: '/tooth_split.png'
     }
   ];
 
@@ -29,29 +28,15 @@ export default function BeforeAfter() {
           {cases.map((item, index) => (
             <div key={index} className={styles.card}>
               <div className={styles.baImages}>
-                <div className={styles.baBefore}>
-                  <Image 
-                    src={item.before} 
-                    alt={`${item.title} Antes`} 
-                    width={400} 
-                    height={300} 
-                    className={styles.baImage} 
-                    loading="lazy" 
-                  />
-                  <span className={styles.baLabel}>Antes</span>
-                </div>
-                <div className={styles.baDivider}>→</div>
-                <div className={styles.baAfter}>
-                  <Image 
-                    src={item.after} 
-                    alt={`${item.title} Depois`} 
-                    width={400} 
-                    height={300} 
-                    className={styles.baImage} 
-                    loading="lazy" 
-                  />
-                  <span className={`${styles.baLabel} ${styles.after}`}>Depois</span>
-                </div>
+                <Image 
+                  src={item.image} 
+                  alt={`${item.title} Antes e Depois`} 
+                  width={800} 
+                  height={600} 
+                  className={styles.baImage} 
+                  loading="lazy" 
+                />
+                <span className={styles.baLabelSplit}>Antes / Depois</span>
               </div>
               <div className={styles.baInfo}>
                 <strong className={styles.baTitle}>{item.title}</strong>
