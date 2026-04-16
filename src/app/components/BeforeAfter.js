@@ -4,11 +4,20 @@ import styles from './BeforeAfter.module.css';
 export default function BeforeAfter() {
   const cases = [
     {
-      title: 'Clareamento Dental Avançado',
-      result: 'Dente Branco Uniforme · 1 sessão',
-      quote: '"A mudança foi incrível! Recuperei minha segurança para sorrir e falar em público. O resultado ficou extremamente natural." — Carlos M.',
-      image: '/tooth_split.png'
-    }
+      title: 'Clareamento Dental',
+      before: '/whitening-before.png',
+      after: '/whitening-after.png',
+    },
+    {
+      title: 'Implante Unitário',
+      before: '/implant-before.png',
+      after: '/implant-after.png',
+    },
+    {
+      title: 'Ortodontia Invisalign',
+      before: '/invisalign-before.png',
+      after: '/invisalign-after.png',
+    },
   ];
 
   return (
@@ -28,20 +37,33 @@ export default function BeforeAfter() {
           {cases.map((item, index) => (
             <div key={index} className={styles.card}>
               <div className={styles.baImages}>
-                <Image 
-                  src={item.image} 
-                  alt={`${item.title} Antes e Depois`} 
-                  width={800} 
-                  height={600} 
-                  className={styles.baImage} 
-                  loading="lazy" 
-                />
-                <span className={styles.baLabelSplit}>Antes / Depois</span>
+                <div className={styles.baImagePair}>
+                  <div className={styles.baImageWrapper}>
+                    <Image
+                      src={item.before}
+                      alt={`${item.title} — Antes`}
+                      width={400}
+                      height={300}
+                      className={styles.baImage}
+                      loading="lazy"
+                    />
+                    <span className={styles.baLabel}>Antes</span>
+                  </div>
+                  <div className={styles.baImageWrapper}>
+                    <Image
+                      src={item.after}
+                      alt={`${item.title} — Depois`}
+                      width={400}
+                      height={300}
+                      className={styles.baImage}
+                      loading="lazy"
+                    />
+                    <span className={styles.baLabel}>Depois</span>
+                  </div>
+                </div>
               </div>
               <div className={styles.baInfo}>
                 <strong className={styles.baTitle}>{item.title}</strong>
-                <span className={styles.baResult}>{item.result}</span>
-                <p className={styles.baQuote}>{item.quote}</p>
               </div>
             </div>
           ))}

@@ -114,16 +114,8 @@ export default function Hero() {
       <div className={`container ${styles.container}`}>
         <div className={`${styles.leftCol} hero-parallax hero-content`}>
 
-          <h1 className={styles.title}>
-            <span className="anim-hero-left" style={{ display: 'block' }}>
-              Seu Sorriso 
-            </span>
-            <span className="anim-hero-left" style={{ display: 'block' }}>
-              <span className={styles.titleHighlight}>Perfeito</span> Começa
-            </span>
-            <span className="anim-hero-left" style={{ display: 'block' }}>
-              Aqui.
-            </span>
+          <h1 className={`${styles.title} anim-hero-left`}>
+            Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span> Começa Aqui.
           </h1>
 
           <p className={`${styles.description} anim-hero-left`}>
@@ -132,6 +124,7 @@ export default function Hero() {
 
           <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
             <button ref={btnRef} className="btn btn-primary">Agendar Avaliação Gratuita →</button>
+            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Ver nossos serviços</a>
           </div>
 
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
