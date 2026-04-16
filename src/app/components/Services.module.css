@@ -9,6 +9,7 @@
   overflow: hidden;
 }
 
+/* subtle glow */
 .servicesSection::before {
   content: '';
   position: absolute;
@@ -31,7 +32,7 @@
 ──────────────────────────────────────── */
 .header {
   text-align: center;
-  margin-bottom: 4.5rem;
+  margin-bottom: 5.5rem;
 }
 
 .textHighlight {
@@ -45,6 +46,15 @@
   left: 0;
   width: 100%;
   pointer-events: none;
+}
+
+.subtext {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  max-width: 37.5rem;
+  margin: 1.5rem auto 0;
 }
 
 /* ────────────────────────────────────────
@@ -69,235 +79,237 @@
 }
 
 /* ────────────────────────────────────────
-   Service Card (Immersive Redesign)
+   Service Card (Clean Split Design)
 ──────────────────────────────────────── */
 .serviceCard {
   box-sizing: border-box;
-  padding: 0 0.75rem;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 0 1rem;
+  transition: all 0.4s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
 }
 
 .cardInner {
-  position: relative;
-  background: #0d1e35;
-  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
   overflow: hidden;
-  height: 34rem; /* Tall cards for immersive feel */
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.5s ease;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .serviceCard:hover .cardInner {
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(37, 99, 235, 0.1);
 }
 
-/* 1. Background Media Layer */
+/* 1. Top Media */
 .cardMedia {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0d1e35;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .thumbnail {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
-  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+  opacity: 0.8;
+  transition: transform 1s ease;
 }
 
 .serviceCard:hover .thumbnail {
-  transform: scale(1.1);
-  opacity: 0.8;
+  transform: scale(1.08);
+  opacity: 1;
 }
 
-/* 2. Overlay Layer (Gradients) */
-.cardOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 2.5rem;
-  background: linear-gradient(to top, 
-    rgba(15, 27, 45, 0.95) 0%, 
-    rgba(15, 27, 45, 0.6) 30%, 
-    rgba(15, 27, 45, 0.2) 60%, 
-    transparent 100%);
-  transition: background 0.5s ease;
-}
-
-.serviceCard:hover .cardOverlay {
-  background: linear-gradient(to top, 
-    rgba(15, 27, 45, 0.98) 0%, 
-    rgba(15, 27, 45, 0.7) 40%, 
-    rgba(15, 27, 45, 0.3) 70%, 
-    transparent 100%);
-}
-
-/* Play Indicator */
 .playOverlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 27, 45, 0.2);
+  transition: all 0.4s ease;
 }
 
 .playCircle {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   background: rgba(37, 99, 235, 0.9);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
-  transform: scale(1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
 
 .serviceCard:hover .playCircle {
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: scale(1);
   background: #2563EB;
 }
 
-/* 3. Typography Hierarchy */
+/* 2. Bottom Content */
+.cardBody {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
 .cardTag {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #60A5FA;
   letter-spacing: 0.15em;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  padding: 0.5rem 1rem;
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 10;
-}
-
-.cardBody {
-  z-index: 3;
-}
-
-.titleRow {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
   margin-bottom: 1rem;
-}
-
-.cardIcon {
-  font-size: 1.5rem;
-  background: rgba(37, 99, 235, 0.2);
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  backdrop-filter: blur(5px);
+  display: block;
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0;
-  line-height: 1.1;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
 }
 
 .cardDesc {
   font-family: var(--font-body);
-  font-size: 1rem;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 90%;
-  transform: translateY(10px);
-  opacity: 0.8;
-  transition: all 0.4s ease;
-}
-
-.serviceCard:hover .cardDesc {
-  transform: translateY(0);
-  opacity: 1;
-  color: #FFFFFF;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  flex-grow: 1;
 }
 
 .cardFooter {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.75rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cardSubtitle {
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #60A5FA;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  justify-content: flex-start;
 }
 
 .cardBtn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border: none;
   font-family: var(--font-display);
   font-size: 0.875rem;
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
-  padding: 0.6rem 1.25rem;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+  padding: 0;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cardBtn::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 1.5rem;
+  height: 2px;
+  background: #60A5FA;
+  transition: width 0.3s ease;
+}
+
+.serviceCard:hover .cardBtn {
+  color: #60A5FA;
+}
+
+.serviceCard:hover .cardBtn::after {
+  width: 100%;
+}
+
+/* ────────────────────────────────────────
+   Navigation
+──────────────────────────────────────── */
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 4.5rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.cardBtn:hover {
+.dotActive {
+  width: 2rem;
+  background: #2563EB;
+}
+
+/* ────────────────────────────────────────
+   Arrows
+──────────────────────────────────────── */
+.arrow {
+  flex-shrink: 0;
+  align-self: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.arrow:hover {
   background: #2563EB;
   border-color: #2563EB;
-  transform: scale(1.05);
 }
+
+.arrowLeft { margin-right: -1.75rem; z-index: 5; }
+.arrowRight { margin-left: -1.75rem; z-index: 5; }
 
 /* ────────────────────────────────────────
    Responsive
 ──────────────────────────────────────── */
 @media (max-width: 1023px) {
-  .cardInner { height: 38rem; }
+  .servicesSection { padding: 6rem 0; }
   .carouselOuter { overflow: hidden; }
-  .carouselWrapper { padding: 0 2rem; }
+  .carouselWrapper { padding: 0 1.5rem; }
   .arrow { display: none; }
 }
 
 @media (max-width: 767px) {
-  .cardOverlay { padding: 2rem 1.5rem; }
-  .cardInner { height: 32rem; border-radius: 24px; }
-  .cardTitle { font-size: 1.5rem; }
-  .cardDesc { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
-  
-  .cardTag { top: 1.25rem; left: 1.25rem; padding: 0.4rem 0.8rem; font-size: 0.7rem; }
-  .cardIcon { width: 2.5rem; height: 2.5rem; font-size: 1.25rem; }
-  
-  .cardFooter { flex-direction: column; gap: 1rem; align-items: flex-start; }
-  .cardBtn { width: 100%; border-radius: 14px; padding: 0.85rem; }
+  .servicesSection { padding: 4rem 0; }
+  .carouselWrapper { padding: 0 1rem; }
+  .serviceCard { padding: 0 0.5rem; }
+  .cardBody { padding: 2rem 1.5rem; }
+  .cardTitle { font-size: 1.35rem; }
+  .cardDesc { font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
 }

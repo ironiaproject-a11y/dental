@@ -199,7 +199,7 @@ export default function Services() {
                   style={{ flex: `0 0 ${100 / visible}%` }}
                 >
                   <div className={styles.cardInner}>
-                    {/* Camada de Fundo: Media */}
+                    {/* Top: Media */}
                     <div className={styles.cardMedia}>
                       <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
                       <div className={styles.playOverlay}>
@@ -209,20 +209,14 @@ export default function Services() {
                       </div>
                     </div>
                     
-                    {/* Camada de Gradiente e Conteúdo */}
-                    <div className={styles.cardOverlay}>
+                    {/* Bottom: Content */}
+                    <div className={styles.cardBody}>
                         <span className={styles.cardTag}>{service.tag}</span>
-                        <div className={styles.cardBody}>
-                          <div className={styles.titleRow}>
-                            <div className={styles.cardIcon}>{service.icon}</div>
-                            <h3 className={styles.cardTitle}>{service.title}</h3>
-                          </div>
-                          <p className={styles.cardDesc}>{service.desc}</p>
-                          <div className={styles.cardFooter}>
-                            <span className={styles.cardSubtitle}>{service.subtitle}</span>
-                            <button className={styles.cardBtn}>Agendar agora &rarr;</button>
-                          </div>
-                    </div>
+                        <h3 className={styles.cardTitle}>{service.title}</h3>
+                        <p className={styles.cardDesc}>{service.desc}</p>
+                        <div className={styles.cardFooter}>
+                          <button className={styles.cardBtn}>Agendar Consulta</button>
+                        </div>
                     </div>
                   </div>
                 </div>
