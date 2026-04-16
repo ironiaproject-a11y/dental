@@ -130,14 +130,14 @@
     text-align: left;
     align-items: flex-start;
     margin: 0;
-    padding: 0 1.5rem 5.5rem; /* padding lateral + espaço do nav ribbon do fundo */
+    padding: 0 1.5rem 24px; /* padding lateral + espaço fundo exato 24px */
   }
 
   /* H1: display grande, máximo impacto */
   .title {
     font-size: clamp(2.25rem, 9vw, 3rem) !important;
     text-align: left;
-    margin-bottom: 1.25rem; /* H1 → CTA: respiro generoso (sem descrição) */
+    margin-bottom: 24px !important; /* H1 → CTA: exato 24px */
     line-height: 1.05 !important;
   }
 
@@ -150,15 +150,16 @@
   .ctaRow {
     justify-content: flex-start;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    align-self: flex-start;
     width: 100%;
-    margin-bottom: 0.875rem; /* CTA → pill: espaço justo */
+    margin: 0 0 12px 0 !important; /* Force left alignment tracking from text start, exato 12px bot */
   }
 
   /* Social proof: pill compacto, colado abaixo do CTA */
   .socialProofPill {
-    margin-top: 0 !important; /* !important corrige cascade: base vem depois no arquivo */
-    margin-bottom: 0;
+    margin: 0 !important; /* reset margins */
+    align-self: flex-start !important; /* track exato com text start */
     flex-direction: row;
     border-radius: 100px;
     padding: 0.375rem 0.875rem;
