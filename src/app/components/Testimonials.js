@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Testimonials.module.css';
@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 
 const testimonials = [
   {
-    quote: "Tinha medo de dentista desde criança. A equipe da SmilePro foi tão cuidadosa e atenciosa que nem percebi quando o implante foi feito. Resultado impecável, zero dor. Não troco por nada.",
+    quote: "Tinha medo de dentista desde criança. A equipe da SmilePro foi tão cuidadosa que nem percebi quando o implante foi feito. Resultado impecável, zero dor. Não troco por nada.",
     name: "Juliana Martins",
     initials: "JM",
     color: "#4F46E5",
@@ -18,7 +18,6 @@ const testimonials = [
     service: "Implante Dentário",
     date: "Março 2025",
     stars: 5,
-    featured: true,
   },
   {
     quote: "Em 9 meses com o Invisalign meu sorriso mudou completamente. Ninguém nem notava que eu estava usando. Valeu cada centavo.",
@@ -72,12 +71,18 @@ const testimonials = [
   },
 ];
 
+// How many cards visible per "page" (desktop 3, tablet 2, mobile 1)
+function getVisible() {
+  if (typeof window === 'undefined') return 3;
+  if (window.innerWidth >= 1024) return 3;
+  if (window.innerWidth >= 640) return 2;
+  return 1;
+}
+
 function StarRating({ count }) {
   return (
     <div className={styles.stars} aria-label={`${count} estrelas`}>
-      {Array.from({ length: count }).map((_, i) => (
-        <span key={i}>★</span>
-      ))}
+      {Array.from({ length: count }).map((_, i) => <span key={i}>★</span>)}
     </div>
   );
 }
@@ -95,7 +100,7 @@ function VerifiedBadge() {
     <div className={styles.verified} title="Paciente verificado">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       Paciente verificado
     </div>
@@ -103,20 +108,69 @@ function VerifiedBadge() {
 }
 
 export default function Testimonials() {
-  const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
+  const sectionRef   = useRef(null);
+  const trackRef     = useRef(null);
+  const intervalRef  = useRef(null);
+  const isHovered    = useRef(false);
+  const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(3);
 
+  const total = testimonials.length;
+  const pages = Math.ceil(total / visible);   // dot count
+
+  // ── Slide to index ─────────────────────────────────────────────────────────
+  const slideTo = useCallback((idx) => {
+    if (!trackRef.current) return;
+    const safeIdx = ((idx % total) + total) % total;
+    setActive(safeIdx);
+
+    // card width = 100% / visible  ➜ translate = safeIdx * (100/visible)%
+    const pct = safeIdx * (100 / visible);
+    gsap.to(trackRef.current, {
+      x: `-${pct}%`,
+      duration: 0.65,
+      ease: 'power2.inOut',
+    });
+  }, [total, visible]);
+
+  // ── Auto-play ───────────────────────────────────────────────────────────────
+  const startAuto = useCallback(() => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      if (!isHovered.current) {
+        setActive(prev => {
+          const next = (prev + 1) % total;
+          slideTo(next);
+          return next;
+        });
+      }
+    }, 4000);
+  }, [slideTo, total]);
+
+  // ── Responsive recalc ───────────────────────────────────────────────────────
+  useEffect(() => {
+    const update = () => {
+      const v = getVisible();
+      setVisible(v);
+      setActive(0);
+      if (trackRef.current) gsap.set(trackRef.current, { x: 0 });
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // ── Entrance animation ──────────────────────────────────────────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(cardsRef.current.filter(Boolean), {
-        y: 50,
+      gsap.from(sectionRef.current, {
         opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
+        y: 40,
+        duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 78%',
+          start: 'top 80%',
           toggleActions: 'play none none none',
         },
       });
@@ -124,11 +178,29 @@ export default function Testimonials() {
     return () => ctx.revert();
   }, []);
 
-  const featured = testimonials[0];
-  const rest = testimonials.slice(1);
+  // ── Start auto-play after mount ─────────────────────────────────────────────
+  useEffect(() => {
+    startAuto();
+    return () => clearInterval(intervalRef.current);
+  }, [startAuto]);
+
+  // ── Dot page index ──────────────────────────────────────────────────────────
+  const activeDot = Math.floor(active / visible) % pages;
+
+  const goToDot = (dotIdx) => {
+    slideTo(dotIdx * visible);
+    startAuto();
+  };
+
+  const prev = () => { slideTo(active - 1); startAuto(); };
+  const next = () => { slideTo(active + 1); startAuto(); };
 
   return (
-    <section className={styles.section} id="depoimentos" ref={sectionRef}>
+    <section
+      className={styles.section}
+      id="depoimentos"
+      ref={sectionRef}
+    >
       <div className="container">
 
         {/* Header */}
@@ -149,49 +221,70 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Featured card */}
+        {/* Carousel */}
         <div
-          className={`${styles.featuredCard}`}
-          ref={el => cardsRef.current[0] = el}
+          className={styles.carouselWrapper}
+          onMouseEnter={() => { isHovered.current = true; }}
+          onMouseLeave={() => { isHovered.current = false; }}
         >
-          <div className={styles.featuredInner}>
-            <StarRating count={featured.stars} />
-            <p className={styles.featuredQuote}>"{featured.quote}"</p>
-            <div className={styles.authorRow}>
-              <Avatar initials={featured.initials} color={featured.color} />
-              <div>
-                <div className={styles.name}>{featured.name}</div>
-                <div className={styles.meta}>{featured.location} · {featured.service} · {featured.date}</div>
-              </div>
-              <VerifiedBadge />
+          {/* Prev arrow */}
+          <button
+            className={`${styles.arrow} ${styles.arrowLeft}`}
+            onClick={prev}
+            aria-label="Depoimento anterior"
+          >
+            ‹
+          </button>
+
+          {/* Track */}
+          <div className={styles.carouselOuter}>
+            <div className={styles.track} ref={trackRef}>
+              {testimonials.map((t, i) => (
+                <div
+                  key={i}
+                  className={`${styles.card} ${i === active ? styles.cardActive : ''}`}
+                  style={{ flex: `0 0 ${100 / visible}%` }}
+                >
+                  <div className={styles.cardTop}>
+                    <StarRating count={t.stars} />
+                    <span className={styles.dateTag}>{t.date}</span>
+                  </div>
+                  <p className={styles.quote}>"{t.quote}"</p>
+                  <div className={styles.divider} />
+                  <div className={styles.authorRow}>
+                    <Avatar initials={t.initials} color={t.color} />
+                    <div>
+                      <div className={styles.name}>{t.name}</div>
+                      <div className={styles.meta}>{t.location} · {t.service}</div>
+                    </div>
+                  </div>
+                  <VerifiedBadge />
+                </div>
+              ))}
             </div>
           </div>
-          <div className={styles.featuredAccent} />
+
+          {/* Next arrow */}
+          <button
+            className={`${styles.arrow} ${styles.arrowRight}`}
+            onClick={next}
+            aria-label="Próximo depoimento"
+          >
+            ›
+          </button>
         </div>
 
-        {/* Grid cards */}
-        <div className={styles.grid}>
-          {rest.map((t, i) => (
-            <div
+        {/* Dots */}
+        <div className={styles.dots} role="tablist">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
               key={i}
-              className={styles.card}
-              ref={el => cardsRef.current[i + 1] = el}
-            >
-              <div className={styles.cardTop}>
-                <StarRating count={t.stars} />
-                <span className={styles.dateTag}>{t.date}</span>
-              </div>
-              <p className={styles.quote}>"{t.quote}"</p>
-              <div className={styles.divider} />
-              <div className={styles.authorRow}>
-                <Avatar initials={t.initials} color={t.color} />
-                <div>
-                  <div className={styles.name}>{t.name}</div>
-                  <div className={styles.meta}>{t.location} · {t.service}</div>
-                </div>
-              </div>
-              <VerifiedBadge />
-            </div>
+              role="tab"
+              aria-selected={i === activeDot}
+              aria-label={`Página ${i + 1}`}
+              className={`${styles.dot} ${i === activeDot ? styles.dotActive : ''}`}
+              onClick={() => goToDot(i)}
+            />
           ))}
         </div>
 
