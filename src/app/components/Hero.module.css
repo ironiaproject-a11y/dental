@@ -150,7 +150,7 @@
   .ctaRow {
     justify-content: flex-start;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     align-self: flex-start;
     width: 100%;
     margin: 0 0 12px 0 !important; /* Force left alignment tracking from text start, exato 12px bot */
