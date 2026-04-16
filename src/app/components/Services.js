@@ -215,7 +215,7 @@ export default function Services() {
                         <h3 className={styles.cardTitle}>{service.title}</h3>
                         <p className={styles.cardDesc}>{service.desc}</p>
                         <div className={styles.cardFooter}>
-                          <button className={styles.cardBtn}>Agendar Consulta</button>
+                          <button className={styles.cardBtn}>Agendar avaliação <span className={styles.arrowIcon}>→</span></button>
                         </div>
                     </div>
                   </div>

@@ -91,23 +91,20 @@
 }
 
 .cardInner {
-  background: rgba(30, 41, 59, 0.7); /* Lighter, more solid blue-grey */
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
+  background: #111e30; /* Solid dark blue */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px; /* Smooth rounded corners */
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease; /* Transições suaves 200-300ms */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra leve e difusa */
 }
 
 .serviceCard:hover .cardInner {
-  background: rgba(30, 41, 59, 1); /* Fully solid on hover */
-  border-color: rgba(37, 99, 235, 0.5);
-  transform: translateY(-12px);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 99, 235, 0.15);
+  transform: translateY(-8px); /* leve elevação do card */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(37, 99, 235, 0.1);
 }
 
 /* 1. Top Media */
@@ -124,13 +121,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
-  transition: transform 1s ease;
+  transition: transform 0.3s ease;
 }
 
 .serviceCard:hover .thumbnail {
-  transform: scale(1.08);
-  opacity: 1;
+  transform: scale(1.05); /* leve zoom no vídeo */
 }
 
 .playOverlay {
@@ -139,27 +134,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 27, 45, 0.2);
-  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.15); /* Overlay escuro muito sutil (máx 20%) */
+  transition: all 0.3s ease;
 }
 
 .playCircle {
   width: 3.5rem;
   height: 3.5rem;
-  background: rgba(37, 99, 235, 0.9);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  opacity: 0;
   transform: scale(0.9);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .serviceCard:hover .playCircle {
+  opacity: 1;
   transform: scale(1);
-  background: #2563EB;
 }
 
 /* 2. Bottom Content */
@@ -177,32 +174,32 @@
   font-weight: 700;
   text-transform: uppercase;
   color: #60A5FA;
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
+  opacity: 0.8; /* discrete */
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.75rem;
   display: block;
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.625rem; /* dominante */
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .cardDesc {
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.55);
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.55); /* menor contraste */
+  line-height: 1.6;
+  margin-bottom: 2rem; /* espaço generoso */
   flex-grow: 1;
 }
 
-.cardFooter {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 1.75rem;
+.cardFooter { /* separated from text slightly above it in the space but no border needed for a cleaner look */
+  padding-top: 1rem;
   display: flex;
   justify-content: flex-start;
 }
@@ -210,35 +207,30 @@
 .cardBtn {
   background: transparent;
   border: none;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-family: var(--font-body); /* More like a regular link, elegant */
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #60A5FA; /* Brand color to indicate action */
   cursor: pointer;
   padding: 0;
   transition: all 0.3s ease;
   position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem; 
 }
 
-.cardBtn::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 1.5rem;
-  height: 2px;
-  background: #60A5FA;
-  transition: width 0.3s ease;
+.arrowIcon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .arrowIcon {
+  transform: translateX(4px);
 }
 
 .serviceCard:hover .cardBtn {
-  color: #60A5FA;
-}
-
-.serviceCard:hover .cardBtn::after {
-  width: 100%;
+  color: #93C5FD;
 }
 
 /* ────────────────────────────────────────
