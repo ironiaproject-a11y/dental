@@ -70,7 +70,7 @@ export default function Hero() {
           gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
         });
         btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+          gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
         });
       }
     }, heroRef);
