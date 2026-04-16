@@ -83,7 +83,7 @@
 ──────────────────────────────────────── */
 .serviceCard {
   box-sizing: border-box;
-  padding: 0 1rem;
+  padding: 0 0.5rem; /* Reduced from 1rem to close the 'hole' between cards */
   transition: all 0.4s ease;
   cursor: pointer;
   display: flex;
@@ -91,22 +91,23 @@
 }
 
 .cardInner {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.7); /* Lighter, more solid blue-grey */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .serviceCard:hover .cardInner {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(37, 99, 235, 0.3);
+  background: rgba(30, 41, 59, 1); /* Fully solid on hover */
+  border-color: rgba(37, 99, 235, 0.5);
   transform: translateY(-12px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 99, 235, 0.15);
 }
 
 /* 1. Top Media */
