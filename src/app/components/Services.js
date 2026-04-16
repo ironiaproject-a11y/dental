@@ -199,6 +199,7 @@ export default function Services() {
                   style={{ flex: `0 0 ${100 / visible}%` }}
                 >
                   <div className={styles.cardInner}>
+                    {/* Camada de Fundo: Media */}
                     <div className={styles.cardMedia}>
                       <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
                       <div className={styles.playOverlay}>
@@ -206,19 +207,22 @@ export default function Services() {
                           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                         </div>
                       </div>
-                      <span className={styles.cardTag}>{service.tag}</span>
                     </div>
                     
-                    <div className={styles.cardBody}>
-                      <div className={styles.titleRow}>
-                        <div className={styles.cardIcon}>{service.icon}</div>
-                        <h3 className={styles.cardTitle}>{service.title}</h3>
-                      </div>
-                      <p className={styles.cardDesc}>{service.desc}</p>
-                      <div className={styles.cardFooter}>
-                        <span className={styles.cardSubtitle}>{service.subtitle}</span>
-                        <button className={styles.cardBtn}>Saber mais →</button>
-                      </div>
+                    {/* Camada de Gradiente e Conteúdo */}
+                    <div className={styles.cardOverlay}>
+                        <span className={styles.cardTag}>{service.tag}</span>
+                        <div className={styles.cardBody}>
+                          <div className={styles.titleRow}>
+                            <div className={styles.cardIcon}>{service.icon}</div>
+                            <h3 className={styles.cardTitle}>{service.title}</h3>
+                          </div>
+                          <p className={styles.cardDesc}>{service.desc}</p>
+                          <div className={styles.cardFooter}>
+                            <span className={styles.cardSubtitle}>{service.subtitle}</span>
+                            <button className={styles.cardBtn}>Agendar agora &rarr;</button>
+                          </div>
+                    </div>
                     </div>
                   </div>
                 </div>
