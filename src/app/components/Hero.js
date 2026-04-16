@@ -116,7 +116,10 @@ export default function Hero() {
 
           <h1 className={styles.title}>
             <span className="anim-hero-left" style={{ display: 'block' }}>
-              Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span>
+              Seu Sorriso 
+            </span>
+            <span className="anim-hero-left" style={{ display: 'block' }}>
+              <span className={styles.titleHighlight}>Perfeito</span>&nbsp;
             </span>
             <span className="anim-hero-left" style={{ display: 'block' }}>
               Começa Aqui.
