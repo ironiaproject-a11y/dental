@@ -312,6 +312,14 @@
   .cardPrioritario {
     flex-direction: column;
     text-align: center;
+    align-items: center;
     padding: 2rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .leftCol button {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
   }
 }
