@@ -198,25 +198,27 @@ export default function Services() {
                   className={`${styles.serviceCard} ${i === active ? styles.cardActive : ''}`}
                   style={{ flex: `0 0 ${100 / visible}%` }}
                 >
-                  <div className={styles.cardMedia}>
-                    <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
-                    <div className={styles.playOverlay}>
-                      <div className={styles.playCircle}>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  <div className={styles.cardInner}>
+                    <div className={styles.cardMedia}>
+                      <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
+                      <div className={styles.playOverlay}>
+                        <div className={styles.playCircle}>
+                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                       </div>
+                      <span className={styles.cardTag}>{service.tag}</span>
                     </div>
-                    <span className={styles.cardTag}>{service.tag}</span>
-                  </div>
-                  
-                  <div className={styles.cardBody}>
-                    <div className={styles.titleRow}>
-                      <div className={styles.cardIcon}>{service.icon}</div>
-                      <h3 className={styles.cardTitle}>{service.title}</h3>
-                    </div>
-                    <p className={styles.cardDesc}>{service.desc}</p>
-                    <div className={styles.cardFooter}>
-                      <span className={styles.cardSubtitle}>{service.subtitle}</span>
-                      <button className={styles.cardBtn}>Saber mais →</button>
+                    
+                    <div className={styles.cardBody}>
+                      <div className={styles.titleRow}>
+                        <div className={styles.cardIcon}>{service.icon}</div>
+                        <h3 className={styles.cardTitle}>{service.title}</h3>
+                      </div>
+                      <p className={styles.cardDesc}>{service.desc}</p>
+                      <div className={styles.cardFooter}>
+                        <span className={styles.cardSubtitle}>{service.subtitle}</span>
+                        <button className={styles.cardBtn}>Saber mais →</button>
+                      </div>
                     </div>
                   </div>
                 </div>
