@@ -119,10 +119,10 @@ export default function Hero() {
               Seu Sorriso 
             </span>
             <span className="anim-hero-left" style={{ display: 'block' }}>
-              <span className={styles.titleHighlight}>Perfeito</span>&nbsp;
+              <span className={styles.titleHighlight}>Perfeito</span> Começa
             </span>
             <span className="anim-hero-left" style={{ display: 'block' }}>
-              Começa Aqui.
+              Aqui.
             </span>
           </h1>
 

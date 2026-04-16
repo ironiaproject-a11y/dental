@@ -85,6 +85,7 @@
     align-items: stretch;
     min-height: 100svh;
     height: 100svh;
+    overflow-x: hidden;
   }
 
   /* Vídeo cobre toda a tela */
@@ -135,7 +136,8 @@
 
   /* H1: display grande, máximo impacto */
   .title {
-    font-size: clamp(2.25rem, 9vw, 3rem) !important;
+    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+    word-break: break-word;
     text-align: left;
     margin-bottom: 24px !important; /* H1 → CTA: exato 24px */
     line-height: 1.05 !important;
