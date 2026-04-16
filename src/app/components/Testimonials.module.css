@@ -1,20 +1,34 @@
+/* ────────────────────────────────────────
+   Section
+──────────────────────────────────────── */
 .section {
   padding: 8.75rem 0;
-  background-color: #F8F9FF !important;
+  background: #F8F9FF;
+  border-top: 1px solid #EAECF4;
+  border-bottom: 1px solid #EAECF4;
   position: relative;
   overflow: hidden;
-  background-image: none !important;
-  border-bottom: 1px solid #F3F4F6;
 }
 
-.sectionBg {
-  background-color: #F8F9FF;
-  border-top: 1px solid #F3F4F6;
+/* subtle radial glow */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rem;
+  height: 30rem;
+  background: radial-gradient(ellipse at center, rgba(79,70,229,0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
+/* ────────────────────────────────────────
+   Header
+──────────────────────────────────────── */
 .header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .subtext {
@@ -22,105 +36,277 @@
   font-size: 1.125rem;
   color: #6B7280;
   line-height: 1.75;
-  max-width: 34.375rem;
+  max-width: 34rem;
   margin: 1rem auto 0;
 }
 
+/* Google-style rating badge */
+.ratingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 0.6rem 1.25rem;
+  margin-top: 1.75rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.ratingScore {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0F1B2D;
+  line-height: 1;
+}
+
+.ratingStars {
+  font-size: 1rem;
+  color: #FBBF24;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.ratingLabel {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin-top: 0.15rem;
+}
+
+/* ────────────────────────────────────────
+   Featured Card
+──────────────────────────────────────── */
+.featuredCard {
+  position: relative;
+  background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+  border-radius: 24px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(79, 70, 229, 0.25);
+}
+
+.featuredAccent {
+  position: absolute;
+  top: -4rem;
+  right: -4rem;
+  width: 20rem;
+  height: 20rem;
+  background: radial-gradient(circle, rgba(129,140,248,0.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.featuredInner {
+  padding: 2.75rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.featuredQuote {
+  font-family: var(--font-body);
+  font-size: 1.3125rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.92);
+  font-style: italic;
+  margin: 1.25rem 0 1.75rem;
+  max-width: 48rem;
+}
+
+/* ────────────────────────────────────────
+   Grid
+──────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 3.5rem;
 }
 
-@media (min-width: 768px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
-}
-
+/* ────────────────────────────────────────
+   Card
+──────────────────────────────────────── */
 .card {
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 2.25rem;
-  border: 1px solid #F3F4F6;
-  transition: all 0.3s ease;
+  padding: 2rem;
+  border: 1px solid #EAECF4;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(37, 99, 235, 0.08);
-  border-color: #DBEAFE;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(79, 70, 229, 0.09);
+  border-color: #C7D2FE;
 }
 
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ────────────────────────────────────────
+   Stars
+──────────────────────────────────────── */
 .stars {
-  font-size: 1.25rem; /* 20px */
+  display: flex;
+  gap: 0.1rem;
+  font-size: 1.125rem;
   color: #FBBF24;
-  letter-spacing: 0.1rem;
 }
 
+/* ────────────────────────────────────────
+   Quote
+──────────────────────────────────────── */
 .quote {
   font-family: var(--font-body);
-  font-size: 1.0625rem; /* 17px */
-  font-weight: 400;
+  font-size: 1rem;
   font-style: italic;
   color: #374151;
   line-height: 1.8;
   flex: 1;
 }
 
+/* ────────────────────────────────────────
+   Divider
+──────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: #F3F4F6;
+  margin: 0.25rem 0;
+}
+
+/* ────────────────────────────────────────
+   Author Row
+──────────────────────────────────────── */
 .authorRow {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: auto;
+  gap: 0.875rem;
+  flex-wrap: wrap;
 }
 
-.avatar {
-  width: 3rem; /* 48px */
-  height: 3rem;
+/* ────────────────────────────────────────
+   Avatar
+──────────────────────────────────────── */
+.avatarCircle {
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #DBEAFE;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: #fff;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.avatarImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+/* ────────────────────────────────────────
+   Name / Meta
+──────────────────────────────────────── */
 .name {
   font-family: var(--font-display);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;
   font-weight: 700;
   color: #0F1B2D;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.1rem;
 }
 
-.location {
-  font-family: var(--font-display);
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 500;
+.meta {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
   color: #9CA3AF;
 }
 
-/* ── MOBILE: horizontal swipeable carousel ── */
+/* ────────────────────────────────────────
+   Date Tag
+──────────────────────────────────────── */
+.dateTag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  font-weight: 500;
+}
+
+/* ────────────────────────────────────────
+   Verified Badge
+──────────────────────────────────────── */
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #059669;
+  margin-left: auto;
+}
+
+/* In featured card, white tint */
+.featuredCard .verified {
+  color: rgba(167, 243, 208, 0.9);
+}
+
+/* ────────────────────────────────────────
+   Tablet
+──────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuredInner {
+    padding: 2rem;
+  }
+
+  .featuredQuote {
+    font-size: 1.125rem;
+  }
+}
+
+/* ────────────────────────────────────────
+   Mobile
+──────────────────────────────────────── */
 @media (max-width: 767px) {
   .section {
     padding: 3.75rem 0;
-    overflow: hidden;
   }
+
+  .featuredCard {
+    border-radius: 20px;
+  }
+
+  .featuredInner {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .featuredQuote {
+    font-size: 1rem;
+  }
+
   .header {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
+
+  .ratingBadge {
+    flex-direction: column;
+    gap: 0.25rem;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  /* Horizontal swipeable on mobile */
   .grid {
     display: flex;
     flex-direction: row;
@@ -128,20 +314,29 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 1rem;
-    padding: 0.5rem 1.5rem 1.5rem;
-    margin: 1.5rem -1.5rem 0;
+    padding: 0.5rem 1.25rem 1.5rem;
+    margin: 0 -1.25rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .grid::-webkit-scrollbar { display: none; }
+
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
 
   .card {
     flex-shrink: 0;
-    width: 78vw;
-    max-width: 17rem;
+    width: 80vw;
+    max-width: 18rem;
     scroll-snap-align: center;
     padding: 1.5rem;
   }
 
-  .quote { font-size: 0.9375rem; }
+  .authorRow {
+    flex-wrap: nowrap;
+  }
+
+  .verified {
+    margin-left: 0;
+  }
 }
