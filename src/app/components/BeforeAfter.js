@@ -5,18 +5,18 @@ export default function BeforeAfter() {
   const cases = [
     {
       title: 'Clareamento Dental',
-      before: '/whitening-before.png',
-      after: '/whitening-after.png',
+      before: '/images/before-after/whitening-before.png',
+      after: '/images/before-after/whitening-after.png',
     },
     {
       title: 'Implante Unitário',
-      before: '/implant-before.png',
-      after: '/implant-after.png',
+      before: '/images/before-after/implant-before.png',
+      after: '/images/before-after/implant-after.png',
     },
     {
       title: 'Ortodontia Invisalign',
-      before: '/invisalign-before.png',
-      after: '/invisalign-after.png',
+      before: '/images/before-after/invisalign-before.png',
+      after: '/images/before-after/invisalign-after.png',
     },
   ];
 

@@ -130,11 +130,11 @@ export default function Hero() {
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
             <div className={`${styles.pillAvatars} avatars`}>
               {[
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=40&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=40&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=40&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=40&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=40&auto=format&fit=crop'
+                '/images/patients/carlos.png',
+                '/images/patients/fernanda.png',
+                '/images/patients/juliana.png',
+                '/images/patients/patient-4.png',
+                '/images/patients/patient-5.png'
               ].map((url, i) => (
                 <div
                   key={i}

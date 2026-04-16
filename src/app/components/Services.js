@@ -16,6 +16,7 @@ const services = [
     subtitle: 'Até 8 tons mais claros',
     desc: 'Tecnologia a laser e moldeiras personalizadas para um branco natural em poucos dias.',
     icon: '🦷',
+    thumbnail: '/images/infrastructure/treatment-suite.png'
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const services = [
     subtitle: 'Segurança e naturalidade',
     desc: 'Substitua dentes perdidos com materiais de alta compatibilidade e técnica minimamente invasiva.',
     icon: '🔬',
+    thumbnail: '/images/infrastructure/sterilization.png'
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const services = [
     subtitle: 'Alinhadores modernizados',
     desc: 'Aparelhos invisíveis e fixos para todas as idades, com foco em conforto e estética.',
     icon: '😁',
+    thumbnail: '/images/tech-room.png'
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ const services = [
     subtitle: 'O sorriso das estrelas',
     desc: 'Transformação total em poucas sessões. Lentes ultrafinas que corrigem cor e formato.',
     icon: '💎',
+    thumbnail: '/images/infrastructure/treatment-suite.png'
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const services = [
     subtitle: 'Rejuvenescimento natural',
     desc: 'Equilíbrio facial com toxina botulínica e preenchimentos para realçar sua beleza única.',
     icon: '✨',
+    thumbnail: '/images/infrastructure/reception.png'
   },
   {
     id: 6,
@@ -56,6 +61,7 @@ const services = [
     subtitle: 'Saúde em primeiro lugar',
     desc: 'Avaliação completa com câmera intraoral para detectar problemas antes que eles se tornem graves.',
     icon: '🛡️',
+    thumbnail: '/images/tech-room.png'
   },
 ];
 
@@ -192,15 +198,26 @@ export default function Services() {
                   className={`${styles.serviceCard} ${i === active ? styles.cardActive : ''}`}
                   style={{ flex: `0 0 ${100 / visible}%` }}
                 >
-                  <div className={styles.cardHeader}>
-                    <div className={styles.cardIcon}>{service.icon}</div>
+                  <div className={styles.cardMedia}>
+                    <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
+                    <div className={styles.playOverlay}>
+                      <div className={styles.playCircle}>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
                     <span className={styles.cardTag}>{service.tag}</span>
                   </div>
-                  <h3 className={styles.cardTitle}>{service.title}</h3>
-                  <p className={styles.cardDesc}>{service.desc}</p>
-                  <div className={styles.cardFooter}>
-                    <span className={styles.cardSubtitle}>{service.subtitle}</span>
-                    <button className={styles.cardBtn}>Saber mais →</button>
+                  
+                  <div className={styles.cardBody}>
+                    <div className={styles.titleRow}>
+                      <div className={styles.cardIcon}>{service.icon}</div>
+                      <h3 className={styles.cardTitle}>{service.title}</h3>
+                    </div>
+                    <p className={styles.cardDesc}>{service.desc}</p>
+                    <div className={styles.cardFooter}>
+                      <span className={styles.cardSubtitle}>{service.subtitle}</span>
+                      <button className={styles.cardBtn}>Saber mais →</button>
+                    </div>
                   </div>
                 </div>
               ))}
