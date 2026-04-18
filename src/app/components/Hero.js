@@ -67,10 +67,13 @@ export default function Hero() {
 
       {/* 1. Background (High Quality WebP Animation) */}
       <div className={styles.videoWrapper}>
-        <img
-          src="/videos/hero-bg.webp"
-          alt="Luxury Dental Clinic Background"
-          loading="eager"
+        <video
+          src="/videos/hero-bg.webm"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className={styles.videoBg}
           style={{
             width: '100%',
             height: '100%',
