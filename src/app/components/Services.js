@@ -167,9 +167,21 @@ export default function Services() {
             Tratamentos para cada{' '}
             <span className={styles.textHighlight}>
               sorriso único
-              <svg className={styles.curvyLine} width="220" height="30" viewBox="0 0 220 30" fill="none">
-                <path d="M5 10C50 30 170 30 215 10" stroke="#60A5FA" strokeWidth="4" strokeLinecap="round"/>
-                <path d="M208 15L218 10L208 5" fill="#60A5FA" />
+              <svg className={styles.curvyLine} width="100%" height="24" viewBox="0 0 220 24" fill="none" style={{ overflow: 'visible' }}>
+                <path
+                  d="M 10 5 C 70 28 150 28 210 2"
+                  stroke="url(#premiumSmile)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient id="premiumSmile" x1="0" y1="0" x2="220" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.1" />
+                    <stop offset="20%" stopColor="#60A5FA" stopOpacity="1" />
+                    <stop offset="80%" stopColor="#2563EB" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.1" />
+                  </linearGradient>
+                </defs>
               </svg>
             </span>
           </h2>
