@@ -9,33 +9,6 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
-  // ── Mobile Autoplay Rescue ─────────────────────
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-
-    // Strict attributes for mobile autoplay
-    v.muted = true;
-    v.defaultMuted = true;
-    v.setAttribute('playsinline', '');
-    v.setAttribute('webkit-playsinline', '');
-
-    const attemptPlay = () => {
-      v.play().catch(() => {
-        // Fallback: scroll or touch will trigger play if blocked
-        const playOnInteraction = () => {
-          v.play().catch(() => {});
-          window.removeEventListener('scroll', playOnInteraction);
-          window.removeEventListener('touchstart', playOnInteraction);
-        };
-        window.addEventListener('scroll', playOnInteraction, { passive: true });
-        window.addEventListener('touchstart', playOnInteraction, { passive: true });
-      });
-    };
-
-    attemptPlay();
-  }, []);
-
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -92,17 +65,12 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video (Optimized for Mobile Autoplay) */}
+      {/* 1. Background (High Quality WebP Animation) */}
       <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
-          src="/videos/hero-bg.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls={false}
-          preload="auto"
+        <img
+          src="/videos/hero-bg.webp"
+          alt="Luxury Dental Clinic Background"
+          loading="eager"
           style={{
             width: '100%',
             height: '100%',
