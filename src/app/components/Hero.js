@@ -62,12 +62,23 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  // Force autoplay and Ensure muted
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.warn("Hero video autoplay failed, waiting for interaction.", err);
+      });
+    }
+  }, []);
+
   return (
     <section className={styles.hero} ref={heroRef}>
 
       {/* 1. Background (High Quality WebP Animation) */}
       <div className={styles.videoWrapper}>
         <video
+          ref={videoRef}
           src="/videos/hero-bg.webm"
           autoPlay
           muted
