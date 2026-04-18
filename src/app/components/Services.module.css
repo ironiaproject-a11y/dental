@@ -91,20 +91,23 @@
 }
 
 .cardInner {
-  background: #111e30; /* Solid dark blue */
+  background: rgba(17, 30, 48, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px; /* Smooth rounded corners */
+  border-radius: 16px; 
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: all 0.3s ease; /* Transições suaves 200-300ms */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra leve e difusa */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0), 0 10px 30px rgba(0, 0, 0, 0.15); 
 }
 
 .serviceCard:hover .cardInner {
-  transform: translateY(-8px); /* leve elevação do card */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(37, 99, 235, 0.1);
+  transform: translateY(-8px); 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(37, 99, 235, 0.15);
 }
 
 /* 1. Top Media */
@@ -169,42 +172,60 @@
 }
 
 .cardTag {
-  font-family: var(--font-display);
-  font-size: 0.65rem; /* Menor e mais delicado */
-  font-weight: 800; /* Ultra-bold */
-  text-transform: uppercase;
-  color: #60A5FA;
-  opacity: 0.7;
-  letter-spacing: 0.25em; /* Muito espaço */
-  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem; 
+  font-style: italic;
+  color: #93C5FD;
+  letter-spacing: 0.05em; 
+  margin-bottom: 0.75rem;
   display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.02s;
+}
+
+.serviceCard:hover .cardTag {
+  transform: translateY(-4px);
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 1.75rem; /* Maior e elegante */
-  font-weight: 400; /* Fino (editorial style) */
+  font-size: 1.75rem; 
+  font-weight: 400; 
   color: #FFFFFF;
   line-height: 1.25;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s;
+}
+
+.serviceCard:hover .cardTitle {
+  transform: translateY(-4px);
 }
 
 .cardDesc {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.55); /* menor contraste */
+  color: rgba(255, 255, 255, 0.55); 
   line-height: 1.6;
-  margin-bottom: 2rem; /* espaço generoso */
+  margin-bottom: 2rem; 
   flex-grow: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.serviceCard:hover .cardDesc {
+  transform: translateY(-4px);
 }
 
 .cardFooter { 
   padding-top: 1.5rem;
-  margin-top: auto; /* Empurra para o fundo se houver flex grow acima (o text content precisa dele) */
+  margin-top: auto; 
   display: flex;
   justify-content: flex-start;
-  border-top: 1px solid rgba(255, 255, 255, 0.04); /* Linha divisória extremamente fina (Hairline) */
+  border-top: 1px solid rgba(255, 255, 255, 0.04); 
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.14s;
+}
+
+.serviceCard:hover .cardFooter {
+  transform: translateY(-4px);
 }
 
 .cardBtn {
