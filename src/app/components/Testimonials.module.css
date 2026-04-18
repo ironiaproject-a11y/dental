@@ -203,9 +203,10 @@
 ──────────────────────────────────────── */
 .quote {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-style: italic;
-  color: #374151;
+  font-weight: 500;
+  color: #0F1B2D;
   line-height: 1.8;
   flex: 1;
 }
