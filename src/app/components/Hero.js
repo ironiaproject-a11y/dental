@@ -9,34 +9,31 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
 
-  // ── Video Autoplay & Fallback Handling ─────────
+  // ── Mobile Autoplay Rescue ─────────────────────
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
 
-    // Force property muting just in case
+    // Strict attributes for mobile autoplay
     v.muted = true;
     v.defaultMuted = true;
-    
-    // Ensure playsinline
-    v.setAttribute('playsinline', 'playsinline');
-    v.setAttribute('webkit-playsinline', 'playsinline');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
 
-    // Try playing
-    const promise = v.play();
-    if (promise !== undefined) {
-      promise.catch(() => {
-        // Low Power Mode blocked it
-        const recoverPlay = () => {
+    const attemptPlay = () => {
+      v.play().catch(() => {
+        // Fallback: scroll or touch will trigger play if blocked
+        const playOnInteraction = () => {
           v.play().catch(() => {});
-          document.removeEventListener('touchstart', recoverPlay);
-          document.removeEventListener('scroll', recoverPlay);
+          window.removeEventListener('scroll', playOnInteraction);
+          window.removeEventListener('touchstart', playOnInteraction);
         };
-        // Add listeners to naturally resume video on any touch or scroll
-        document.addEventListener('touchstart', recoverPlay, { passive: true });
-        document.addEventListener('scroll', recoverPlay, { passive: true });
+        window.addEventListener('scroll', playOnInteraction, { passive: true });
+        window.addEventListener('touchstart', playOnInteraction, { passive: true });
       });
-    }
+    };
+
+    attemptPlay();
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -95,18 +92,17 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video */}
+      {/* 1. Background Video (Optimized for Mobile Autoplay) */}
       <div className={styles.videoWrapper}>
         <video
           ref={videoRef}
-          className="hero-video-el"
           src="/videos/hero-bg.mp4"
           autoPlay
-          loop
           muted
+          loop
           playsInline
+          controls={false}
           preload="auto"
-          fetchPriority="high"
           style={{
             width: '100%',
             height: '100%',
