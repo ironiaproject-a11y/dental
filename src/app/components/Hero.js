@@ -129,7 +129,7 @@ export default function Hero() {
         <div className={`${styles.leftCol} hero-parallax hero-content`}>
 
           <h1 className={`${styles.title} anim-hero-left`}>
-            A Arquitetura do Seu <span className={styles.titleHighlight}>Novo Sorriso</span>.
+            Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span> Começa Aqui.
           </h1>
 
           <p className={`${styles.description} anim-hero-left`}>
