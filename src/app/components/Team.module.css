@@ -10,141 +10,152 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 3.5rem;
-}
-
-@media (min-width: 640px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .grid { grid-template-columns: repeat(4, 1fr); }
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 4.5rem;
+  max-width: 68rem; /* 1088px limit for focused editorial list */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card {
   background: #FFFFFF !important;
-  border: 1px solid #F3F4F6;
-  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05); /* very subtle */
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
+  display: flex !important;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 24rem; /* Garante tamanho majestoso da foto */
   opacity: 1 !important;
   visibility: visible !important;
-  display: block !important;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(37, 99, 235, 0.1);
-  border-color: #DBEAFE;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.08); /* Glow de grife azulado leve */
+  border-color: rgba(37, 99, 235, 0.15);
 }
 
 .photo {
-  width: 100%;
-  height: 17.5rem; /* 280px */
+  width: 40%;
   position: relative;
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
 }
 
 .docImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card:hover .docImage {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .content {
-  padding: 1.25rem 1.5rem;
+  width: 60%;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
 }
 
 .name {
   font-family: var(--font-display);
-  font-size: 1.125rem; /* 18px */
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #0F1B2D;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: #2563EB; /* Premium Blue */
+  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
 .cro {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #9CA3AF;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #6B7280;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
 }
 
-.role {
-  font-family: var(--font-display);
-  font-size: 0.875rem; /* 14px */
-  color: #2563EB;
-  font-weight: 500;
-  margin-bottom: 1rem;
+.bio {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: #4B5563;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-style: italic; /* Editorial Look */
+  border-left: 3px solid #E5E7EB;
+  padding-left: 1.25rem;
 }
 
 .socials {
   display: flex;
-  gap: 0.75rem;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
   border-top: 1px solid #F3F4F6;
-  padding-top: 1rem;
+  margin-top: auto; /* Empurra para a beira inferior do card */
 }
 
 .icon {
   color: #9CA3AF;
-  font-size: 1.125rem;
+  font-size: 1.35rem;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .icon:hover {
-  color: #2563EB;
+  color: #1D4ED8;
+  transform: translateY(-2px);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 860px) {
   .grid {
-    grid-template-columns: 1fr;
     gap: 2rem;
-    margin-top: 2rem;
-    max-width: 22rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 3rem;
+  }
+
+  .card {
+    flex-direction: column; /* Reverte para bloco vertical no celular */
+    min-height: auto;
   }
 
   .photo {
-    height: 11.25rem; /* 180px */
+    width: 100%;
+    height: 20rem; /* Espaço pro retrato */
   }
 
   .content {
-    padding: 1rem;
+    width: 100%;
+    padding: 2rem;
   }
 
   .name {
-    font-size: 0.9375rem;
+    font-size: 1.75rem;
   }
 
   .role {
-    font-size: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .socials {
-    justify-content: center;
-    gap: 1rem;
-    padding-top: 1rem;
-  }
-
-  .icon {
     font-size: 1rem;
+  }
+
+  .bio {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
 }

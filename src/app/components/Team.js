@@ -47,25 +47,29 @@ export default function Team() {
     { 
       name: 'Dr. Ricardo Costa', 
       cro: 'CRO-SP 123.45', 
-      role: 'Cirurgião Bucomaxilofacial', 
+      role: 'Cirurgião Bucomaxilofacial Master', 
+      bio: 'Membro titular do colégio brasileiro de cirurgiões. Pioneiro em técnicas de implante guiado por computador sem incisões, garantindo uma recuperação celular silenciosa.',
       photo: '/images/team/doctor-1.png' 
     },
     { 
       name: 'Dra. Ana Ferreira', 
       cro: 'CRO-SP 234.56', 
-      role: 'Especialista em Invisalign', 
+      role: 'Especialista Diamond em Invisalign', 
+      bio: 'Liderou o desenvolvimento das resinas nanoparticuladas no pólo Sul. Sua visão estética busca a simetria perfeita sem comprometer a identidade original do rosto.',
       photo: '/images/team/doctor-2.png' 
     },
     { 
       name: 'Dr. Bruno Mendes', 
       cro: 'CRO-SP 345.67', 
-      role: 'Implantodontista PhD', 
+      role: 'Ph.D em Implantodontia', 
+      bio: 'Doutor em Biotecnologia Odontológica. Foca seu atelier clínico em reabilitação de alta complexidade com osseointegração acelerada, ministrando cursos globais.',
       photo: '/images/team/doctor-3.png' 
     },
     { 
       name: 'Dra. Luiza Lima', 
       cro: 'CRO-SP 456.78', 
-      role: 'Estética de Alta Performance', 
+      role: 'Estética de Alta Performance Face & Lábio', 
+      bio: 'Artista facial com especialização internacional em harmonização orofacial. Utiliza micro-pontos de ácido hialurônico para devolver sustentação e jovialidade de forma invisível.',
       photo: '/images/team/doctor-4.png' 
     },
   ];
@@ -75,7 +79,7 @@ export default function Team() {
       <div className="container">
         <div className={`${styles.header} anim-team-header`}>
           <span className="tag">Excelência Clínica</span>
-          <AnimatedTitle className="title" delay={0.2}>Conheça os especialistas por trás do seu <span>novo sorriso</span></AnimatedTitle>
+          <AnimatedTitle className="title" delay={0.2}>Conheça os Especialistas por trás do seu <span>novo sorriso</span></AnimatedTitle>
         </div>
 
         <div className={`${styles.grid} team-grid`}>
@@ -85,16 +89,17 @@ export default function Team() {
                 <Image 
                   src={doc.photo} 
                   alt={doc.name} 
-                  width={300} 
-                  height={380} 
+                  fill
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   className={styles.docImage}
-                  priority={i < 2} // Priority for top row
+                  priority={i < 2} 
                 />
               </div>
               <div className={styles.content}>
                 <h3 className={styles.name}>{doc.name}</h3>
-                <div className={styles.cro}>{doc.cro}</div>
                 <div className={styles.role}>{doc.role}</div>
+                <div className={styles.cro}>{doc.cro}</div>
+                <p className={styles.bio}>{doc.bio}</p>
                 <div className={styles.socials}>
                   <FiInstagram className={styles.icon} />
                   <FaLinkedinIn className={styles.icon} />
