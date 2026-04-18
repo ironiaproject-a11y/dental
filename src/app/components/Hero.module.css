@@ -35,7 +35,7 @@
 
 .leftCol {
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 3.75rem; /* 60px — anchored to left margin */
   transform: translateY(-50%);
   max-width: 32.5rem; /* 520px */
