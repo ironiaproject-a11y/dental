@@ -17,6 +17,10 @@
   pointer-events: none !important;
 }
 
+.hero video {
+  filter: contrast(110%) brightness(105%); /* Enhances visual sharpness and depth */
+}
+
 .videoWrapper {
   position: absolute;
   inset: 0;
@@ -289,7 +293,7 @@
   color: #ffffff;
 }
 
-/* Strengthened gradient for text legibility */
+/* Strengthened gradient for text legibility + Texture for quality perception */
 .videoOverlay {
   position: absolute;
   inset: 0;
@@ -301,6 +305,17 @@
     rgba(0, 0, 0, 0) 100%
   );
   z-index: 2;
+}
+
+/* Subtle grain texture to hide video artifacts and add cinematic feel */
+.videoOverlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+  opacity: 0.1;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 
