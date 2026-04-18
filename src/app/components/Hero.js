@@ -45,11 +45,28 @@ export default function Hero() {
 
     const ctx = gsap.context(() => {
       // Premium entrance: fade up, blur remove, slight scale up
-      gsap.timeline().fromTo(
+      gsap.timeline()
+      .fromTo(
         '.anim-hero-left',
         { y: 40, opacity: 0, filter: 'blur(12px)', scale: 0.96 },
         { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.5, stagger: 0.15, ease: 'power3.out', clearProps: 'all' }
+      )
+      .fromTo(
+        '.avatars > div',
+        { scale: 0, x: -15, opacity: 0 },
+        { scale: 1, x: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'back.out(2)', clearProps: 'all' },
+        "-=0.8" 
       );
+
+      // Flutuação subaquática constante da prova social
+      gsap.to('.hero-social-proof', {
+        y: -6,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 1.5
+      });
 
       // Desktop parallax on mouse move
       const handleMouseMove = (e) => {
