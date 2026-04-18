@@ -28,7 +28,7 @@ export default function Hero() {
           opacity: 1, 
           filter: 'blur(0px)', 
           duration: 1.8, 
-          stagger: 0.3, // Ideal timing: 300ms de intervalo entre a cascata (title -> text -> CTA -> social)
+          stagger: 0.3, 
           ease: 'power4.out', 
           clearProps: 'all' 
         }
@@ -43,39 +43,27 @@ export default function Hero() {
       };
       heroRef.current?.addEventListener('mousemove', handleMouseMove);
 
-        // Magnetic CTA button & Social Proof Pill
-        const magneticElements = [btnRef.current, document.querySelector('.hero-social-proof')];
-        magneticElements.forEach((el) => {
-          if (!el) return;
-          el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width  / 2;
-            const y = e.clientY - rect.top  - rect.height / 2;
-            gsap.to(el, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: 'power2.out' });
-          });
-          el.addEventListener('mouseleave', () => {
-            gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
-          });
-        });
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Force autoplay and Ensure muted
+  // ── Ajuste Crítico: Autoplay Mobile ──────────────────────────────────────────
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.warn("Hero video autoplay failed, waiting for interaction.", err);
-      });
+    const video = videoRef.current;
+    if (video) {
+        video.defaultMuted = true;
+        video.muted = true;
+        video.play().catch(() => {
+            // Tentativa silenciosa de reprodução para burlar bloqueios de interação
+        });
     }
   }, []);
 
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background (High Quality WebP Animation) */}
+      {/* 1. Background Video (Optimized for Mobile Autoplay) */}
       <div className={styles.videoWrapper}>
         <video
           ref={videoRef}
@@ -84,6 +72,8 @@ export default function Hero() {
           muted
           loop
           playsInline
+          preload="auto"
+          controls={false}
           className={styles.videoBg}
           style={{
             width: '100%',
