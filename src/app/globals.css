@@ -64,6 +64,9 @@
   --radius-button: 50px;
   --radius-image: 24px;
   --radius-badge: 100px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
 
   /* ── Shadows ── */
   --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
@@ -79,6 +82,10 @@
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
   --glass-border-light: 1px solid rgba(255, 255, 255, 0.15);
   --glass-blur: blur(24px);
+
+  /* ── Acessibilidade Melhorada ── */
+  --focus-outline: 2px solid var(--color-primary);
+  --focus-offset: 2px;
 }
 
 /* ── Reset ── */
@@ -234,6 +241,10 @@ section {
   cursor: pointer;
   border: none;
   outline: none;
+  &:focus-visible {
+    outline: var(--focus-outline) solid;
+    outline-offset: var(--focus-offset);
+  }
 }
 
 .btn:hover { transform: scale(1.03); }
@@ -374,7 +385,29 @@ section {
   }
   .whatsapp-tooltip { display: none !important; }
 
-  input, select, textarea {
-    font-size: 16px !important;
+input, select, textarea {
+  font-size: 16px !important;
+  
+  /* Melhorar contraste do placeholder para WCAG AA */
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    opacity: 1 !important;
   }
+  
+  /* Estilo de foco para acessibilidade */
+  &:focus-visible {
+    outline: var(--focus-outline) solid;
+    outline-offset: var(--focus-offset);
+  }
+  
+  /* Borda e fundo para melhor contraste */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  
+  &:focus {
+    border-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
 }

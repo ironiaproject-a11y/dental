@@ -73,6 +73,9 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
+          defaultMuted
+          disablePictureInPicture
+          disableRemotePlayback
           controls={false}
           className={styles.videoBg}
           style={{
