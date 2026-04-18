@@ -129,16 +129,16 @@ export default function Hero() {
         <div className={`${styles.leftCol} hero-parallax hero-content`}>
 
           <h1 className={`${styles.title} anim-hero-left`}>
-            Seu Sorriso <span className={styles.titleHighlight}>Perfeito</span> Começa Aqui.
+            A Arquitetura do Seu <span className={styles.titleHighlight}>Novo Sorriso</span>.
           </h1>
 
           <p className={`${styles.description} anim-hero-left`}>
-            Tecnologia de ponta e atendimento humanizado para transformar seu sorriso. Agende sua avaliação gratuita.
+            A união definitiva entre engenharia digital e maestria artesanal. Descubra a estética de vanguarda projetada exclusivamente para as proporções anatômicas do seu rosto.
           </p>
 
           <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
-            <button ref={btnRef} className="btn btn-primary">Agendar Avaliação Gratuita →</button>
-            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Ver nossos serviços</a>
+            <button ref={btnRef} className="btn btn-primary">Solicitar Reserva de Horário →</button>
+            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Explorar Especialidades</a>
           </div>
 
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>

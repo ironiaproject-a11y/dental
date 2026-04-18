@@ -6,7 +6,7 @@ export default function TrustBar() {
   return (
     <section className={`${styles.trustBar} trust-bar`}>
       <div className={`container ${styles.container}`}>
-        <div className={`${styles.label} trust-label`}>Convênios e parceiros aceitos:</div>
+        <div className={`${styles.label} trust-label`}>Acesso credenciado aos convênios mais seletos do país:</div>
         <div className={`${styles.logos} trust-logos`}>
           {partners.map(partner => (
             <div key={partner} className={styles.logoItem}>{partner}</div>

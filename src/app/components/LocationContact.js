@@ -17,10 +17,10 @@ export default function LocationContact() {
     <section className={styles.section} id="contato">
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
-          <span className="tag">Dê o Primeiro Passo</span>
-          <h2 className="title">Agende sua <span>Avaliação Gratuita</span></h2>
+          <span className="tag">Onde a Medicina Encontra a Arte</span>
+          <h2 className="title">Agende seu <span>Atendimento VIP</span></h2>
           <p className={styles.subtext}>
-            Sem compromisso. Vamos entender o que você precisa e apresentar o melhor tratamento para o seu sorriso.
+            Nosso concierge imersivo de luxo está à total disposição para preparar todos os aspectos da sua primeira visita à nossa infraestrutura.
           </p>
         </div>
 
@@ -60,16 +60,16 @@ export default function LocationContact() {
                 className={styles.btnWhatsapp}
               >
                 <FaWhatsapp size={22} />
-                Agendar pelo WhatsApp
+                Falar com o Concierge Dental
               </a>
               <a href="tel:+5511999999999" className={styles.btnPhone}>
                 <FiPhone size={20} />
-                Ligar Agora
+                Ligar para Recepção Privativa
               </a>
             </div>
 
             <p className={styles.noCommitment}>
-              ✓ Sem compromisso &nbsp;&nbsp; ✓ Resposta em até 5 min &nbsp;&nbsp; ✓ Avaliação gratuita
+              • Atendimento Confidencial  &nbsp;&nbsp; • Curadoria de Horários Especiais  &nbsp;&nbsp; • Valet Service Privado
             </p>
           </div>
 
