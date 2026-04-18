@@ -45,18 +45,20 @@ export default function PainFreeTech() {
           <div className={`${styles.visual} tech-image`}>
             <div className={styles.imageWrapper}>
               <Image
-                src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=600&auto=format&fit=crop"
-                alt="Tecnologia Odontológica Premium"
+                src="/images/tech/gold-standard.png"
+                alt="Padrão Ouro em Odontologia Digital"
                 width={600}
                 height={800}
                 className={styles.image}
                 loading="lazy"
               />
               <div className={styles.badge}>
-                <span className={styles.badgeIcon}>🛡️</span>
+                <div className={styles.badgeIcon}>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
                 <div className={styles.badgeText}>
                   <strong>100%</strong>
-                  <span>Procedimentos Humanizados</span>
+                  <span>Tecnologia Humanizada</span>
                 </div>
               </div>
             </div>
