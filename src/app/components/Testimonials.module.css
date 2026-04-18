@@ -32,9 +32,9 @@
 
 .subtext {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: var(--text-lead);
   color: #6B7280;
-  line-height: 1.75;
+  line-height: var(--line-height-relaxed); /* 1.85 — texto longo */
   max-width: 34rem;
   margin: 1rem auto 0;
 }
@@ -203,11 +203,11 @@
 ──────────────────────────────────────── */
 .quote {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: var(--text-lead);              /* 18px — token */
   font-style: italic;
   font-weight: 500;
   color: #0F1B2D;
-  line-height: 1.8;
+  line-height: var(--line-height-relaxed);  /* 1.85 — citações precisam respirar */
   flex: 1;
 }
 
@@ -246,10 +246,11 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: var(--text-base);              /* 15px — token */
   font-weight: 700;
   color: #0F1B2D;
-  margin-bottom: 0.1rem;
+  letter-spacing: var(--tracking-body);     /* -0.01em — micro-refinamento */
+  margin-bottom: 0.15rem;
 }
 
 .meta {

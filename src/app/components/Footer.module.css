@@ -48,9 +48,9 @@
 
 .desc {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.9375rem; /* 15px */
-  line-height: 1.75;
-  max-width: 13.75rem; /* 220px */
+  font-size: var(--text-base);             /* 15px — token */
+  line-height: var(--line-height-relaxed); /* 1.85 — descrição precisa respirar */
+  max-width: 13.75rem;
   margin-bottom: 1.5rem;
   font-family: var(--font-body);
 }
@@ -74,8 +74,8 @@
 
 .list li {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9375rem; /* 15px */
-  line-height: 2;
+  font-size: var(--text-base);             /* 15px — token */
+  line-height: 2.2;                        /* nav links precisam de mais respiro */
   transition: color 0.2s ease;
   cursor: pointer;
 }

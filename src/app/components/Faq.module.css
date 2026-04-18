@@ -42,8 +42,8 @@
 .subtext {
   font-family: var(--font-body);
   color: #6B7280;
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: var(--text-lead);             /* 18px — token */
+  line-height: var(--line-height-relaxed); /* 1.85 — texto longo */
   max-width: 37.5rem;
   margin: 0 auto;
 }
@@ -85,10 +85,12 @@
 
 .question {
   font-family: var(--font-display);
-  font-size: 1.0625rem; /* 17px */
+  font-size: var(--text-body);             /* 17px */
   font-weight: 600;
   color: #0F1B2D;
   margin: 0;
+  letter-spacing: var(--tracking-body);   /* -0.01em — micro-refinamento */
+  line-height: var(--line-height-snug);   /* 1.25 — heading compacto */
 }
 
 .icon {
@@ -124,10 +126,10 @@
 
 .answer {
   font-family: var(--font-body);
-  font-size: 1rem; /* 16px */
-  line-height: 1.75;
+  font-size: var(--text-md);               /* 16px */
+  line-height: var(--line-height-relaxed); /* 1.85 — resposta detalhada */
   color: #6B7280;
-  padding-top: 1rem;
+  padding-top: 1.25rem;                    /* mais ar antes da resposta */
   margin-top: 1rem;
   border-top: 1px solid #E5E7EB;
 }

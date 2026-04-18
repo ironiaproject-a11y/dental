@@ -55,12 +55,13 @@
 
 .title {
   font-family: var(--font-display);
-  font-size: 3rem; /* 48px */
+  font-size: 3rem;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: var(--line-height-tight);       /* 1.1 — heading grande */
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-heading);    /* -0.03em — tensão adequada para 3rem */
   color: #FFFFFF;
+  font-optical-sizing: auto;
 }
 
 .title span {
@@ -74,8 +75,8 @@
 
 .text {
   font-family: var(--font-body);
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.7;
+  font-size: var(--text-lead);             /* 18px — token */
+  line-height: var(--line-height-relaxed); /* 1.85 — corpo longo */
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2.5rem;
   max-width: 30rem;

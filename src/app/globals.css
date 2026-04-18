@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* - */
+  /* ── Brand Colors ── */
   --color-primary: #2563EB;
   --color-primary-light: #60A5FA;
   --color-primary-dark: #1D4ED8;
   --color-primary-gradient: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
-  
-  /* mapped */
+
   --color-accent: #1D4ED8;
   --color-accent-light: #60A5FA;
   --color-accent-dark: #1E3A8A;
-  --color-accent-gradient: linear-gradient(135deg, #0369A1 0%, #1E3A8A 100%); /* Premium desaturated slate/teal-blue */
+  --color-accent-gradient: linear-gradient(135deg, #0369A1 0%, #1E3A8A 100%);
 
   --color-bg-main: #FFFFFF;
   --color-bg-alt: #F8F9FF;
@@ -20,40 +19,61 @@
   --color-bg-dark: #0a1628;
   --color-bg-dark-elem: #0d1e35;
   --color-text-primary: #0F1B2D;
-  --color-text-secondary: #4B5563; /* darker */
+  --color-text-secondary: #4B5563;
   --color-text-light: #9CA3AF;
   --color-cta-hover: #1E40AF;
   --color-success: #10B981;
 
-  /* Typography */
+  /* ── Typography — Families ── */
   --font-display: 'DM Sans', sans-serif;
   --font-body: 'Lora', serif;
-  --font-accent: 'DM Sans', sans-serif;
-  
-  --base-size: 16px;
-  --line-height-body: 1.7;
-  --letter-spacing-heading: -0.02em;
 
-  /* Spacing */
+  /* ── Line Heights ── */
+  --line-height-tight: 1.1;     /* headings grandes H1/H2 */
+  --line-height-snug: 1.25;     /* headings médios H3/H4 */
+  --line-height-normal: 1.5;    /* UI labels, listas curtas */
+  --line-height-body: 1.75;     /* parágrafos principais */
+  --line-height-relaxed: 1.85;  /* citações, textos longos */
+
+  /* ── Letter Spacing ── */
+  --tracking-display: -0.04em;   /* H1 — tensão de cartaz */
+  --tracking-heading: -0.03em;   /* H2 / seção titles */
+  --tracking-subheading: -0.02em;/* H3 / card titles */
+  --tracking-body: -0.01em;      /* body / parágrafos */
+  --tracking-ui: 0em;            /* nav links, labels */
+  --tracking-caption: 0.12em;    /* tags / badges uppercase */
+
+  /* ── Type Scale ── */
+  --text-xs: 0.75rem;      /* 12px — legal/meta */
+  --text-sm: 0.8125rem;    /* 13px — tags, captions */
+  --text-base: 0.9375rem;  /* 15px — nav, botões */
+  --text-md: 1rem;         /* 16px — body alt */
+  --text-body: 1.0625rem;  /* 17px — body principal */
+  --text-lead: 1.125rem;   /* 18px — subtextos de seção */
+  --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --text-h2: clamp(2.25rem, 5vw, 3.5rem);
+  --text-h1: clamp(2.75rem, 6vw, 4.5rem);
+
+  /* ── Spacing ── */
   --section-padding: 7.5rem;
   --card-gap: 1.5rem;
   --container-max: 75rem;
 
-  /* Border Radius */
+  /* ── Border Radius ── */
   --radius-card: 24px;
   --radius-button: 50px;
   --radius-image: 24px;
   --radius-badge: 100px;
 
-  /* - */
+  /* ── Shadows ── */
   --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   --shadow-card-hover: 0 20px 60px -15px rgba(0, 0, 0, 0.12);
   --shadow-button: 0 8px 30px -4px rgba(0, 0, 0, 0.15);
   --shadow-button-accent: 0 8px 30px -4px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 40px rgba(3, 105, 161, 0.2);
   --shadow-glow-accent: 0 0 40px rgba(3, 105, 161, 0.2);
-  
-  /* utility */
+
+  /* ── Glass ── */
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-bg-dark: rgba(10, 22, 40, 0.75);
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
@@ -61,6 +81,7 @@
   --glass-blur: blur(24px);
 }
 
+/* ── Reset ── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -74,10 +95,8 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hide native video controls globally (especially for mobile fallback) */
-video::-webkit-media-controls {
-  display: none !important;
-}
+/* Hide native video controls */
+video::-webkit-media-controls { display: none !important; }
 video::-webkit-media-controls-start-playback-button {
   display: none !important;
   -webkit-appearance: none;
@@ -85,24 +104,28 @@ video::-webkit-media-controls-start-playback-button {
 
 @media (max-width: 768px) {
   html {
-    font-size: 12px;
+    /* 12px → 15px: corrige viola WCAG AA (mínimo 14px para texto normal) */
+    font-size: 15px;
   }
 }
 
+/* ── Base Typography ── */
 body {
   font-family: var(--font-display);
-  font-size: 1.0625rem; /* 17px */
-  line-height: 1.75;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
   background-color: var(--color-bg-main);
+  letter-spacing: var(--tracking-body);
+  font-optical-sizing: auto;
 }
 
 p {
-  font-family: var(--font-display) !important;
+  font-family: var(--font-display);
   font-weight: 400;
-  font-size: 1.125rem; /* 18px */
-  letter-spacing: 0;
-  line-height: 1.75;
+  font-size: var(--text-lead);
+  letter-spacing: var(--tracking-body);
+  line-height: var(--line-height-relaxed);
   max-width: 65ch;
 }
 
@@ -111,42 +134,72 @@ p {
 }
 
 li {
-  font-size: 1.0625rem; /* 17px */
-  line-height: 1.7;
+  font-size: var(--text-body);
+  line-height: var(--line-height-normal);
 }
 
+/* ── Heading Scale ── */
 h1 {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-size: var(--text-h1);
+  letter-spacing: var(--tracking-display);
   color: var(--color-text-primary);
-  line-height: 1.05;
+  line-height: var(--line-height-tight);
+  margin-bottom: 1.5rem;
+  font-optical-sizing: auto;
 }
 
 h2 {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-heading);
   color: var(--color-text-primary);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
+  margin-bottom: 1.5rem;
+  font-optical-sizing: auto;
 }
 
 h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  letter-spacing: 0;
+  font-size: var(--text-h3);
+  letter-spacing: var(--tracking-subheading);
   color: var(--color-text-primary);
-  line-height: 1.3;
+  line-height: var(--line-height-snug);
+  margin-bottom: 1rem;
+  font-optical-sizing: auto;
 }
 
-h4, h5, h6 {
+h4 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: var(--tracking-subheading);
   color: var(--color-text-primary);
-  line-height: 1.3;
+  line-height: var(--line-height-snug);
+  margin-bottom: 0.75rem;
+}
+
+h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-body);
+  letter-spacing: var(--tracking-body);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-base);
+  letter-spacing: var(--tracking-ui);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin-bottom: 0.5rem;
 }
 
 a {
@@ -154,23 +207,28 @@ a {
   color: inherit;
 }
 
-/* Container */
+/* ── Layout ── */
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Base Button */
+section {
+  padding: clamp(4rem, 8vw, 8.75rem) 0;
+  scroll-margin-top: 6.25rem;
+}
+
+/* ── Buttons ── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
   border-radius: var(--radius-button);
-  font-family: var(--font-accent);
-  font-weight: 500;
-  font-size: 0.9375rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-base);
   letter-spacing: 0.01em;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
@@ -178,20 +236,14 @@ a {
   outline: none;
 }
 
-.btn:hover {
-  transform: scale(1.03);
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
+.btn:hover { transform: scale(1.03); }
+.btn:active { transform: scale(0.97); }
 
 .btn-primary {
-  background: var(--color-accent-gradient); /* Usando o novo gradiente premium */
+  background: var(--color-accent-gradient);
   color: #FFFFFF;
   box-shadow: var(--shadow-button);
 }
-
 .btn-primary:hover {
   box-shadow: var(--shadow-button), var(--shadow-glow);
 }
@@ -201,9 +253,17 @@ a {
   color: #FFFFFF;
   box-shadow: var(--shadow-button-accent);
 }
-
 .btn-accent:hover {
   box-shadow: var(--shadow-button-accent), var(--shadow-glow-accent);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-text-primary);
+}
+.btn-ghost:hover {
+  background-color: rgba(15, 27, 45, 0.05);
 }
 
 .text-gradient {
@@ -213,44 +273,34 @@ a {
   background-clip: text;
 }
 
-.btn-ghost {
-  background-color: transparent;
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-text-primary);
-}
-
-.btn-ghost:hover {
-  background-color: rgba(15, 27, 45, 0.05);
-}
-
-/* Typography */
+/* ── Tags — Sistema unificado ── */
 .tag {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: var(--text-sm);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--tracking-caption);
   color: var(--color-primary-dark);
   background: rgba(37, 99, 235, 0.08);
-  padding: 0.4rem 0.85rem;
+  padding: 0.375rem 0.875rem;
   border-radius: 100px;
   margin-bottom: 1.25rem;
-  border: 1px solid rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
 .tagInverse {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: var(--text-sm);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--tracking-caption);
   color: #FFFFFF;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 0.85rem;
+  padding: 0.375rem 0.875rem;
   border-radius: 100px;
   margin-bottom: 1.25rem;
   backdrop-filter: blur(8px);
@@ -258,14 +308,16 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* ── Section Title Classes ── */
 .title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
+  font-size: var(--text-h2);
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--line-height-tight);
+  margin-bottom: 2rem;
   color: var(--color-text-primary);
+  font-optical-sizing: auto;
 }
 
 .title span, .titleInverse span {
@@ -277,35 +329,33 @@ a {
 
 .titleInverse {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
+  font-size: var(--text-h2);
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--line-height-tight);
+  margin-bottom: 2rem;
   color: #FFFFFF;
+  font-optical-sizing: auto;
 }
 
-section {
-  padding: clamp(4rem, 8vw, 8.75rem) 0;
-  scroll-margin-top: 6.25rem;
-}
-
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  /* ── GLOBAL ── */
   section {
     padding-left: 20px;
     padding-right: 20px;
   }
+  h1 { margin-bottom: 1.25rem; }
   h2 {
-    font-size: 28px !important;
-    line-height: 1.2 !important;
+    font-size: clamp(1.75rem, 7vw, 2.25rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.25rem !important;
   }
+  h3 { font-size: 1.25rem !important; }
   p {
-    font-size: 16px !important;
-    line-height: 1.65 !important;
+    font-size: var(--text-lead) !important;
+    line-height: var(--line-height-body) !important;
   }
 
-  /* ── HERO MOB ── */
   .hero-content {
     align-items: center !important;
     text-align: center !important;
@@ -316,7 +366,6 @@ section {
     margin: 0 auto;
   }
 
-  /* ── WHATSAPP ── */
   .whatsapp-float {
     bottom: 20px !important;
     right: 20px !important;
@@ -325,7 +374,6 @@ section {
   }
   .whatsapp-tooltip { display: none !important; }
 
-  /* ── INPUTS ── */
   input, select, textarea {
     font-size: 16px !important;
   }

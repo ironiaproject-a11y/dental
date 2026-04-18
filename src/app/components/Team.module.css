@@ -73,7 +73,9 @@
   font-weight: 800;
   color: #0F1B2D;
   margin-bottom: 0.25rem;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-subheading); /* -0.02em — tensão display adequada */
+  line-height: var(--line-height-snug);        /* 1.25 — heading médio */
+  font-optical-sizing: auto;
 }
 
 .role {
@@ -96,11 +98,11 @@
 
 .bio {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: var(--text-lead);               /* 18px — legibilidade editorial */
   color: #4B5563;
-  line-height: 1.6;
+  line-height: var(--line-height-relaxed);   /* 1.85 — leitura immersiva */
   margin-bottom: 2rem;
-  font-style: italic; /* Editorial Look */
+  font-style: italic;
   border-left: 3px solid #E5E7EB;
   padding-left: 1.25rem;
 }

@@ -51,8 +51,8 @@
 .subtext {
   font-family: var(--font-body);
   color: rgba(255, 255, 255, 0.55);
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: var(--text-lead);           /* 18px — token unificado */
+  line-height: var(--line-height-relaxed); /* 1.85 — texto longo respira */
   max-width: 37.5rem;
   margin: 1.5rem auto 0;
 }
@@ -188,12 +188,12 @@
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 1.75rem; 
-  font-weight: 400; 
+  font-size: 1.625rem;                    /* reduzido de 1.75: proporcional ao card */
+  font-weight: 400;
   color: #FFFFFF;
-  line-height: 1.25;
+  line-height: var(--line-height-snug);   /* 1.25 — headings médios */
   margin-bottom: 1rem;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-subheading); /* -0.02em — mais tensão tipográfica */
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s;
 }
 
@@ -203,10 +203,10 @@
 
 .cardDesc {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.55); 
-  line-height: 1.6;
-  margin-bottom: 2rem; 
+  font-size: var(--text-base);             /* 15px — usando token */
+  color: rgba(255, 255, 255, 0.55);
+  line-height: var(--line-height-body);    /* 1.75 — padrão do sistema */
+  margin-bottom: 2rem;
   flex-grow: 1;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 }
