@@ -44,52 +44,36 @@ export default function Hero() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // Premium entrance: fade up, blur remove, slight scale up
-      gsap.timeline()
-      .fromTo(
+      // Premium entrance: fade up, blur remove, slight scale up (Sober and Clean)
+      gsap.timeline().fromTo(
         '.anim-hero-left',
-        { y: 40, opacity: 0, filter: 'blur(12px)', scale: 0.96 },
-        { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.5, stagger: 0.15, ease: 'power3.out', clearProps: 'all' }
-      )
-      .fromTo(
-        '.avatars > div',
-        { scale: 0, x: -15, opacity: 0 },
-        { scale: 1, x: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'back.out(2)', clearProps: 'all' },
-        "-=0.8" 
+        { y: 40, opacity: 0, filter: 'blur(12px)', scale: 0.98 },
+        { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.8, stagger: 0.15, ease: 'power4.out', clearProps: 'all' }
       );
-
-      // Flutuação subaquática constante da prova social
-      gsap.to('.hero-social-proof', {
-        y: -6,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 1.5
-      });
 
       // Desktop parallax on mouse move
       const handleMouseMove = (e) => {
         if (window.innerWidth < 1024) return;
-        const xPos = (e.clientX / window.innerWidth  - 0.5) * 20;
-        const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
-        gsap.to('.hero-parallax', { x: xPos, y: yPos, yPercent: -50, duration: 1, ease: 'power2.out' });
+        const xPos = (e.clientX / window.innerWidth  - 0.5) * 15;
+        const yPos = (e.clientY / window.innerHeight - 0.5) * 15;
+        gsap.to('.hero-parallax', { x: xPos, y: yPos, yPercent: -50, duration: 1.5, ease: 'power2.out' });
       };
       heroRef.current?.addEventListener('mousemove', handleMouseMove);
 
-      // Magnetic CTA button
-      const btn = btnRef.current;
-      if (btn) {
-        btn.addEventListener('mousemove', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width  / 2;
-          const y = e.clientY - rect.top  - rect.height / 2;
-          gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
+        // Magnetic CTA button & Social Proof Pill
+        const magneticElements = [btnRef.current, document.querySelector('.hero-social-proof')];
+        magneticElements.forEach((el) => {
+          if (!el) return;
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width  / 2;
+            const y = e.clientY - rect.top  - rect.height / 2;
+            gsap.to(el, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: 'power2.out' });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
+          });
         });
-        btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
-        });
-      }
     }, heroRef);
 
     return () => ctx.revert();

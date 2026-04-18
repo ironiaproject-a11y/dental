@@ -243,8 +243,31 @@
   font-family: var(--font-display);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
+  
+  /* Efeito de metal brilhante / Shimmering Premium */
+  color: rgba(255, 255, 255, 0.7);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    #FFFFFF 50%,
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerSweep 4s infinite linear;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -50% center;
+  }
 }
 
 .mainCta {
