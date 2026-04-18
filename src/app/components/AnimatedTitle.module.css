@@ -1,0 +1,10 @@
+.titleMask {
+  overflow: hidden;
+  display: block;
+}
+
+.titleLine {
+  display: block;
+  transform-origin: left bottom;
+  will-change: transform;
+}

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './PainFreeTech.module.css';
+import TextReveal from './TextReveal';
 
 export default function PainFreeTech() {
   const items = [
@@ -24,9 +25,10 @@ export default function PainFreeTech() {
           <div className={`${styles.content} tech-content`}>
             <span className={styles.tag}>Padrão Ouro em Odontologia</span>
             <h2 className={styles.title}>Tecnologia de ponta para o seu <span>conforto absoluto</span></h2>
-            <p className={styles.text}>
-              Na SmilePro, acreditamos que a tecnologia deve servir ao bem-estar. Investimos nos equipamentos mais modernos do mundo para transformar sua percepção sobre ir ao dentista.
-            </p>
+            <TextReveal 
+              text="Na SmilePro, acreditamos que a tecnologia deve servir ao bem-estar. Investimos nos equipamentos mais modernos do mundo para transformar sua percepção sobre ir ao dentista." 
+              className={styles.text} 
+            />
             <ul className={styles.list}>
               {items.map((item, i) => (
                 <li key={i}>

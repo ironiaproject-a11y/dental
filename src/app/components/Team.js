@@ -5,6 +5,7 @@ import styles from './Team.module.css';
 import { FiInstagram, FiTwitter } from 'react-icons/fi';
 import { FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 import gsap from 'gsap';
+import AnimatedTitle from './AnimatedTitle';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 if (typeof window !== 'undefined') {
@@ -74,7 +75,7 @@ export default function Team() {
       <div className="container">
         <div className={`${styles.header} anim-team-header`}>
           <span className="tag">Excelência Clínica</span>
-          <h2 className="title">Conheça os especialistas por trás do seu <span>novo sorriso</span></h2>
+          <AnimatedTitle className="title" delay={0.2}>Conheça os especialistas por trás do seu <span>novo sorriso</span></AnimatedTitle>
         </div>
 
         <div className={`${styles.grid} team-grid`}>

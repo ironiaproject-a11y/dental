@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import styles from './ClinicInfrastructure.module.css';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function ClinicInfrastructure() {
   const images = [
@@ -34,7 +35,7 @@ export default function ClinicInfrastructure() {
       <div className="container">
         <div className={styles.header}>
            <span className="tag">Investimento em Você</span>
-           <h2 className="title">Um ecossistema de<br/><span>bem-estar e precisão</span></h2>
+           <AnimatedTitle className="title">Um ecossistema de<br/><span>bem-estar e precisão</span></AnimatedTitle>
            <p className={styles.subtext}>Projetamos cada metro quadrado da SmilePro para ser o consultório mais acolhedor e tecnológico que você já visitou.</p>
         </div>
 

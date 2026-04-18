@@ -1,0 +1,8 @@
+.revealText {
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0.15;
+}

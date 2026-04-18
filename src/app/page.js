@@ -19,6 +19,7 @@ const LocationContact      = dynamic(() => import('./components/LocationContact'
 const CtaBanner            = dynamic(() => import('./components/CtaBanner'));
 const Footer               = dynamic(() => import('./components/Footer'));
 const WhatsAppFloat        = dynamic(() => import('./components/WhatsAppFloat'));
+const Marquee              = dynamic(() => import('./components/Marquee'));
 
 import styles from './page.module.css';
 
@@ -32,6 +33,7 @@ export default function Home() {
       <PainFreeTech />
       <Services />
       <BeforeAfter />
+      <Marquee />
       <DiscountPlan />
       <ClinicInfrastructure />
       <Team />
