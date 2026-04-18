@@ -215,7 +215,15 @@ export default function Services() {
                         <h3 className={styles.cardTitle}>{service.title}</h3>
                         <p className={styles.cardDesc}>{service.desc}</p>
                         <div className={styles.cardFooter}>
-                          <button className={styles.cardBtn}>Agendar avaliação <span className={styles.arrowIcon}>→</span></button>
+                          <button className={styles.cardBtn}>
+                            <span className={styles.btnText}>Agendar avaliação</span>
+                            <span className={styles.arrowCircle}>
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="M12 5l7 7-7 7" />
+                              </svg>
+                            </span>
+                          </button>
                         </div>
                     </div>
                   </div>

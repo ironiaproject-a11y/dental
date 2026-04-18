@@ -98,12 +98,16 @@ body {
 }
 
 p {
-  font-family: var(--font-body) !important;
+  font-family: var(--font-display) !important;
   font-weight: 400;
   font-size: 1.125rem; /* 18px */
   letter-spacing: 0;
   line-height: 1.75;
   max-width: 65ch;
+}
+
+.text-serif {
+  font-family: var(--font-body) !important;
 }
 
 li {
@@ -168,7 +172,7 @@ a {
   font-weight: 500;
   font-size: 0.9375rem;
   letter-spacing: 0.01em;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   border: none;
   outline: none;
@@ -176,6 +180,10 @@ a {
 
 .btn:hover {
   transform: scale(1.03);
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn-primary {
@@ -266,7 +274,7 @@ a {
 }
 
 section {
-  padding: 8.75rem 0;
+  padding: clamp(4rem, 8vw, 8.75rem) 0;
   scroll-margin-top: 6.25rem;
 }
 
@@ -275,8 +283,6 @@ section {
   section {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
   }
   h2 {
     font-size: 28px !important;
