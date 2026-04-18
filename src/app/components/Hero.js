@@ -44,11 +44,24 @@ export default function Hero() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // Premium entrance: fade up, blur remove, slight scale up (Sober and Clean)
-      gsap.timeline().fromTo(
+      // Premium entrance: from the left, progressive cascading
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top 85%'
+        }
+      }).fromTo(
         '.anim-hero-left',
-        { y: 40, opacity: 0, filter: 'blur(12px)', scale: 0.98 },
-        { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.8, stagger: 0.15, ease: 'power4.out', clearProps: 'all' }
+        { x: -80, opacity: 0, filter: 'blur(16px)' },
+        { 
+          x: 0, 
+          opacity: 1, 
+          filter: 'blur(0px)', 
+          duration: 1.8, 
+          stagger: 0.3, // Ideal timing: 300ms de intervalo entre a cascata (title -> text -> CTA -> social)
+          ease: 'power4.out', 
+          clearProps: 'all' 
+        }
       );
 
       // Desktop parallax on mouse move
