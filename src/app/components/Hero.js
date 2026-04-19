@@ -12,35 +12,31 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   // ── Controle Dinâmico para Autoplay (Bypass Safari/iOS) ────────────────
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Forçamos o mute explicitamente. Safari bloqueia play se achar que tem áudio.
+    // Garantir atributos críticos para burlar o iOS antes da tentativa de play
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', '');
     video.defaultMuted = true;
     video.muted = true;
-    video.playsInline = true;
 
-    // Tentar executar de imediato assim que montar via JS
     const attemptPlay = () => {
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          // Se falhar o autoplay por política, tentamos repetidamente de forma
-          // assíncrona para que, se o browser liberar após hidratar, ele toque sem precisar rolar.
-          console.log("Autoplay retrying...", error);
-          setTimeout(attemptPlay, 500);
+          // Fallback silencioso sem recursão agressiva
+          console.warn("Autoplay bloqueado:", error);
         });
       }
     };
-
-    attemptPlay();
-
-    // Se a Apple continuar bloqueando o background via política de bateria estrita,
-    // o usuário não verá o video quebrado (opacity 0), mas podemos amarrar uma verificação de fallback.
+    
+    // Pequeno timeout para garantir que as engines Webkit reconheceram os atributos DOM
+    setTimeout(attemptPlay, 100);
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -94,15 +90,13 @@ export default function Hero() {
           playsInline
           loop
           preload="auto"
-          onPlay={() => setIsPlaying(true)}
-          onPlaying={() => setIsPlaying(true)}
+          disablePictureInPicture
+          disableRemotePlayback
           className={styles.videoBg}
           style={{ 
             width: '100%', height: '100%', objectFit: 'cover', 
             objectPosition: 'center top', pointerEvents: 'none', 
-            position: 'absolute', top: 0, left: 0, zIndex: 0,
-            opacity: isPlaying ? 1 : 0,
-            transition: 'opacity 0.8s ease'
+            position: 'absolute', top: 0, left: 0, zIndex: 0
           }}
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
