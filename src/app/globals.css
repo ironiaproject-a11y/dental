@@ -364,7 +364,7 @@ section {
   h3 { font-size: 1.25rem !important; }
   p {
     font-size: var(--text-lead) !important;
-    line-height: var(--line-height-body) !important;
+    line-height: var(--line-height-relaxed) !important; /* 1.85 — preserva respiração das serifas */
   }
 
   .hero-content {

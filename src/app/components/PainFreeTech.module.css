@@ -37,16 +37,8 @@
   z-index: 2;
 }
 
-.tag {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #2563EB;
-  margin-bottom: 1.25rem;
-}
+/* .tag local removida — usa a classe global .tag (pill) do globals.css */
+
 
 .title {
   font-family: var(--font-display);
@@ -66,11 +58,12 @@
 }
 
 .text {
-  font-family: var(--font-display);        /* DM Sans — mais neutro para corpo informativo */
-  font-size: var(--text-base);             /* 15px — subordinado ao h2, respira mais */
+  font-family: var(--font-body);           /* Lora — calor emocional no corpo informativo */
+  font-size: var(--text-lead);             /* 18px — unificado com outras seções */
   color: #6B7280;
-  line-height: var(--line-height-body);    /* 1.75 — padrão de leitura */
+  line-height: var(--line-height-relaxed); /* 1.85 — serif precisa de mais ar */
   margin-bottom: 2rem;
+  letter-spacing: 0;                       /* serif: sem tracking negativo */
 }
 
 .list {

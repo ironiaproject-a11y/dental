@@ -1,6 +1,6 @@
 .banner {
-  background: transparent;
-  padding: 8.75rem 0; /* Espaçamento grande para destacar o card */
+  background: var(--color-bg-alt); /* Ice blue — transição suave do LocationContact */
+  padding: 8.75rem 0;
   position: relative;
   overflow: visible;
   color: #FFFFFF;
@@ -33,7 +33,7 @@
 
 .content {
   flex: 1.22; /* 55% */
-  padding: 5rem 2rem 5rem 4.5rem; /* Margens de ar luxuosas internas do cartão */
+  padding: 5rem 4.5rem; /* Padding simétrico — alinhado ao sistema */
 }
 
 .tag {
@@ -63,23 +63,10 @@
 }
 
 .title span {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  z-index: 1;
-}
-
-.title span::after {
-  content: '';
-  position: absolute;
-  bottom: 0.1em;
-  left: 0;
-  width: 100%;
-  height: 0.15em;
-  background: var(--color-bg-main);
-  border-radius: 4px;
-  transform: skewX(-15deg);
-  z-index: -1;
+  background: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .text {
@@ -120,14 +107,18 @@
 .btnOutline {
   background: transparent;
   color: #FFFFFF;
-  border: 2px solid rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.8); /* opacidade WCAG-safe */
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   padding: 1rem 2rem;
   border-radius: 100px;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btnOutline:hover {
@@ -183,14 +174,16 @@
 }
 
 .quoteIcon {
-  font-size: 1.5rem;
+  display: flex;
+  gap: 0.2rem;
+  color: #2563EB;
   margin-bottom: 0.75rem;
 }
 
 .quoteText {
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500; /* Lora tem 400 e 500 importados — evita síntese de negrito */
   line-height: 1.4;
   margin-bottom: 0.5rem;
   color: #0F1B2D;

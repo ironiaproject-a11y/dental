@@ -80,9 +80,13 @@ export default function Hero() {
     // ── Estratégia 1: execução imediata ─────────────────────────────────────
     attemptPlay();
 
-    // ── Estratégia 2: quando o vídeo tiver dados suficientes para tocar ──────
+    // ── Estratégia 2a: canplay — dados suficientes para tocar ────────────────
     const onCanPlay = () => attemptPlay();
     video.addEventListener('canplay', onCanPlay, { once: true });
+
+    // ── Estratégia 2b: loadeddata — 1º frame pronto (mais confiável no Safari iOS)
+    const onLoadedData = () => attemptPlay();
+    video.addEventListener('loadeddata', onLoadedData, { once: true });
 
     // ── Estratégia 3: IntersectionObserver — toca quando entra na viewport ──
     const observer = new IntersectionObserver(
@@ -103,6 +107,7 @@ export default function Hero() {
 
     return () => {
       video.removeEventListener('canplay', onCanPlay);
+      video.removeEventListener('loadeddata', onLoadedData);
       document.removeEventListener('visibilitychange', onVisible);
       document.removeEventListener('touchstart', onTouch);
       observer.disconnect();
@@ -120,9 +125,8 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="metadata"
-          disablePictureInPicture
-          disableRemotePlayback
+          preload="auto"
+          poster="/images/hero-poster.jpg"
           controls={false}
           className={styles.videoBg}
           style={{
@@ -157,11 +161,6 @@ export default function Hero() {
             Onde engenharia digital encontra maestria artesanal — calibrada para o seu rosto.
           </p>
 
-          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
-            <button ref={btnRef} className="btn btn-primary">Solicitar Reserva de Horário →</button>
-            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Explorar Especialidades</a>
-          </div>
-
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
             <div className={`${styles.pillAvatars} avatars`}>
               {[
@@ -182,6 +181,11 @@ export default function Hero() {
               <span className={styles.pillStars}>★★★★★</span>
               <span className={styles.pillLabel}>+2.400 pacientes</span>
             </div>
+          </div>
+
+          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
+            <button ref={btnRef} className="btn btn-primary">Solicitar Reserva de Horário →</button>
+            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Explorar Especialidades</a>
           </div>
 
         </div>

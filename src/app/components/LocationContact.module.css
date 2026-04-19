@@ -165,19 +165,38 @@
 
 .mapWrapper {
   width: 100%;
-  height: 28rem;
-  min-height: 28rem;
-  background-color: #F3F4F6;
-  border-radius: var(--radius-card);
+  height: 28.125rem;
+  background-color: #0A143C; /* Fundo escuro para transição suave */
+  border-radius: 40px; /* Alinhado com o CtaBanner */
   overflow: hidden;
-  box-shadow: 0 30px 60px -20px rgba(15, 27, 45, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 40px 100px -20px rgba(10, 20, 60, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.mapWrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10, 20, 60, 0.1) 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .mapWrapper iframe {
   width: 100%;
   height: 100%;
   display: block;
+  filter: grayscale(1) invert(0.92) contrast(1.4) brightness(0.9) saturate(0.5);
+  mix-blend-mode: luminosity;
+  opacity: 0.85;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mapWrapper:hover iframe {
+  filter: grayscale(0.2) invert(0) contrast(1) brightness(1);
+  opacity: 1;
+  mix-blend-mode: normal;
 }
 
 @media (max-width: 768px) {

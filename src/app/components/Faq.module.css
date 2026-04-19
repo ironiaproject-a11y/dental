@@ -125,13 +125,14 @@
 }
 
 .answer {
-  font-family: var(--font-body);
-  font-size: var(--text-md);               /* 16px */
-  line-height: var(--line-height-relaxed); /* 1.85 — resposta detalhada */
+  font-family: var(--font-body);           /* Lora — leitura longa se beneficia da serifa */
+  font-size: var(--text-lead);             /* 18px — unificado */
+  line-height: var(--line-height-relaxed); /* 1.85 — respiração para resposta detalhada */
   color: #6B7280;
-  padding-top: 1.25rem;                    /* mais ar antes da resposta */
+  padding-top: 1.25rem;
   margin-top: 1rem;
   border-top: 1px solid #E5E7EB;
+  letter-spacing: 0;                       /* serif: sem tracking negativo */
 }
 
 @media (max-width: 768px) {

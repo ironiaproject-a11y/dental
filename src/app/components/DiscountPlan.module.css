@@ -75,12 +75,13 @@
 }
 
 .plansText {
-  font-family: var(--font-body);
-  font-size: var(--text-lead);             /* 18px — token */
+  font-family: var(--font-body);           /* Lora — persuasivo e elegante */
+  font-size: var(--text-lead);             /* 18px — unificado */
   color: #6B7280;
-  line-height: var(--line-height-relaxed); /* 1.85 — corpo longo precisa de mais ar */
+  line-height: var(--line-height-relaxed); /* 1.85 — corpo longo com serif */
   margin-bottom: 2.25rem;
   max-width: 31.25rem;
+  letter-spacing: 0;                       /* serif: sem tracking negativo */
 }
 
 .socialProof {

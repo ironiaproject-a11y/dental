@@ -1,12 +1,50 @@
+"use client";
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { FiStar } from 'react-icons/fi';
 import styles from './CtaBanner.module.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function CtaBanner() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.cta-content-anim', {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+        },
+      });
+      gsap.from('.cta-image-anim', {
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        delay: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+        },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className={`${styles.banner} cta-section`}>
+    <section className={`${styles.banner} cta-section`} ref={sectionRef}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.content}>
-          <div className={styles.tag}>Atendimento Seculate e Premium</div>
+        <div className={`${styles.content} cta-content-anim`}>
+          <div className={styles.tag}>Atendimento Exclusivo e Premium</div>
           <h2 className={`${styles.title} cta-title`}>A evolução da sua imagem começa em uma <span>sessão exclusiva</span></h2>
           <p className={styles.text}>
             Nossos Masters em estética desenharão o planejamento digital da sua face com tecnologia tridimensional, garantindo absoluto sigilo e resultados de impacto cinematográfico.
@@ -21,7 +59,7 @@ export default function CtaBanner() {
           </div>
         </div>
         
-        <div className={`${styles.imageRight} cta-image`}>
+        <div className={`${styles.imageRight} cta-image cta-image-anim`}>
           <div className={styles.circleBg}></div>
           <Image 
             src="/images/cta-person.png" 
@@ -32,7 +70,13 @@ export default function CtaBanner() {
             loading="lazy" 
           />
           <div className={styles.floatingCard}>
-            <div className={styles.quoteIcon}>⭐</div>
+            <div className={styles.quoteIcon}>
+              <FiStar size={18} strokeWidth={2} />
+              <FiStar size={18} strokeWidth={2} />
+              <FiStar size={18} strokeWidth={2} />
+              <FiStar size={18} strokeWidth={2} />
+              <FiStar size={18} strokeWidth={2} />
+            </div>
             <p className={styles.quoteText}>"Experiência incrível. Superou todas as minhas expectativas!"</p>
             <div className={styles.quoteAuthor}>— Beatriz S., São Paulo</div>
           </div>
