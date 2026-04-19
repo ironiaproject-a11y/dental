@@ -162,8 +162,8 @@ export default function Services() {
 
         {/* Header */}
         <div className={styles.header} ref={headerRef}>
-          <span className="tagInverse">O QUE OFERECEMOS</span>
-          <h2 className="titleInverse">
+          <span className="tag">O QUE OFERECEMOS</span>
+          <h2 className="title">
             Tratamentos para cada{' '}
             <span className={styles.textHighlight}>
               sorriso único

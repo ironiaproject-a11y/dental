@@ -173,7 +173,7 @@
   font-family: var(--font-body);
   font-size: 0.8125rem; 
   font-style: italic;
-  color: #93C5FD;
+  color: var(--color-primary); /* Contraste adequado (WCAG) sobre fundo branco */
   letter-spacing: 0.05em; 
   margin-bottom: 0.75rem;
   display: block;
@@ -232,7 +232,7 @@
   font-family: var(--font-body); /* More like a regular link, elegant */
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #60A5FA; /* Brand color to indicate action */
+  color: var(--color-primary); /* Contraste adequado */
   cursor: pointer;
   padding: 0;
   transition: all 0.3s ease;
@@ -256,7 +256,7 @@
 .arrowCircle svg {
   width: 14px;
   height: 14px;
-  stroke: #60A5FA;
+  stroke: var(--color-primary);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -271,7 +271,7 @@
 }
 
 .serviceCard:hover .cardBtn {
-  color: #93C5FD;
+  color: var(--color-primary-dark);
 }
 
 /* ────────────────────────────────────────
