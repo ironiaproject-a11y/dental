@@ -130,9 +130,9 @@ body {
 p {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--text-lead);
+  font-size: var(--text-body);              /* 17px — corpo principal (lead=18px é para destaque) */
   letter-spacing: var(--tracking-body);
-  line-height: var(--line-height-relaxed);
+  line-height: var(--line-height-body);     /* 1.75 — padrão de leitura confortável */
   max-width: 65ch;
 }
 

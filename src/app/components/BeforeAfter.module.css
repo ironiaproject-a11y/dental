@@ -15,7 +15,7 @@
   max-width: 37.5rem;
   margin: 1.5rem auto 0;
   color: rgba(255, 255, 255, 0.65);
-  font-size: 1.125rem;
+  font-size: var(--text-lead);             /* 18px — token unificado */
   font-family: var(--font-body);
   line-height: 1.7;
 }

@@ -205,7 +205,7 @@
   font-family: var(--font-body);
   font-size: var(--text-lead);              /* 18px — token */
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;                         /* único italic real importado do Lora (500 era sintetizado) */
   color: #0F1B2D;
   line-height: var(--line-height-relaxed);  /* 1.85 — citações precisam respirar */
   flex: 1;
