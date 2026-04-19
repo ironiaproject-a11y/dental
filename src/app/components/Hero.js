@@ -3,6 +3,11 @@
 import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Hero() {
   const videoRef = useRef(null);
@@ -73,7 +78,6 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          defaultMuted
           disablePictureInPicture
           disableRemotePlayback
           controls={false}
