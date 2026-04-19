@@ -71,11 +71,11 @@ export default function CtaBanner() {
           />
           <div className={styles.floatingCard}>
             <div className={styles.quoteIcon}>
-              <FiStar size={18} strokeWidth={2} />
-              <FiStar size={18} strokeWidth={2} />
-              <FiStar size={18} strokeWidth={2} />
-              <FiStar size={18} strokeWidth={2} />
-              <FiStar size={18} strokeWidth={2} />
+              <FiStar size={16} strokeWidth={1} fill="currentColor" />
+              <FiStar size={16} strokeWidth={1} fill="currentColor" />
+              <FiStar size={16} strokeWidth={1} fill="currentColor" />
+              <FiStar size={16} strokeWidth={1} fill="currentColor" />
+              <FiStar size={16} strokeWidth={1} fill="currentColor" />
             </div>
             <p className={styles.quoteText}>"Experiência incrível. Superou todas as minhas expectativas!"</p>
             <div className={styles.quoteAuthor}>— Beatriz S., São Paulo</div>
