@@ -126,7 +126,6 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          poster="/images/hero-poster.jpg"
           controls={false}
           className={styles.videoBg}
           style={{
@@ -161,6 +160,11 @@ export default function Hero() {
             Onde engenharia digital encontra maestria artesanal — calibrada para o seu rosto.
           </p>
 
+          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
+            <button ref={btnRef} className="btn btn-primary">Solicitar Reserva de Horário →</button>
+            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Explorar Especialidades</a>
+          </div>
+
           <div className={`${styles.socialProofPill} anim-hero-left hero-social-proof`}>
             <div className={`${styles.pillAvatars} avatars`}>
               {[
@@ -181,11 +185,6 @@ export default function Hero() {
               <span className={styles.pillStars}>★★★★★</span>
               <span className={styles.pillLabel}>+2.400 pacientes</span>
             </div>
-          </div>
-
-          <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
-            <button ref={btnRef} className="btn btn-primary">Solicitar Reserva de Horário →</button>
-            <a href="#servicos" className={`${styles.secondaryLink} anim-hero-left`}>Explorar Especialidades</a>
           </div>
 
         </div>

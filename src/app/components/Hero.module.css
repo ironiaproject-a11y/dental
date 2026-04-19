@@ -93,6 +93,7 @@
   gap: 1rem; /* 16px — padrão do sistema para pares de botão */
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 0; /* Sem margem: o pill abaixo já tem margin-top própria */
 }
 
 @media (max-width: 768px) {
@@ -174,12 +175,13 @@
      align-items: stretch;
      align-self: flex-start;
      width: 100%;
-     margin: 0 0 16px 0 !important; /* Aumentado para melhor espaçamento */
+     margin: 0 !important; /* Reset — mobile não precisa de margem extra */
    }
 
-   /* Social proof: pill compacto, colado abaixo do CTA */
+   /* Social proof: pill compacto, separado abaixo do CTA */
    .socialProofPill {
-     margin: 0 !important; /* reset margins */
+     margin-top: 1.25rem !important; /* Mantém hierarquia no mobile */
+     margin-bottom: 0 !important;
      align-self: flex-start !important; /* track exato com text start */
      flex-direction: row;
      border-radius: 100px;
@@ -194,13 +196,13 @@
  }
 
 
-/* Social Proof Pill — positioned below CTA row */
+/* Social Proof Pill — positioned BELOW CTA as trust reinforcer */
 .socialProofPill {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 0;           /* pill agora vem antes do botão */
-  margin-bottom: 1.5rem;   /* 24px de respiro antes do CTA */
+  margin-top: 1.75rem;     /* Respiro claro abaixo do botão — cria hierarquia */
+  margin-bottom: 0;
   padding: 0.75rem 1.25rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
