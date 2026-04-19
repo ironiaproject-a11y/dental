@@ -66,11 +66,22 @@
 
 .title span {
   position: relative;
-  display: inline;
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.5);
-  text-underline-offset: 0.5rem;
-  text-decoration-thickness: 3px;
+  display: inline-block;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.title span::after {
+  content: '';
+  position: absolute;
+  bottom: 0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.15em;
+  background: var(--color-bg-main);
+  border-radius: 4px;
+  transform: skewX(-15deg);
+  z-index: -1;
 }
 
 .text {
@@ -165,7 +176,8 @@
   color: #0F1B2D;
   padding: 1.25rem 1.5rem;
   border-radius: 16px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.15); /* Sombra radiante e azulada em vez de preta */
   z-index: 3;
   width: 15rem;
   animation: float 4s ease-in-out infinite;
