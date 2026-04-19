@@ -11,50 +11,32 @@ if (typeof window !== 'undefined') {
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoWrapperRef = useRef(null);
+  const videoRef = useRef(null);
 
-  // ── Controle de Vídeo "Bulletproof" para Mobile (iOS/Android) ────────────────
+  // ── Controle Dinâmico para Autoplay (Bypass Safari/iOS) ────────────────
   useEffect(() => {
-    const video = videoWrapperRef.current?.querySelector('video');
+    const video = videoRef.current;
     if (!video) return;
 
-    // Garante que o estado inicial seja correto programaticamente (requisito Safari)
+    // Forçamos o mute explicitamente. Safari bloqueia play se achar que tem áudio.
     video.defaultMuted = true;
     video.muted = true;
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-    
-    const attemptPlay = async () => {
-      try {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          await playPromise;
-        }
-      } catch (err) {
-        // Silencia erros de autoplay policy sem quebrar a aplicação
+    video.playsInline = true;
+
+    // Tentar executar de imediato assim que montar via JS
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // Se falhar o autoplay por política, tentamos repetidamente de forma
+          // assíncrona para que, se o browser liberar após hidratar, ele toque sem precisar rolar.
+          console.log("Autoplay retrying...", error);
+          setTimeout(attemptPlay, 500);
+        });
       }
     };
 
-    // Tenta tocar em diferentes estados do ciclo de vida
     attemptPlay();
-
-    // Fallback agressivo para interações caso o browser ainda bloqueie o autoplay
-    const forcePlayOnInteraction = () => {
-      attemptPlay();
-      window.removeEventListener('touchstart', forcePlayOnInteraction);
-      window.removeEventListener('scroll', forcePlayOnInteraction);
-      document.removeEventListener('click', forcePlayOnInteraction);
-    };
-
-    window.addEventListener('touchstart', forcePlayOnInteraction, { passive: true });
-    window.addEventListener('scroll', forcePlayOnInteraction, { passive: true });
-    document.addEventListener('click', forcePlayOnInteraction, { passive: true });
-
-    return () => {
-      window.removeEventListener('touchstart', forcePlayOnInteraction);
-      window.removeEventListener('scroll', forcePlayOnInteraction);
-      document.removeEventListener('click', forcePlayOnInteraction);
-    };
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -99,25 +81,22 @@ export default function Hero() {
   return (
     <section className={styles.hero} ref={heroRef} id="home">
 
-      {/* 1. Background Video */}
-      <div 
-        ref={videoWrapperRef}
-        className={styles.videoWrapper}
-        dangerouslySetInnerHTML={{ __html: `
-          <video
-            autoplay
-            muted
-            playsinline
-            loop
-            preload="auto"
-            class="${styles.videoBg}"
-            style="width: 100%; height: 100%; object-fit: cover; object-position: center top; pointer-events: none; position: absolute; top: 0; left: 0; z-index: 0;"
-          >
-            <source src="/videos/hero-bg.mp4" type="video/mp4" />
-            <source src="/videos/hero-bg.webm" type="video/webm" />
-          </video>
-        `}}
-      />
+      {/* 1. Background Video - Renderização direta com React para evitar perdas de hidratação e atributos */}
+      <div className={styles.videoWrapper}>
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="auto"
+          className={styles.videoBg}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+        </video>
+      </div>
 
       {/* 2. Overlay com gradiente sutil para leitura */}
       <div className={styles.videoOverlay}></div>
