@@ -9,10 +9,32 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// HTML puro do video — garante que muted/autoplay/playsinline cheguem como
+// atributos HTML no parse inicial, antes de qualquer hidratação JS.
+// Isso é o único jeito confiável de autoplay funcionar no iOS Safari.
+const VIDEO_HTML = `
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    style="
+      width:100%;height:100%;object-fit:cover;
+      object-position:center top;pointer-events:none;
+      position:absolute;top:0;left:0;z-index:0;
+    "
+  >
+    <source src="/videos/hero-bg.mp4" type="video/mp4" />
+    <source src="/videos/hero-bg.webm" type="video/webm" />
+  </video>
+`;
+
 export default function Hero() {
-  const videoRef = useRef(null);
   const heroRef = useRef(null);
   const btnRef = useRef(null);
+  const videoWrapperRef = useRef(null);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -53,97 +75,28 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // ── Autoplay robusto: iOS Safari + React Strict Mode + visibilidade ──────────
+  // ── Retoma reprodução ao voltar para a aba (visibilidade) ────────────────────
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Garante atributos críticos via JS (React às vezes não sincroniza em SSR)
-    video.muted = true;
-    video.defaultMuted = true;
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-
-    let didPlay = false;
-
-    const attemptPlay = () => {
-      if (didPlay && !video.paused) return; // já rodando, não fazer nada
-      const p = video.play();
-      if (p !== undefined) {
-        p.then(() => { didPlay = true; }).catch(() => {
-          // iOS Safari bloqueia até interação — aguarda touchstart como fallback
-        });
-      }
-    };
-
-    // ── Estratégia 1: execução imediata ─────────────────────────────────────
-    attemptPlay();
-
-    // ── Estratégia 2a: canplay — dados suficientes para tocar ────────────────
-    const onCanPlay = () => attemptPlay();
-    video.addEventListener('canplay', onCanPlay, { once: true });
-
-    // ── Estratégia 2b: loadeddata — 1º frame pronto (mais confiável no Safari iOS)
-    const onLoadedData = () => attemptPlay();
-    video.addEventListener('loadeddata', onLoadedData, { once: true });
-
-    // ── Estratégia 3: IntersectionObserver — toca quando entra na viewport ──
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) attemptPlay(); },
-      { threshold: 0.01 }
-    );
-    observer.observe(video);
-
-    // ── Estratégia 4: retoma se a aba voltar ao foco ─────────────────────────
     const onVisible = () => {
-      if (document.visibilityState === 'visible') attemptPlay();
+      if (document.visibilityState !== 'visible') return;
+      const video = videoWrapperRef.current?.querySelector('video');
+      if (video && video.paused) video.play().catch(() => {});
     };
     document.addEventListener('visibilitychange', onVisible);
-
-    // ── Estratégia 5: fallback para iOS Safari restritivo (após 1º toque) ────
-    const onTouch = () => { attemptPlay(); };
-    document.addEventListener('touchstart', onTouch, { once: true, passive: true });
-
-    return () => {
-      video.removeEventListener('canplay', onCanPlay);
-      video.removeEventListener('loadeddata', onLoadedData);
-      document.removeEventListener('visibilitychange', onVisible);
-      document.removeEventListener('touchstart', onTouch);
-      observer.disconnect();
-    };
+    return () => document.removeEventListener('visibilitychange', onVisible);
   }, []);
 
   return (
     <section className={styles.hero} ref={heroRef}>
 
-      {/* 1. Background Video (Optimized for Mobile Autoplay) */}
-      <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          controls={false}
-          className={styles.videoBg}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-            pointerEvents: 'none',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 0,
-          }}
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          <source src="/videos/hero-bg.webm" type="video/webm" />
-        </video>
-      </div>
+      {/* 1. Background Video — dangerouslySetInnerHTML garante que muted/autoplay/playsinline
+           cheguem como atributos HTML nativos no parse, não via props do React.
+           Único método confiável para autoplay no iOS Safari sem freeze inicial. */}
+      <div
+        ref={videoWrapperRef}
+        className={styles.videoWrapper}
+        dangerouslySetInnerHTML={{ __html: VIDEO_HTML }}
+      />
 
       {/* 2. Overlay */}
       <div className={styles.videoOverlay}></div>
