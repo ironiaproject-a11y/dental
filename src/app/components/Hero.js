@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Hero.module.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -12,6 +12,7 @@ export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // ── Controle Dinâmico para Autoplay (Bypass Safari/iOS) ────────────────
   useEffect(() => {
@@ -37,6 +38,9 @@ export default function Hero() {
     };
 
     attemptPlay();
+
+    // Se a Apple continuar bloqueando o background via política de bateria estrita,
+    // o usuário não verá o video quebrado (opacity 0), mas podemos amarrar uma verificação de fallback.
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -90,8 +94,16 @@ export default function Hero() {
           playsInline
           loop
           preload="auto"
+          onPlay={() => setIsPlaying(true)}
+          onPlaying={() => setIsPlaying(true)}
           className={styles.videoBg}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', pointerEvents: 'none', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
+          style={{ 
+            width: '100%', height: '100%', objectFit: 'cover', 
+            objectPosition: 'center top', pointerEvents: 'none', 
+            position: 'absolute', top: 0, left: 0, zIndex: 0,
+            opacity: isPlaying ? 1 : 0,
+            transition: 'opacity 0.8s ease'
+          }}
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
           <source src="/videos/hero-bg.webm" type="video/webm" />
