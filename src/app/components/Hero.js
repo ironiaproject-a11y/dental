@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
@@ -9,39 +8,38 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// HTML puro do video — garante que muted/autoplay/playsinline cheguem como
-// atributos HTML no parse inicial, antes de qualquer hidratação JS.
-// Isso é o único jeito confiável de autoplay funcionar no iOS Safari.
-const VIDEO_HTML = `
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    webkit-playsinline
-    preload="auto"
-    style="
-      width:100%;height:100%;object-fit:cover;
-      object-position:center top;pointer-events:none;
-      position:absolute;top:0;left:0;z-index:0;
-    "
-  >
-    <source src="/videos/hero-bg.mp4" type="video/mp4" />
-    <source src="/videos/hero-bg.webm" type="video/webm" />
-  </video>
-`;
-
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoWrapperRef = useRef(null);
+  const videoRef = useRef(null);
+
+  // ── Controle de Vídeo "Bulletproof" para Mobile (iOS/Android) ────────────────
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Garante que o estado inicial seja correto programaticamente (requisito Safari)
+    video.muted = true;
+    
+    const attemptPlay = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        // Silencia erros de autoplay policy sem quebrar a aplicação
+      }
+    };
+
+    // Tenta tocar em diferentes estados do ciclo de vida
+    attemptPlay();
+
+  }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      // Premium entrance: from the left, progressive cascading
+      // Entrada Premium: do lado esquerdo, cascata progressiva
       gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
@@ -61,7 +59,7 @@ export default function Hero() {
         }
       );
 
-      // Desktop parallax on mouse move
+      // Parallax no desktop ao mover o mouse
       const handleMouseMove = (e) => {
         if (window.innerWidth < 1024) return;
         const xPos = (e.clientX / window.innerWidth  - 0.5) * 15;
@@ -75,33 +73,40 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // ── Retoma reprodução ao voltar para a aba (visibilidade) ────────────────────
-  useEffect(() => {
-    const onVisible = () => {
-      if (document.visibilityState !== 'visible') return;
-      const video = videoWrapperRef.current?.querySelector('video');
-      if (video && video.paused) video.play().catch(() => {});
-    };
-    document.addEventListener('visibilitychange', onVisible);
-    return () => document.removeEventListener('visibilitychange', onVisible);
-  }, []);
-
   return (
-    <section className={styles.hero} ref={heroRef}>
+    <section className={styles.hero} ref={heroRef} id="home">
 
-      {/* 1. Background Video — dangerouslySetInnerHTML garante que muted/autoplay/playsinline
-           cheguem como atributos HTML nativos no parse, não via props do React.
-           Único método confiável para autoplay no iOS Safari sem freeze inicial. */}
-      <div
-        ref={videoWrapperRef}
-        className={styles.videoWrapper}
-        dangerouslySetInnerHTML={{ __html: VIDEO_HTML }}
-      />
+      {/* 1. Background Video */}
+      <div className={styles.videoWrapper}>
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="auto"
+          className={styles.videoBg}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
+            pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0
+          }}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+        </video>
+      </div>
 
-      {/* 2. Overlay */}
+      {/* 2. Overlay com gradiente sutil para leitura */}
       <div className={styles.videoOverlay}></div>
 
-      {/* 3. Content */}
+      {/* 3. Conteúdo Principal */}
       <div className={`container ${styles.container}`}>
         <div className={`${styles.leftCol} hero-parallax hero-content`}>
 
@@ -135,8 +140,8 @@ export default function Hero() {
               ))}
             </div>
             <div className={styles.pillText}>
-              <span className={styles.pillStars}>★★★★★</span>
-              <span className={styles.pillLabel}>+2.400 pacientes</span>
+               <span className={styles.pillStars}>★★★★★</span>
+               <span className={styles.pillLabel}>+2.400 pacientes</span>
             </div>
           </div>
 

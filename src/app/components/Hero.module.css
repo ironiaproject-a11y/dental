@@ -24,8 +24,14 @@
 .hero video::-webkit-media-controls-panel,
 .hero video::-webkit-media-controls {
   display: none !important;
+  opacity: 0 !important;
   -webkit-appearance: none !important;
   pointer-events: none !important;
+}
+
+.videoBg {
+  pointer-events: none !important;
+  user-select: none;
 }
 
 .hero video {
