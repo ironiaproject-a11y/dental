@@ -53,16 +53,32 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // ── Ajuste Crítico: Autoplay Mobile ──────────────────────────────────────────
+  // ── Ajuste Crítico: Autoplay Mobile e Sincronização ─────────────────────────
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-        video.defaultMuted = true;
+    if (!video) return;
+
+    const attemptPlay = async () => {
+      try {
         video.muted = true;
-        video.play().catch(() => {
-            // Tentativa silenciosa de reprodução para burlar bloqueios de interação
-        });
-    }
+        video.defaultMuted = true;
+        await video.play();
+      } catch (err) {
+        console.warn("Autoplay impedido pelo navegador:", err);
+      }
+    };
+
+    // Tenta reproduzir imediatamente e também como fallback em eventos de carga
+    attemptPlay();
+
+    const handleLoaded = () => attemptPlay();
+    video.addEventListener('canplay', handleLoaded);
+    video.addEventListener('loadedmetadata', handleLoaded);
+
+    return () => {
+      video.removeEventListener('canplay', handleLoaded);
+      video.removeEventListener('loadedmetadata', handleLoaded);
+    };
   }, []);
 
   return (
@@ -72,7 +88,6 @@ export default function Hero() {
       <div className={styles.videoWrapper}>
         <video
           ref={videoRef}
-          src="/videos/hero-bg.webm"
           autoPlay
           muted
           loop
@@ -93,7 +108,10 @@ export default function Hero() {
             left: 0,
             zIndex: 0,
           }}
-        />
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+        </video>
       </div>
 
       {/* 2. Overlay */}
