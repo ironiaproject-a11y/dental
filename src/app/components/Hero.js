@@ -11,32 +11,32 @@ if (typeof window !== 'undefined') {
 export default function Hero() {
   const heroRef = useRef(null);
   const btnRef = useRef(null);
-  const videoRef = useRef(null);
 
   // ── Controle Dinâmico para Autoplay (Bypass Safari/iOS) ────────────────
   useEffect(() => {
-    const video = videoRef.current;
+    const video = heroRef.current?.querySelector('video');
     if (!video) return;
 
-    // Garantir atributos críticos para burlar o iOS antes da tentativa de play
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-    video.setAttribute('muted', '');
-    video.defaultMuted = true;
     video.muted = true;
+    video.defaultMuted = true;
 
+    // Removemos pointer-events e hacks de scroll.
+    // Usamos um watcher super silencioso que tenta religar sem bloquear a main thread,
+    // garantindo que, assim que a rede/bateria permitir, ele gire sozinho.
     const attemptPlay = () => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          // Fallback silencioso sem recursão agressiva
-          console.warn("Autoplay bloqueado:", error);
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Apenas silencia ignorando NotAllowedError nativo da Apple
         });
       }
     };
-    
-    // Pequeno timeout para garantir que as engines Webkit reconheceram os atributos DOM
-    setTimeout(attemptPlay, 100);
+
+    attemptPlay();
+    // Tenta disparar novamente caso hidratação atrase o motor webkit
+    const iv = setInterval(attemptPlay, 1000);
+
+    return () => clearInterval(iv);
   }, []);
 
   // ── GSAP animations ─────────────────────────────────────────────────────────
@@ -82,27 +82,25 @@ export default function Hero() {
     <section className={styles.hero} ref={heroRef} id="home">
 
       {/* 1. Background Video - Renderização direta com React para evitar perdas de hidratação e atributos */}
-      <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          loop
-          preload="auto"
-          disablePictureInPicture
-          disableRemotePlayback
-          className={styles.videoBg}
-          style={{ 
-            width: '100%', height: '100%', objectFit: 'cover', 
-            objectPosition: 'center top', pointerEvents: 'none', 
-            position: 'absolute', top: 0, left: 0, zIndex: 0
-          }}
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          <source src="/videos/hero-bg.webm" type="video/webm" />
-        </video>
-      </div>
+      {/* Background Video isolado do React Hydration */}
+      <div 
+        className={styles.videoWrapper}
+        dangerouslySetInnerHTML={{ __html: `
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            x5-playsinline
+            webkit-playsinline
+            class="${styles.videoBg}"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center top; position: absolute; top: 0; left: 0; z-index: 0;"
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+            <source src="/videos/hero-bg.webm" type="video/webm" />
+          </video>
+        `}}
+      />
 
       {/* 2. Overlay com gradiente sutil para leitura */}
       <div className={styles.videoOverlay}></div>
