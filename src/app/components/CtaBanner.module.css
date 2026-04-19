@@ -11,27 +11,26 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   position: relative;
   z-index: 2;
   background: linear-gradient(135deg, #0A143C 0%, #0F1B2D 100%);
   border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Borda de vidro subtil */
-  box-shadow: 0 40px 100px -20px rgba(10, 20, 60, 0.35); /* Outer glow suave */
-  overflow: hidden; /* Mantém foto e gradiente nos limites */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px -20px rgba(10, 20, 60, 0.35);
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .container {
-    flex-direction: row;
-    align-items: stretch; /* Garante que ambas as colunas tenham a mesma altura exata */
+    grid-template-columns: 1.3fr 1fr;
+    align-items: stretch;
   }
 }
 
 .content {
-  flex: 1.25;
-  padding: 5rem 4.5rem; /* Padding simétrico — alinhado ao sistema */
+  padding: 5rem 4.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,56 +128,51 @@
 }
 
 .imageRight {
-  flex: 1; /* Ocupa o restante do espaço */
   position: relative;
+  width: 100%;
+  min-height: 500px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end; /* ANCORA A IMAGEM EXATAMENTE NA BASE */
-  padding-right: 2rem; /* Respiro lateral para a foto não grudar na borda do container */
+  align-items: flex-end;
 }
 
 .circleBg {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 140%;
   padding-bottom: 140%;
-  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
   border-radius: 50%;
   pointer-events: none;
 }
 
-.image {
-  width: auto;
-  max-width: 100%;
-  height: 95%; /* Escala a imagem relativa ao container, sem transbordar para cima */
-  object-fit: contain;
-  object-position: bottom center;
-  border-radius: 0;
-  position: relative;
+.personImage {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 2rem; /* Margem direita controlada para não colar no canto e parecer profissional */
+  background-image: url('/images/cta-person.png');
+  background-size: contain;
+  background-position: bottom right;
+  background-repeat: no-repeat;
   z-index: 2;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: bottom center; /* Scale top-down so crop point doesn't shift */
-}
-
-.image:hover {
-  transform: scale(1.03);
+  pointer-events: none;
 }
 
 .floatingCard {
   position: absolute;
-  top: 50%;
-  left: -4rem; /* Quebra a barreira entre as duas colunas, criando integração profunda */
-  transform: translateY(-50%); /* Centraliza em relação ao pivo horizontal */
-  background: rgba(15, 27, 45, 0.65); /* Vidro escuro mais denso */
+  bottom: 3.5rem; /* Ancorado à margem natural inferior, acompanhado a densidade */
+  left: -2.5rem; /* Leve união com a coluna de texto sem sair das proporções */
+  background: rgba(15, 27, 45, 0.65);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   color: #FFFFFF;
   padding: 1.5rem 2rem;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   z-index: 3;
   width: 18rem;
 }
@@ -211,12 +205,12 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-8px); }
 }
 
 @media (max-width: 1024px) {
-  .imageRight { margin-top: 2.5rem; }
-  .image { max-width: 25rem; margin: 0 auto; border-radius: 24px; }
+  .imageRight { min-height: 400px; margin-top: 1rem; }
+  .personImage { right: 0; background-position: bottom center; }
   .floatingCard { display: none; }
 }
 

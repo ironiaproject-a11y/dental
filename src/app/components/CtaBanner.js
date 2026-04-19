@@ -61,14 +61,7 @@ export default function CtaBanner() {
         
         <div className={`${styles.imageRight} cta-image cta-image-anim`}>
           <div className={styles.circleBg}></div>
-          <Image 
-            src="/images/cta-person.png" 
-            alt="Resultado de Sorriso SmilePro" 
-            width={450} 
-            height={600} 
-            className={styles.image} 
-            loading="lazy" 
-          />
+          <div className={styles.personImage}></div>
           <div className={styles.floatingCard}>
             <div className={styles.quoteIcon}>
               <FiStar size={16} strokeWidth={1} fill="currentColor" />
