@@ -75,15 +75,15 @@
 }
 
 .description {
-  font-family: var(--font-display) !important;  /* corrigido: estava hardcoded em ui-sans-serif */
-  font-weight: 500 !important;
-  font-size: var(--text-lead) !important;       /* 18px — usando token */
-  line-height: var(--line-height-body) !important; /* 1.75 — padrão do sistema */
+  font-family: var(--font-display);
+  font-weight: 400;                             /* subordinado ao H1 — nunca competir em peso */
+  font-size: var(--text-base);                  /* 15px — claramente menor que o H1 em 60px */
+  line-height: 1.65;                             /* mais compacto que --line-height-body (1.75) */
   text-align: left;
-  max-width: 28.75rem;
-  margin: 1.25rem 0 24px !important;
-  color: rgba(255, 255, 255, 0.92) !important;
-  letter-spacing: var(--tracking-body) !important;
+  max-width: 26rem;                              /* coluna mais estreita = menos texto por linha */
+  margin: 1rem 0 24px;
+  color: rgba(255, 255, 255, 0.58);              /* salto perceptual claro: 58% vs H1 100% */
+  letter-spacing: var(--tracking-body);
 }
 
 .ctaRow {
@@ -162,7 +162,8 @@
    /* Descrição: visível no mobile com tamanho adaptado */
    .description {
      display: block !important;
-     font-size: clamp(0.875rem, 4vw, 1rem) !important; /* 14px-16px */
+     font-size: clamp(0.8125rem, 3.5vw, 0.9375rem) !important; /* 13px-15px mobile */
+     color: rgba(255, 255, 255, 0.55) !important;               /* mantém hierarquia no mobile */
      margin-bottom: 20px !important;
    }
 

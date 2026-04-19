@@ -53,31 +53,59 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // ── Ajuste Crítico: Autoplay Mobile e Sincronização ─────────────────────────
+  // ── Autoplay robusto: iOS Safari + React Strict Mode + visibilidade ──────────
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const attemptPlay = async () => {
-      try {
-        video.muted = true;
-        video.defaultMuted = true;
-        await video.play();
-      } catch (err) {
-        console.warn("Autoplay impedido pelo navegador:", err);
+    // Garante atributos críticos via JS (React às vezes não sincroniza em SSR)
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    let didPlay = false;
+
+    const attemptPlay = () => {
+      if (didPlay && !video.paused) return; // já rodando, não fazer nada
+      const p = video.play();
+      if (p !== undefined) {
+        p.then(() => { didPlay = true; }).catch(() => {
+          // iOS Safari bloqueia até interação — aguarda touchstart como fallback
+        });
       }
     };
 
-    // Tenta reproduzir imediatamente e também como fallback em eventos de carga
+    // ── Estratégia 1: execução imediata ─────────────────────────────────────
     attemptPlay();
 
-    const handleLoaded = () => attemptPlay();
-    video.addEventListener('canplay', handleLoaded);
-    video.addEventListener('loadedmetadata', handleLoaded);
+    // ── Estratégia 2: quando o vídeo tiver dados suficientes para tocar ──────
+    const onCanPlay = () => attemptPlay();
+    video.addEventListener('canplay', onCanPlay, { once: true });
+
+    // ── Estratégia 3: IntersectionObserver — toca quando entra na viewport ──
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) attemptPlay(); },
+      { threshold: 0.01 }
+    );
+    observer.observe(video);
+
+    // ── Estratégia 4: retoma se a aba voltar ao foco ─────────────────────────
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') attemptPlay();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+
+    // ── Estratégia 5: fallback para iOS Safari restritivo (após 1º toque) ────
+    const onTouch = () => { attemptPlay(); };
+    document.addEventListener('touchstart', onTouch, { once: true, passive: true });
 
     return () => {
-      video.removeEventListener('canplay', handleLoaded);
-      video.removeEventListener('loadedmetadata', handleLoaded);
+      video.removeEventListener('canplay', onCanPlay);
+      document.removeEventListener('visibilitychange', onVisible);
+      document.removeEventListener('touchstart', onTouch);
+      observer.disconnect();
     };
   }, []);
 
@@ -92,7 +120,7 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
           disableRemotePlayback
           controls={false}
@@ -126,7 +154,7 @@ export default function Hero() {
           </h1>
 
           <p className={`${styles.description} anim-hero-left`}>
-            A união definitiva entre engenharia digital e maestria artesanal. Descubra a estética de vanguarda projetada exclusivamente para as proporções anatômicas do seu rosto.
+            Onde engenharia digital encontra maestria artesanal — calibrada para o seu rosto.
           </p>
 
           <div className={`${styles.ctaRow} anim-hero-left hero-buttons`}>
@@ -152,7 +180,7 @@ export default function Hero() {
             </div>
             <div className={styles.pillText}>
               <span className={styles.pillStars}>★★★★★</span>
-              <span className={styles.pillLabel}>+2.400 pacientes satisfeitos</span>
+              <span className={styles.pillLabel}>+2.400 pacientes</span>
             </div>
           </div>
 
