@@ -123,38 +123,7 @@
 }
 
 .serviceCard:hover .thumbnail {
-  transform: scale(1.08);
-}
-
-.playOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.playCircle {
-  width: 3.5rem;
-  height: 3.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.3s ease;
-}
-
-.serviceCard:hover .playCircle {
-  opacity: 1;
-  transform: scale(1);
+  transform: scale(1.04);
 }
 
 .cardBody {
@@ -163,17 +132,6 @@
   flex-direction: column;
   flex-grow: 1;
   text-align: left;
-}
-
-.cardTag {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-primary);
-  margin-bottom: 0.875rem;
-  display: block;
 }
 
 .cardTitle {
@@ -200,14 +158,17 @@
   font-weight: 700;
   color: var(--color-primary);
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
+  padding: 0.5rem 1rem;
+  margin-left: -1rem;
+  border-radius: 100px;
 }
 
 .cardCta:hover {
+  background: rgba(37, 99, 235, 0.08);
   color: var(--color-primary-dark);
-  transform: translateX(6px);
 }
 
 /* ────────────────────────────────────────

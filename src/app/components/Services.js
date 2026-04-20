@@ -225,16 +225,11 @@ export default function Services() {
                         className={styles.thumbnail} 
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
-                      <div className={styles.playOverlay}>
-                        <div className={styles.playCircle}>
-                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                      </div>
                     </div>
                     
                     {/* Bottom: Content */}
                     <div className={styles.cardBody}>
-                        <span className={styles.cardTag}>{service.tag}</span>
+                        <span className="tag" style={{ alignSelf: 'flex-start', fontSize: '0.65rem', padding: '0.25rem 0.75rem', marginBottom: '1rem' }}>{service.tag}</span>
                         <h3 className={styles.cardTitle}>{service.title}</h3>
                         <p className={styles.cardDesc}>{service.desc}</p>
                         <a href="#contato" className={styles.cardCta}>Agendar avaliação →</a>

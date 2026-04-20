@@ -222,7 +222,7 @@ a {
 }
 
 section {
-  padding: clamp(4rem, 8vw, 8.75rem) 0;
+  padding: clamp(5rem, 10vh, 8.75rem) 0;
   scroll-margin-top: 6.25rem;
 }
 
@@ -254,6 +254,20 @@ section {
   background: var(--color-accent-gradient);
   color: #FFFFFF;
   box-shadow: var(--shadow-button);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+.btn-primary:hover::after {
+  left: 150%;
 }
 .btn-primary:hover {
   box-shadow: var(--shadow-button), var(--shadow-glow);
@@ -299,6 +313,7 @@ section {
   border-radius: 100px;
   margin-bottom: 1.25rem;
   border: 1px solid rgba(37, 99, 235, 0.12);
+  transition: all 0.3s ease;
 }
 
 .tagInverse {
