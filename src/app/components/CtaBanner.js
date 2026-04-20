@@ -40,12 +40,13 @@ export default function CtaBanner() {
     return () => ctx.revert();
   }, []);
 
+    return (
     <section className={`${styles.banner} cta-section`} ref={sectionRef}>
-      <div className={`container ${styles.container}`}>
-        
-        {/* Coluna 1: Conteúdo Estruturado */}
-        <div className={`${styles.content} cta-content-anim`}>
-          <div className={styles.tag}>Atendimento Exclusivo e Premium</div>
+      
+      {/* ── ALINHAMENTO DO TEXTO NATIVO AO FLUXO DA PÁGINA ── */}
+      <div className={`container ${styles.gridContainer}`}>
+        <div className={`${styles.textContent} cta-content-anim`}>
+          <div className={styles.tag}>Atendimento Exclusivo Premium</div>
           
           <h2 className={`${styles.title} cta-title`}>
             A evolução da sua imagem começa em uma <span>sessão exclusiva</span>
@@ -57,14 +58,13 @@ export default function CtaBanner() {
           
           <div className={`${styles.actions} cta-buttons`}>
             <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className={styles.btnWhite}>
-              Falar com o Concierge Especialista
+              Falar com o Concierge
             </a>
             <a href="#contato" className={styles.btnOutline}>
-              Planejar Rota ao Instituto →
+              Planejar Rota →
             </a>
           </div>
 
-          {/* Prova Social Integrada (Fim do Flutuante) */}
           <div className={styles.trustProof}>
             <div className={styles.trustStars}>
               <FiStar size={16} strokeWidth={1} fill="currentColor" />
@@ -73,21 +73,17 @@ export default function CtaBanner() {
               <FiStar size={16} strokeWidth={1} fill="currentColor" />
               <FiStar size={16} strokeWidth={1} fill="currentColor" />
             </div>
-            <div className={styles.trustMessage}>
-              <p className={styles.trustQuote}>"Experiência cinematográfica. Superou totalmente minhas expectativas."</p>
-              <div className={styles.trustAuthor}>— Beatriz S., São Paulo</div>
-            </div>
+            <p className={styles.trustQuote}>"Experiência cinematográfica. Superou totalmente minhas expectativas."</p>
+            <div className={styles.trustAuthor}>— Beatriz S., São Paulo</div>
           </div>
         </div>
-        
-        {/* Coluna 2: Imagem Ancorada e Dimensional */}
-        <div className={`${styles.imageColumn} cta-image-anim`}>
-          <div className={styles.imageMask}>
-            <div className={styles.photoContainer}></div>
-          </div>
-        </div>
-
       </div>
+
+      {/* ── IMAGEM EDGE-TO-EDGE SEPARADA DO CONTEÚDO (FULL BLEED) ── */}
+      <div className={`${styles.fullBleedImage} cta-image-anim`}>
+         <div className={styles.photoContainer}></div>
+      </div>
+
     </section>
   );
 }
