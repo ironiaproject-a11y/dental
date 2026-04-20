@@ -16,7 +16,6 @@ const ClinicInfrastructure = dynamic(() => import('./components/ClinicInfrastruc
 const Testimonials         = dynamic(() => import('./components/Testimonials'));
 const Faq                  = dynamic(() => import('./components/Faq'));
 const LocationContact      = dynamic(() => import('./components/LocationContact'));
-// const CtaBanner            = dynamic(() => import('./components/CtaBanner'));
 const Footer               = dynamic(() => import('./components/Footer'));
 const WhatsAppFloat        = dynamic(() => import('./components/WhatsAppFloat'));
 const Marquee              = dynamic(() => import('./components/Marquee'));
@@ -40,7 +39,6 @@ export default function Home() {
       <Testimonials />
       <Faq />
       <LocationContact />
-      {/* <CtaBanner /> */}
       <Footer />
       <WhatsAppFloat />
     </main>

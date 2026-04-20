@@ -33,8 +33,8 @@ export default function Footer() {
             <ul className={styles.list}>
               <li><a href="#faq" className={styles.link}>Dúvidas Frequentes</a></li>
               <li><a href="#contato" className={styles.link}>Agendamento</a></li>
-              <li><a href="/blog?status=em-breve" className={styles.link}>Blog do Sorriso</a></li>
-              <li><a href="/carreiras?status=em-breve" className={styles.link}>Trabalhe Conosco</a></li>
+              <li><a href="/blog" className={styles.link}>Blog do Sorriso</a></li>
+              <li><a href="/carreiras" className={styles.link}>Trabalhe Conosco</a></li>
             </ul>
           </div>
 

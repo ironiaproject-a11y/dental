@@ -139,19 +139,23 @@
 
   .content {
     width: 100%;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
   }
 
   .name {
-    font-size: 1.75rem;
+    font-size: 1.25rem; /* Strict hierarchy */
   }
 
   .role {
-    font-size: 1rem;
+    font-size: 1rem; /* Strict hierarchy */
+  }
+
+  .cro {
+    font-size: 0.75rem; /* Strict hierarchy */
   }
 
   .bio {
-    font-size: 0.95rem;
+    font-size: 0.875rem; /* Strict hierarchy */
     margin-bottom: 1.5rem;
   }
 }

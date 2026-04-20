@@ -293,16 +293,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: 1rem 2.25rem;
   border-radius: 100px;
   background: var(--color-primary);
   color: #FFFFFF;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
 }
 
@@ -314,17 +314,23 @@
 
 .secondaryCta {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: underline;
-  text-underline-offset: 0.4rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
   transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
 }
 
 .secondaryCta:hover {
   color: #ffffff;
-  text-underline-offset: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* secondaryLink replaced by secondaryCta */

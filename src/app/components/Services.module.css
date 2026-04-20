@@ -167,10 +167,10 @@
 
 .cardTag {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   color: var(--color-primary);
   margin-bottom: 0.875rem;
   display: block;

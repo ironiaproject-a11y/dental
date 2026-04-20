@@ -16,7 +16,7 @@ const services = [
     subtitle: 'Até 8 tons mais claros',
     desc: 'Tecnologia a laser e moldeiras personalizadas para um branco natural em poucos dias.',
     icon: '🦷',
-    thumbnail: '/images/services/clareamento.png',
+    thumbnail: '/images/infrastructure/treatment-suite.png',
     placeholderColor: '#EBF3FF'
   },
   {
@@ -26,7 +26,7 @@ const services = [
     subtitle: 'Segurança e naturalidade',
     desc: 'Substitua dentes perdidos com materiais de alta compatibilidade e técnica minimamente invasiva.',
     icon: '🔬',
-    thumbnail: '/images/services/implante.png',
+    thumbnail: '/images/infrastructure/sterilization.png',
     placeholderColor: '#DEEFFF'
   },
   {
@@ -36,7 +36,7 @@ const services = [
     subtitle: 'Alinhadores modernizados',
     desc: 'Aparelhos invisíveis e fixos para todas as idades, com foco em conforto e estética.',
     icon: '😁',
-    thumbnail: '/images/services/ortodontia.png',
+    thumbnail: '/images/infrastructure/reception.png',
     placeholderColor: '#D1E9FF'
   },
   {
@@ -46,7 +46,7 @@ const services = [
     subtitle: 'O sorriso das estrelas',
     desc: 'Transformação total em poucas sessões. Lentes ultrafinas que corrigem cor e formato.',
     icon: '💎',
-    thumbnail: '/images/services/facetas.png',
+    thumbnail: '/images/team/doctor-1.png',
     placeholderColor: '#C4E3FF'
   },
   {
@@ -56,7 +56,7 @@ const services = [
     subtitle: 'Rejuvenescimento natural',
     desc: 'Equilíbrio facial com toxina botulínica e preenchimentos para realçar sua beleza única.',
     icon: '✨',
-    thumbnail: '/images/services/harmonizacao.png',
+    thumbnail: '/images/team/doctor-4.png',
     placeholderColor: '#B7DDFF'
   },
   {
@@ -66,7 +66,7 @@ const services = [
     subtitle: 'Saúde em primeiro lugar',
     desc: 'Avaliação completa com câmera intraoral para detectar problemas antes que eles se tornem graves.',
     icon: '🛡️',
-    thumbnail: '/images/services/checkup.png',
+    thumbnail: '/images/tech/gold-standard.png',
     placeholderColor: '#AAD7FF'
   },
 ];
