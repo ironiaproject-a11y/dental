@@ -127,92 +127,90 @@
   background: rgba(255,255,255,0.08);
 }
 
-.imageRight {
-  position: relative;
-  width: 100%;
-  min-height: 500px;
+.trustProof {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 3.5rem; /* Separador após os botões */
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.circleBg {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  padding-bottom: 140%;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.personImage {
-  position: absolute;
-  top: 10%;
-  bottom: 0;
-  left: 0;
-  right: 2rem; /* Margem direita controlada para não colar no canto e parecer profissional */
-  background-image: url('/images/cta-person.png');
-  background-size: contain;
-  background-position: bottom right;
-  background-repeat: no-repeat;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.floatingCard {
-  position: absolute;
-  bottom: 3.5rem; /* Ancorado à margem natural inferior, acompanhado a densidade */
-  left: -2.5rem; /* Leve união com a coluna de texto sem sair das proporções */
-  background: rgba(15, 27, 45, 0.65);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  color: #FFFFFF;
-  padding: 1.5rem 2rem;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  z-index: 3;
-  width: 18rem;
-}
-
-.quoteIcon {
+.trustStars {
   display: flex;
   gap: 0.25rem;
-  color: #FBBF24; /* Premium Amber/Gold */
-  margin-bottom: 1rem;
+  color: #FBBF24; /* Ouro Premium */
 }
 
-.quoteText {
+.trustMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.trustQuote {
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 400;
   font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 0.85rem;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.quoteAuthor {
+.trustAuthor {
   font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: #93C5FD;
   text-transform: uppercase;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* Coluna Direita - Bento Mask */
+.imageColumn {
+  position: relative;
+  width: 100%;
+  min-height: 350px;
+}
+
+.imageMask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 0 40px 40px 0; /* Acompanha o container direito */
+  background: radial-gradient(circle at center, rgba(15, 27, 45, 0) 0%, rgba(10, 20, 60, 0.6) 100%);
+}
+
+.photoContainer {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 2rem;
+  background-image: url('/images/cta-person.png');
+  background-size: contain;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
 @media (max-width: 1024px) {
-  .imageRight { min-height: 400px; margin-top: 1rem; }
-  .personImage { right: 0; background-position: bottom center; }
-  .floatingCard { display: none; }
+  .imageColumn {
+    min-height: 400px;
+  }
+  .imageMask {
+    border-radius: 0 0 40px 40px; /* Adapta-se ao mobile quando quebra o container column */
+  }
+  .photoContainer {
+    right: 0;
+    top: 5%;
+    background-position: bottom center;
+  }
 }
+
 
 @media (max-width: 768px) {
   .banner { padding: 5rem 0; }
