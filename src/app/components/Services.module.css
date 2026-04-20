@@ -261,8 +261,8 @@
 }
 
 .serviceCard:hover .arrowCircle {
-  background: #60A5FA;
-  border-color: #60A5FA;
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
   transform: translateX(6px); /* Magnetic forward pull */
 }
 
@@ -297,7 +297,7 @@
 
 .dotActive {
   width: 2rem;
-  background: #2563EB;
+  background: var(--color-primary);
 }
 
 /* ────────────────────────────────────────
@@ -316,15 +316,15 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #2563EB;
+  color: var(--color-primary);
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0;
 }
 
 .arrow:hover {
-  background: #2563EB;
-  border-color: #2563EB;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .arrowLeft { margin-right: -1.75rem; z-index: 5; }

@@ -3,7 +3,7 @@
   padding: 8.75rem 0;
   position: relative;
   overflow: hidden;
-  color: #0A143C; /* Texto Base Deep Blue para fundo claro */
+  color: var(--color-text-primary); /* Texto Base Deep Blue para fundo claro */
 }
 
 .banner::before {
@@ -37,7 +37,7 @@
   border: 1px solid rgba(10, 20, 60, 0.1);
   border-radius: 100px;
   margin-bottom: 2rem;
-  color: #0A143C;
+  color: var(--color-text-primary);
   width: fit-content;
 }
 
@@ -48,11 +48,11 @@
   line-height: 1.05; 
   margin-bottom: 1.5rem;
   letter-spacing: -0.03em;
-  color: #0A143C;
+  color: var(--color-text-primary);
 }
 
 .title span {
-  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -75,7 +75,7 @@
 }
 
 .btnWhite {
-  background: #0A143C; /* Agora é escuro para gritar como Botão Primário no fundo claro */
+  background: var(--color-text-primary); /* Agora é escuro para gritar como Botão Primário no fundo claro */
   color: #FFFFFF; 
   border: none;
   font-family: var(--font-display);
@@ -92,12 +92,12 @@
 .btnWhite:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 40px rgba(10, 20, 60, 0.3);
-  background: #15255e;
+  background: var(--color-cta-hover);
 }
 
 .btnOutline {
   background: transparent;
-  color: #0A143C;
+  color: var(--color-text-primary);
   border: 2px solid rgba(10, 20, 60, 0.2); 
   font-family: var(--font-display);
   font-weight: 700;
@@ -113,7 +113,7 @@
 
 .btnOutline:hover {
   transform: scale(1.03);
-  border-color: #0A143C;
+  border-color: var(--color-text-primary);
   background: rgba(10, 20, 60, 0.03);
 }
 
@@ -149,7 +149,7 @@
   font-size: 0.75rem;
   font-weight: 750;
   letter-spacing: 0.1em;
-  color: #2563EB;
+  color: var(--color-primary);
   text-transform: uppercase;
 }
 
@@ -161,7 +161,7 @@
   bottom: 0;
   width: 50vw; /* Metade exata da viewport */
   z-index: 1;
-  background: linear-gradient(135deg, #0A143C 0%, #0F1B2D 100%);
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, #0F1B2D 100%);
 }
 
 .fullBleedImage::before {
