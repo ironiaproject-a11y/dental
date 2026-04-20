@@ -174,15 +174,24 @@
      margin-bottom: 20px !important;
    }
 
-   /* CTA: botão full-width chamativo */
-   .ctaRow {
-     justify-content: flex-start;
-     flex-direction: column;
-     align-items: stretch;
-     align-self: flex-start;
-     width: 100%;
-     margin: 0 !important; /* Reset — mobile não precisa de margem extra */
-   }
+    /* CTA: botão full-width chamativo */
+    .ctaRow {
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 1.25rem;
+      margin: 0 !important;
+    }
+
+    .primaryCta {
+      width: 100%;
+      text-align: center;
+    }
+
+    .secondaryCta {
+      font-size: 0.875rem;
+    }
 
    /* Social proof: pill compacto, separado abaixo do CTA */
    .socialProofPill {
@@ -280,23 +289,45 @@
   }
 }
 
-.mainCta {
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
 }
 
-.secondaryLink {
+.primaryCta:hover {
+  transform: translateY(-2px);
+  background: var(--color-primary-dark);
+  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+}
+
+.secondaryCta {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: underline;
-  text-underline-offset: 0.25rem;
-  transition: color 0.2s ease;
+  text-underline-offset: 0.4rem;
+  transition: all 0.2s ease;
 }
 
-.secondaryLink:hover {
+.secondaryCta:hover {
   color: #ffffff;
+  text-underline-offset: 0.5rem;
 }
+
+/* secondaryLink replaced by secondaryCta */
 
 /* Gradiente sutil em azul escuro para legibilidade mantendo a vibração do vídeo */
 .videoOverlay {

@@ -54,7 +54,10 @@ export default function DiscountPlan() {
         <div className={`${styles.leftCol} anim-left`}>
           <span className="tag">Assinatura SmilePro Plus</span>
           <h2 className={styles.plansTitle}>A democratização do <span>sorriso premium</span></h2>
-          <div className={styles.priceTag}>A partir de R$ 89/mês</div>
+          <div className={styles.priceContainer}>
+            <span className={styles.priceLabel}>A partir de</span>
+            <div className={styles.priceValue}>R$ 89<span className={styles.pricePeriod}>/mês</span></div>
+          </div>
           <p className={styles.plansText}>
             Criamos um modelo de assinatura exclusivo para quem não abre mão da excelência. Economia real em todos os procedimentos, sem carência e com atendimento prioritário.
           </p>

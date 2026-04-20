@@ -16,7 +16,8 @@ const services = [
     subtitle: 'Até 8 tons mais claros',
     desc: 'Tecnologia a laser e moldeiras personalizadas para um branco natural em poucos dias.',
     icon: '🦷',
-    thumbnail: '/images/infrastructure/treatment-suite.png'
+    thumbnail: '/images/services/clareamento.png',
+    placeholderColor: '#EBF3FF'
   },
   {
     id: 2,
@@ -25,7 +26,8 @@ const services = [
     subtitle: 'Segurança e naturalidade',
     desc: 'Substitua dentes perdidos com materiais de alta compatibilidade e técnica minimamente invasiva.',
     icon: '🔬',
-    thumbnail: '/images/infrastructure/sterilization.png'
+    thumbnail: '/images/services/implante.png',
+    placeholderColor: '#DEEFFF'
   },
   {
     id: 3,
@@ -34,7 +36,8 @@ const services = [
     subtitle: 'Alinhadores modernizados',
     desc: 'Aparelhos invisíveis e fixos para todas as idades, com foco em conforto e estética.',
     icon: '😁',
-    thumbnail: '/images/tech-room.png'
+    thumbnail: '/images/services/ortodontia.png',
+    placeholderColor: '#D1E9FF'
   },
   {
     id: 4,
@@ -43,7 +46,8 @@ const services = [
     subtitle: 'O sorriso das estrelas',
     desc: 'Transformação total em poucas sessões. Lentes ultrafinas que corrigem cor e formato.',
     icon: '💎',
-    thumbnail: '/images/infrastructure/treatment-suite.png'
+    thumbnail: '/images/services/facetas.png',
+    placeholderColor: '#C4E3FF'
   },
   {
     id: 5,
@@ -52,7 +56,8 @@ const services = [
     subtitle: 'Rejuvenescimento natural',
     desc: 'Equilíbrio facial com toxina botulínica e preenchimentos para realçar sua beleza única.',
     icon: '✨',
-    thumbnail: '/images/infrastructure/reception.png'
+    thumbnail: '/images/services/harmonizacao.png',
+    placeholderColor: '#B7DDFF'
   },
   {
     id: 6,
@@ -61,7 +66,8 @@ const services = [
     subtitle: 'Saúde em primeiro lugar',
     desc: 'Avaliação completa com câmera intraoral para detectar problemas antes que eles se tornem graves.',
     icon: '🛡️',
-    thumbnail: '/images/tech-room.png'
+    thumbnail: '/images/services/checkup.png',
+    placeholderColor: '#AAD7FF'
   },
 ];
 
@@ -212,8 +218,13 @@ export default function Services() {
                 >
                   <div className={styles.cardInner}>
                     {/* Top: Media */}
-                    <div className={styles.cardMedia}>
-                      <img src={service.thumbnail} alt={service.title} className={styles.thumbnail} />
+                    <div className={styles.cardMedia} style={{ backgroundColor: service.placeholderColor }}>
+                      <img 
+                        src={service.thumbnail} 
+                        alt={service.title} 
+                        className={styles.thumbnail} 
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
                       <div className={styles.playOverlay}>
                         <div className={styles.playCircle}>
                           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -226,17 +237,7 @@ export default function Services() {
                         <span className={styles.cardTag}>{service.tag}</span>
                         <h3 className={styles.cardTitle}>{service.title}</h3>
                         <p className={styles.cardDesc}>{service.desc}</p>
-                        <div className={styles.cardFooter}>
-                          <button className={styles.cardBtn}>
-                            <span className={styles.btnText}>Agendar avaliação</span>
-                            <span className={styles.arrowCircle}>
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5l7 7-7 7" />
-                              </svg>
-                            </span>
-                          </button>
-                        </div>
+                        <a href="#contato" className={styles.cardCta}>Agendar avaliação →</a>
                     </div>
                   </div>
                 </div>

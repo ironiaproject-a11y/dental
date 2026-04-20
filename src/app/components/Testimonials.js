@@ -18,6 +18,7 @@ const testimonials = [
     service: "Implante Dentário",
     date: "Março 2025",
     stars: 5,
+    photo: "/images/patients/juliana.png"
   },
   {
     quote: "Em 9 meses com o Invisalign meu sorriso mudou completamente. Ninguém nem notava que eu estava usando. Valeu cada centavo.",
@@ -28,6 +29,7 @@ const testimonials = [
     service: "Ortodontia Invisalign",
     date: "Fevereiro 2025",
     stars: 5,
+    photo: "/images/patients/carlos.png"
   },
   {
     quote: "O clareamento ficou absurdamente natural. Sem aquela sensibilidade chata que tive em outros lugares. Voltei para fazer a família inteira.",
@@ -38,6 +40,7 @@ const testimonials = [
     service: "Clareamento Dental",
     date: "Janeiro 2025",
     stars: 5,
+    photo: "/images/patients/fernanda.png"
   },
   {
     quote: "Planejamento digital incrível. Vi exatamente como ia ficar meu sorriso antes de começar o tratamento. Tecnologia de outro nível.",
@@ -48,6 +51,7 @@ const testimonials = [
     service: "Lentes de Contato Dental",
     date: "Abril 2025",
     stars: 5,
+    photo: "/images/patients/patient-4.png"
   },
   {
     quote: "Ambiente lindo, recepção super acolhedora e o Dr. tratou minha filha de 7 anos com tanta paciência. Melhor clínica que já fui.",
@@ -58,6 +62,7 @@ const testimonials = [
     service: "Odontopediatria",
     date: "Março 2025",
     stars: 5,
+    photo: "/images/patients/patient-5.png"
   },
   {
     quote: "Fiz o plano família e o custo-benefício é imbatível. Toda a família atendida com qualidade por um valor que cabe no orçamento.",
@@ -68,6 +73,7 @@ const testimonials = [
     service: "Plano Odontológico",
     date: "Fevereiro 2025",
     stars: 5,
+    photo: "/images/patients/patient-6.png"
   },
 ];
 
@@ -87,10 +93,23 @@ function StarRating({ count }) {
   );
 }
 
-function Avatar({ initials, color }) {
+function Avatar({ photo, initials }) {
+  const [error, setError] = useState(false);
+  
   return (
-    <div className={styles.avatarCircle} style={{ background: color }}>
-      {initials}
+    <div className={styles.avatarContainer}>
+      {!error && photo ? (
+        <img 
+          src={photo} 
+          alt={initials} 
+          className={styles.avatarImg} 
+          onError={() => setError(true)} 
+        />
+      ) : (
+        <div className={styles.avatarFallback}>
+          {initials}
+        </div>
+      )}
     </div>
   );
 }
@@ -252,7 +271,7 @@ export default function Testimonials() {
                   <p className={styles.quote}>"{t.quote}"</p>
                   <div className={styles.divider} />
                   <div className={styles.authorRow}>
-                    <Avatar initials={t.initials} color={t.color} />
+                    <Avatar initials={t.initials} photo={t.photo} />
                     <div>
                       <div className={styles.name}>{t.name}</div>
                       <div className={styles.meta}>{t.location} · {t.service}</div>
