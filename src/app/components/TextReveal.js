@@ -38,7 +38,7 @@ export default function TextReveal({ text, className }) {
     <p ref={containerRef} className={`${styles.revealText} ${className || ""}`}>
       {words.map((word, i) => (
         <span key={i} className={styles.word}>
-          {word}{" "}
+          {word}
         </span>
       ))}
     </p>

@@ -1,8 +1,9 @@
 .revealText {
-  display: inline-block;
+  display: block;
 }
 
 .word {
   display: inline-block;
   opacity: 0.15;
+  margin-right: 0.25em;
 }

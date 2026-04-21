@@ -90,7 +90,7 @@ export default function Team() {
                   src={doc.photo} 
                   alt={doc.name} 
                   fill
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  style={{ objectFit: 'cover', objectPosition: 'top' }}
                   className={styles.docImage}
                   priority={i < 2} 
                 />
