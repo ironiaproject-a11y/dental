@@ -1,9 +1,20 @@
 .revealText {
-  display: block;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0;
 }
 
 .word {
   display: inline-block;
-  opacity: 0.15;
-  margin-right: 0.25em;
+  margin-right: 0.3em;
+  opacity: 0.15; /* Base for desktop animation */
+}
+
+@media (max-width: 768px) {
+  .word {
+    opacity: 1 !important; /* Force visibility on mobile */
+    color: #64748b !important;
+  }
 }

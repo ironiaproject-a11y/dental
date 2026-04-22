@@ -40,7 +40,11 @@ export default function PainFreeTech() {
                 </li>
               ))}
             </ul>
-            <a href="#contato" className="btn btn-primary">Agendar Experiência Premium</a>
+            <div className={styles.ctaWrapper}>
+              <div className={styles.ctaSeparator}></div>
+              <a href="#contato" className="btn btn-primary">Agendar Experiência Premium</a>
+              <span className={styles.ctaContext}>Primeira consulta avaliativa inclusa</span>
+            </div>
           </div>
           <div className={`${styles.visual} tech-image`}>
             <div className={styles.imageWrapper}>

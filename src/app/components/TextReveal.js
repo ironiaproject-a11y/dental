@@ -14,6 +14,8 @@ export default function TextReveal({ text, className }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (window.innerWidth < 768) return;
+
       const spans = containerRef.current.querySelectorAll("span");
       gsap.fromTo(
         spans,
