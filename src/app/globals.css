@@ -13,6 +13,7 @@
   --color-accent-dark: #1E3A8A;
   --color-accent-gradient: linear-gradient(135deg, #0369A1 0%, #1E3A8A 100%);
 
+  /* Light Theme Defaults */
   --color-bg-main: #FFFFFF;
   --color-bg-alt: #F8F9FF;
   --color-bg-accent: #FAF9F6;
@@ -20,36 +21,37 @@
   --color-bg-dark-elem: #0d1e35;
   --color-text-primary: #0F1B2D;
   --color-text-secondary: #4B5563;
-  --color-text-light: #9CA3AF;
+  --color-text-light: #6B7280; /* Melhorado: WCAG AA contraste em fundos claros */
   --color-cta-hover: #1E40AF;
   --color-success: #10B981;
+  --color-border: #EAECF4;
 
   /* ── Typography — Families ── */
   --font-display: 'DM Sans', sans-serif;
   --font-body: 'Lora', serif;
 
   /* ── Line Heights ── */
-  --line-height-tight: 1.1;     /* headings grandes H1/H2 */
-  --line-height-snug: 1.25;     /* headings médios H3/H4 */
-  --line-height-normal: 1.5;    /* UI labels, listas curtas */
-  --line-height-body: 1.75;     /* parágrafos principais */
-  --line-height-relaxed: 1.85;  /* citações, textos longos */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-body: 1.75;
+  --line-height-relaxed: 1.85;
 
   /* ── Letter Spacing ── */
-  --tracking-display: -0.04em;   /* H1 — tensão de cartaz */
-  --tracking-heading: -0.03em;   /* H2 / seção titles */
-  --tracking-subheading: -0.02em;/* H3 / card titles */
-  --tracking-body: -0.01em;      /* body / parágrafos */
-  --tracking-ui: 0em;            /* nav links, labels */
-  --tracking-caption: 0.12em;    /* tags / badges uppercase */
+  --tracking-display: -0.04em;
+  --tracking-heading: -0.03em;
+  --tracking-subheading: -0.02em;
+  --tracking-body: -0.01em;
+  --tracking-ui: 0em;
+  --tracking-caption: 0.12em;
 
   /* ── Type Scale ── */
-  --text-xs: 0.75rem;      /* 12px — legal/meta */
-  --text-sm: 0.8125rem;    /* 13px — tags, captions */
-  --text-base: 0.9375rem;  /* 15px — nav, botões */
-  --text-md: 1rem;         /* 16px — body alt */
-  --text-body: 1.0625rem;  /* 17px — body principal */
-  --text-lead: 1.125rem;   /* 18px — subtextos de seção */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-body: 1.0625rem;
+  --text-lead: 1.125rem;
   --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --text-h2: clamp(2.25rem, 5vw, 3.5rem);
   --text-h1: clamp(2.75rem, 6vw, 4.5rem);
@@ -57,7 +59,7 @@
   /* ── Spacing ── */
   --section-padding: 7.5rem;
   --card-gap: 1.5rem;
-  --container-max: 75rem;
+  --container-max: 80rem; /* Expandido para 1280px */
 
   /* ── Border Radius ── */
   --radius-card: 24px;
@@ -83,9 +85,36 @@
   --glass-border-light: 1px solid rgba(255, 255, 255, 0.8);
   --glass-blur: blur(24px);
 
+  /* ── Motion & Animation (Novo) ── */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.15s var(--ease-smooth);
+  --transition-base: 0.3s var(--ease-smooth);
+  --transition-slow: 0.5s var(--ease-out-expo);
+
   /* ── Acessibilidade Melhorada ── */
   --focus-outline: 2px solid var(--color-primary);
   --focus-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-main: #0B1120;
+    --color-bg-alt: #111827;
+    --color-bg-accent: #1F2937;
+    
+    --color-text-primary: #F9FAFB;
+    --color-text-secondary: #D1D5DB;
+    --color-text-light: #9CA3AF;
+    --color-border: #374151;
+
+    --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 20px 60px -15px rgba(37, 99, 235, 0.15);
+    
+    --glass-bg: rgba(17, 24, 39, 0.85);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* ── Reset ── */
@@ -237,7 +266,7 @@ section {
   font-weight: 600;
   font-size: var(--text-base);
   letter-spacing: 0.01em;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all var(--transition-base);
   cursor: pointer;
   border: none;
   outline: none;
@@ -247,8 +276,8 @@ section {
   }
 }
 
-.btn:hover { transform: scale(1.03); }
-.btn:active { transform: scale(0.97); }
+.btn:hover { transform: translateY(-2px) scale(1.02); }
+.btn:active { transform: translateY(0) scale(0.98); }
 
 .btn-primary {
   background: var(--color-accent-gradient);
@@ -313,7 +342,7 @@ section {
   border-radius: 100px;
   margin-bottom: 1.25rem;
   border: 1px solid rgba(37, 99, 235, 0.12);
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .tagInverse {
