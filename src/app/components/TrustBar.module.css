@@ -23,8 +23,9 @@
   color: var(--color-text-light); /* Maior contraste e hierarquia */
   text-transform: uppercase;
   letter-spacing: var(--tracking-caption);
-  white-space: nowrap;
+  white-space: normal;
   text-align: center;
+  line-height: 1.4;
 }
 
 .logos {
@@ -56,6 +57,10 @@
     padding: 2rem 1.5rem;
   }
   
+  .label {
+    letter-spacing: 0.08em; /* Reduz o espaçamento para caber melhor na tela */
+  }
+
   .logos {
     gap: 1.5rem;
   }
