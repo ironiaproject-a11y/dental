@@ -5,22 +5,6 @@
   overflow: hidden;
 }
 
-.servicesSection::before {
-  content: 'TRATAMENTOS';
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(80px, 14vw, 180px);
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: rgba(26, 86, 219, 0.04);
-  white-space: nowrap;
-  letter-spacing: 0.1em;
-  pointer-events: none;
-  user-select: none;
-}
-
 .container {
   max-width: 1100px;
   margin: 0 auto;
