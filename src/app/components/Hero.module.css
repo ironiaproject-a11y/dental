@@ -1,22 +1,11 @@
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   position: relative;
   overflow: hidden;
   background: #0a1628;
   color: #FFFFFF;
-  
-  /* Marca d'água sutil para memorabilidade */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M30 0a30 30 0 1 0 30 30A30 30 0 0 0 30 0zm0 50a20 20 0 1 1 20-20A20 20 0 0 1 30 50zm0-30a10 10 0 1 0 10 10A10 10 0 0 0 30 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 1;
-  }
 }
 
 .hero video::-webkit-media-controls-play-button,
@@ -35,7 +24,7 @@
 }
 
 .hero video {
-  filter: contrast(110%) brightness(105%); /* Enhances visual sharpness and depth */
+  filter: contrast(110%) brightness(105%);
 }
 
 .videoWrapper {
@@ -44,36 +33,34 @@
   z-index: 0;
 }
 
-/* Base container for content — using absolute placement for precise alignment */
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
-  height: 100%;
   position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end; /* Ancorado na parte inferior */
+  padding-bottom: 8vh;   /* Espaço da base */
 }
 
 .leftCol {
-  position: absolute;
-  top: 54%; /* Ajustado: centro óptico ~45-48% percebido — menos pesado que 58% */
-  left: 3.75rem;
-  transform: translateY(-50%);
-  max-width: 32.5rem;
-  z-index: 10;
-  text-align: left;
+  max-width: 48rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .title {
-  font-size: clamp(2.75rem, 4.5vw, 3.75rem); /* clamp(44px, 4.5vw, 60px) */
-  line-height: 1.1;
-  text-align: left;
-  max-width: 30rem; /* 480px */
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  line-height: 1.05;
   margin-bottom: 1.5rem;
   color: #FFFFFF;
-  text-shadow: 0 4px 64px rgba(0,0,0,0.8), 0 2px 24px rgba(0,0,0,0.6);
+  text-shadow: 0 4px 64px rgba(0,0,0,0.8);
+  font-weight: 800;
 }
 
 .titleHighlight {
@@ -81,222 +68,33 @@
 }
 
 .description {
-  font-family: var(--font-body);           /* Lora — contraste elegante com o H1 DM Sans */
-  font-style: italic;                      /* italic 400 — único peso importado, sem síntese */
+  font-family: var(--font-body);
+  font-style: italic;
   font-weight: 400;
-  font-size: var(--text-lead);             /* 18px — eleva a tagline acima do corpo padrão */
-  line-height: var(--line-height-relaxed); /* 1.85 — serif italic precisa mais ar */
-  text-align: left;
-  max-width: 26rem;
-  margin: 1rem 0 2rem;
-  color: rgba(255, 255, 255, 0.9);         /* melhor contraste sobre o video */
-  letter-spacing: 0;                       /* serif não usa letter-spacing negativo */
-  text-shadow: 0 2px 16px rgba(0,0,0,0.8); /* garante acessibilidade caso o fundo passe cena clara */
+  font-size: var(--text-lead);
+  line-height: var(--line-height-relaxed);
+  max-width: 32rem;
+  margin: 0 0 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.8);
 }
 
 .ctaRow {
   display: flex;
   align-items: center;
-  gap: 1rem; /* 16px — padrão do sistema para pares de botão */
+  gap: 2rem;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-bottom: 0; /* Sem margem: o pill abaixo já tem margin-top própria */
-}
-
-@media (max-width: 768px) {
-   /* ── FULLSCREEN HERO — CONTEÚDO ANCORADO NO FUNDO ── */
-   .hero {
-     flex-direction: column;
-     align-items: stretch;
-     min-height: 100svh;
-     height: 100svh;
-     overflow-x: hidden;
-   }
-
-   /* Vídeo cobre toda a tela */
-   .videoWrapper {
-     position: absolute;
-     inset: 0;
-     width: 100%;
-     height: 100%;
-     max-height: none;
-   }
-
-   /* Gradiente suave na base para leitura sem perder a vibração da imagem */
-   .videoOverlay {
-     background: linear-gradient(
-       to bottom,
-       rgba(15, 27, 45, 0) 0%,
-       rgba(15, 27, 45, 0.15) 50%,
-       rgba(15, 27, 45, 0.45) 80%,
-       rgba(15, 27, 45, 0.65) 100%
-     ) !important;
-     z-index: 2;
-   }
-
-   /* Container ocupa 100% da altura com conteúdo no fundo */
-   .container {
-     padding: 0 !important;
-     height: 100% !important;
-     display: flex;
-     align-items: flex-end; /* ancora conteúdo no fundo */
-     justify-content: stretch;
-   }
-
-   /* Coluna de conteúdo: ancorada no fundo, padding generoso */
-   .leftCol {
-     position: relative;
-     top: auto;
-     transform: none;
-     left: auto;
-     right: auto;
-     max-width: 100%;
-     width: 100%;
-     text-align: left;
-     align-items: flex-start;
-     margin: 0;
-     padding: 0 1.5rem 24px; /* padding lateral + espaço fundo exato 24px */
-   }
-
-   /* H1: display grande, máximo impacto */
-   .title {
-     font-size: clamp(2rem, 8vw, 3.5rem) !important;
-     word-break: break-word;
-     text-align: left;
-     margin-bottom: 24px !important; /* H1 → CTA: exato 24px */
-     line-height: 1.05 !important;
-   }
-
-   /* Descrição: visível no mobile com tamanho adaptado */
-   .description {
-     display: block !important;
-     font-size: clamp(0.8125rem, 3.5vw, 0.9375rem) !important; /* 13px-15px mobile */
-     color: rgba(255, 255, 255, 0.55) !important;               /* mantém hierarquia no mobile */
-     margin-bottom: 20px !important;
-   }
-
-    /* CTA: botão full-width chamativo */
-    .ctaRow {
-      justify-content: flex-start;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      gap: 1.25rem;
-      margin: 0 !important;
-    }
-
-    .primaryCta {
-      width: 100%;
-      text-align: center;
-    }
-
-    .secondaryCta {
-      font-size: 0.875rem;
-    }
-
-   /* Social proof: pill compacto, separado abaixo do CTA */
-   .socialProofPill {
-     margin-top: 1.25rem !important; /* Mantém hierarquia no mobile */
-     margin-bottom: 0 !important;
-     align-self: flex-start !important; /* track exato com text start */
-     flex-direction: row;
-     border-radius: 100px;
-     padding: 0.5rem 1rem;
-     background: var(--glass-bg-dark); /* increased opacity for contrast but keeps glass feeling */
-     backdrop-filter: blur(16px);
-     -webkit-backdrop-filter: blur(16px);
-     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-     width: fit-content;
-     gap: 0.75rem; /* avatares + texto mais próximos */
-   }
- }
-
-
-/* Social Proof Pill — positioned BELOW CTA as trust reinforcer */
-.socialProofPill {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1.75rem;     /* Respiro claro abaixo do botão — cria hierarquia */
-  margin-bottom: 0;
-  padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  width: fit-content;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.pillAvatars {
-  display: flex;
-}
-
-.pillAvatar {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #DBEAFE, #93C5FD);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  margin-left: -0.5rem;
-}
-
-.pillAvatar:first-child {
-  margin-left: 0;
-}
-
-.pillText {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.pillStars {
-  font-size: 0.75rem;
-  color: #FBBF24;
-  letter-spacing: 0.05rem;
-  line-height: 1;
-}
-
-.pillLabel {
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  white-space: nowrap;
-  
-  /* Efeito de metal brilhante / Shimmering Premium */
-  color: rgba(255, 255, 255, 0.7);
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.7) 40%,
-    #FFFFFF 50%,
-    rgba(255, 255, 255, 0.7) 60%,
-    rgba(255, 255, 255, 0.7) 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shimmerSweep 4s infinite linear;
-}
-
-@keyframes shimmerSweep {
-  0% {
-    background-position: 200% center;
-  }
-  100% {
-    background-position: -50% center;
-  }
 }
 
 .primaryCta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.25rem;
+  padding: 1rem 32px;
+  width: fit-content;
   border-radius: 100px;
-  background: var(--color-primary);
+  background: #1a56db;
   color: #FFFFFF;
   font-family: var(--font-display);
   font-weight: 700;
@@ -304,7 +102,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 30px rgba(26, 86, 219, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -325,128 +123,147 @@
 
 .primaryCta:hover {
   transform: translateY(-3px) scale(1.02);
-  background: var(--color-primary-dark);
-  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.5), 0 0 20px rgba(37, 99, 235, 0.4);
+  background: #1e40af;
+  box-shadow: 0 16px 40px rgba(26, 86, 219, 0.5);
 }
 
 .secondaryCta {
   font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  background: transparent;
-  border: none;
-  padding: 0.5rem 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid transparent;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.secondaryCta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #60A5FA;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .secondaryCta:hover {
   color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* secondaryLink replaced by secondaryCta */
+.secondaryCta:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
-/* Gradiente sutil em azul escuro para legibilidade mantendo a vibração do vídeo */
+.socialProofPill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  width: fit-content;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.pillAvatars {
+  display: flex;
+}
+
+.pillAvatar {
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  background: #DBEAFE;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  margin-left: -0.625rem;
+}
+
+.pillAvatar:first-child {
+  margin-left: 0;
+}
+
+.pillText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.pillStars {
+  font-size: 0.75rem;
+  color: #FBBF24;
+  letter-spacing: 0.05rem;
+}
+
+.pillLabel {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
 .videoOverlay {
   position: absolute;
   inset: 0;
+  /* Gradiente escuro intenso apenas no terço inferior */
   background: linear-gradient(
-    to right,
-    rgba(15, 27, 45, 0.45) 0%,
-    rgba(15, 27, 45, 0.20) 40%,
-    rgba(15, 27, 45, 0.05) 65%,
-    rgba(15, 27, 45, 0) 100%
+    to top,
+    rgba(10, 22, 40, 0.95) 0%,
+    rgba(10, 22, 40, 0.8) 15%,
+    rgba(10, 22, 40, 0.4) 30%,
+    rgba(10, 22, 40, 0) 50%
   );
   z-index: 2;
 }
 
-/* Subtle grain texture to hide video artifacts and add cinematic feel */
+/* Grão cinematográfico */
 .videoOverlay::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: url("https://www.transparenttextures.com/patterns/p6.png");
-  opacity: 0.02;
+  opacity: 0.03;
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
 
-
-
-.videoBg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  z-index: 1;
-  pointer-events: none;
-  playsInline: true;
-  webkit-playsInline: true;
-}
-.statsBar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 2rem 3.75rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-  z-index: 10;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.statItem:last-child {
-  border-right: none;
-}
-
-.statNumber {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2rem); /* fluid: escala com viewport */
-  font-weight: 700;
-  letter-spacing: var(--tracking-subheading);
-  color: #FFFFFF;
-  line-height: 1.1;
-  font-optical-sizing: auto;
-}
-
-.statLabel {
-  font-family: var(--font-display);
-  font-size: var(--text-xs);             /* 12px — caption level */
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-caption); /* 0.12em — unificado */
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.25rem;
-}
-
 @media (max-width: 768px) {
-  .statsBar {
-    grid-template-columns: repeat(2, 2fr);
-    padding: 1.5rem;
-    position: relative;
-    background: rgba(10, 22, 40, 0.9);
+  .container {
+    padding-bottom: 40px;
   }
-  .statItem:nth-child(2) {
-    border-right: none;
+  
+  .title {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    margin-bottom: 1rem;
   }
-  .statItem:nth-child(3), .statItem:nth-child(4) {
-    margin-top: 1.5rem;
+
+  .description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .primaryCta {
+    width: 100%;
+  }
+
+  .secondaryCta {
+    text-align: center;
+    justify-content: center;
   }
 }

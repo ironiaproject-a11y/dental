@@ -69,7 +69,7 @@ export default function Hero() {
         if (window.innerWidth < 1024) return;
         const xPos = (e.clientX / window.innerWidth  - 0.5) * 15;
         const yPos = (e.clientY / window.innerHeight - 0.5) * 15;
-        gsap.to('.hero-parallax', { x: xPos, y: yPos, yPercent: -50, duration: 1.5, ease: 'power2.out' });
+        gsap.to('.hero-parallax', { x: xPos, y: yPos, duration: 1.5, ease: 'power2.out' });
       };
       heroRef.current?.addEventListener('mousemove', handleMouseMove);
 
