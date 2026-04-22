@@ -1,265 +1,245 @@
 "use client";
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './Services.module.css';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  EDITE AQUI — cole o link do YouTube ou Vimeo de cada       ║
+// ║  serviço no campo "video". Deixe "" para mostrar            ║
+// ║  placeholder "vídeo em breve".                              ║
+// ╚══════════════════════════════════════════════════════════════╝
 const services = [
   {
-    id: 1,
-    title: 'Clareamento Dental',
-    tag: 'ESTÉTICA',
-    subtitle: 'Até 8 tons mais claros',
-    desc: 'Tecnologia a laser e moldeiras personalizadas para um branco natural em poucos dias.',
-    icon: '🦷',
-    thumbnail: '/images/infrastructure/treatment-suite.png',
-    placeholderColor: '#EBF3FF'
+    number: "01",
+    name: "Clareamento Dental",
+    tag: "Estética",
+    video: "", // ex: "https://www.youtube.com/embed/ID_DO_VIDEO"
+    desc: "Tecnologia a laser e moldeiras personalizadas para um branco natural em poucos dias. Seguro, indolor e com resultado imediato.",
+    details: [
+      { label: "Duração", value: "1–2 sessões" },
+      { label: "Resultado", value: "Até 8 tons mais claro" },
+      { label: "Tempo por sessão", value: "60–90 min" }
+    ]
   },
   {
-    id: 2,
-    title: 'Implante Dental',
-    tag: 'IMPLANTES',
-    subtitle: 'Segurança e naturalidade',
-    desc: 'Substitua dentes perdidos com materiais de alta compatibilidade e técnica minimamente invasiva.',
-    icon: '🔬',
-    thumbnail: '/images/infrastructure/sterilization.png',
-    placeholderColor: '#DEEFFF'
+    number: "02",
+    name: "Facetas de Porcelana",
+    tag: "Estética",
+    video: "",
+    desc: "Lâminas ultrafinas de porcelana para corrigir forma, cor e imperfeições. Resultado natural, duradouro e transformador.",
+    details: [
+      { label: "Material", value: "Porcelana feldspática" },
+      { label: "Durabilidade", value: "10–15 anos" },
+      { label: "Sessões", value: "2–3 consultas" }
+    ]
   },
   {
-    id: 3,
-    title: 'Ortodontia',
-    tag: 'ESPECIALIDADE',
-    subtitle: 'Alinhadores modernizados',
-    desc: 'Aparelhos invisíveis e fixos para todas as idades, com foco em conforto e estética.',
-    icon: '😁',
-    thumbnail: '/images/infrastructure/reception.png',
-    placeholderColor: '#D1E9FF'
+    number: "03",
+    name: "Implantes Dentários",
+    tag: "Reabilitação",
+    video: "",
+    desc: "Substituição permanente de dentes perdidos com implantes de titânio. Função mastigatória completa e estética natural.",
+    details: [
+      { label: "Material", value: "Titânio grau cirúrgico" },
+      { label: "Osseointegração", value: "3–6 meses" },
+      { label: "Durabilidade", value: "Vida toda" }
+    ]
   },
   {
-    id: 4,
-    title: 'Facetas de Porcelana',
-    tag: 'ESTÉTICA',
-    subtitle: 'O sorriso das estrelas',
-    desc: 'Transformação total em poucas sessões. Lentes ultrafinas que corrigem cor e formato.',
-    icon: '💎',
-    thumbnail: '/images/team/doctor-1.png',
-    placeholderColor: '#C4E3FF'
+    number: "04",
+    name: "Ortodontia",
+    tag: "Correção",
+    video: "",
+    desc: "Alinhamento dos dentes com aparelhos convencionais ou alinhadores transparentes. Para um sorriso harmonioso e duradouro.",
+    details: [
+      { label: "Opções", value: "Metálico / Estético / Invisível" },
+      { label: "Duração média", value: "18–30 meses" },
+      { label: "Consultas", value: "Mensais" }
+    ]
   },
   {
-    id: 5,
-    title: 'Harmonização Facial',
-    tag: 'HARMÔNICO',
-    subtitle: 'Rejuvenescimento natural',
-    desc: 'Equilíbrio facial com toxina botulínica e preenchimentos para realçar sua beleza única.',
-    icon: '✨',
-    thumbnail: '/images/team/doctor-4.png',
-    placeholderColor: '#B7DDFF'
+    number: "05",
+    name: "Tratamento de Canal",
+    tag: "Endodontia",
+    video: "",
+    desc: "Eliminação da infecção interna preservando o dente. Procedimento moderno, indolor e com alta taxa de sucesso.",
+    details: [
+      { label: "Sessões", value: "1–3 consultas" },
+      { label: "Anestesia", value: "Totalmente indolor" },
+      { label: "Recuperação", value: "24–48 horas" }
+    ]
   },
   {
-    id: 6,
-    title: 'Check-up Preventivo',
-    tag: 'PREVENÇÃO',
-    subtitle: 'Saúde em primeiro lugar',
-    desc: 'Avaliação completa com câmera intraoral para detectar problemas antes que eles se tornem graves.',
-    icon: '🛡️',
-    thumbnail: '/images/tech/gold-standard.png',
-    placeholderColor: '#AAD7FF'
+    number: "06",
+    name: "Limpeza e Prevenção",
+    tag: "Prevenção",
+    video: "",
+    desc: "Remoção de tártaro, polimento e aplicação de flúor. A base de qualquer tratamento de sucesso.",
+    details: [
+      { label: "Frequência ideal", value: "A cada 6 meses" },
+      { label: "Duração", value: "45–60 min" },
+      { label: "Inclui", value: "Raio-X anual" }
+    ]
   },
+  {
+    number: "07",
+    name: "Prótese Dentária",
+    tag: "Reabilitação",
+    video: "",
+    desc: "Reposição de dentes ausentes com próteses fixas ou removíveis de alta qualidade. Devolvemos função e confiança.",
+    details: [
+      { label: "Tipos", value: "Fixa / Removível / Total" },
+      { label: "Material", value: "Zircônia / Porcelana" },
+      { label: "Adaptação", value: "1–2 semanas" }
+    ]
+  },
+  {
+    number: "08",
+    name: "Extração e Cirurgia",
+    tag: "Cirurgia",
+    video: "",
+    desc: "Extrações simples e cirúrgicas com máxima precisão e conforto. Pós-operatório acompanhado de perto.",
+    details: [
+      { label: "Anestesia", value: "Local / Sedação" },
+      { label: "Recuperação", value: "3–7 dias" },
+      { label: "Retorno", value: "7 dias após" }
+    ]
+  }
 ];
 
-function getVisible() {
-  if (typeof window === 'undefined') return 3;
-  if (window.innerWidth >= 1024) return 3;
-  if (window.innerWidth >= 768)  return 2;
-  return 1;
+function getEmbedUrl(url) {
+  if (!url) return null;
+  // YouTube
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if (yt) return `https://www.youtube.com/embed/${yt[1]}?autoplay=1&rel=0`;
+  // Vimeo
+  const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}?autoplay=1`;
+  // Already an embed URL
+  return url;
 }
 
 export default function Services() {
-  const sectionRef  = useRef(null);
-  const headerRef   = useRef(null);
-  const trackRef    = useRef(null);
-  const intervalRef = useRef(null);
-  const isHovered   = useRef(false);
+  const [activeService, setActiveService] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [active,  setActive]  = useState(0);
-  const [visible, setVisible] = useState(3);
+  const openPanel = (service) => {
+    setActiveService(service);
+    setIsOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
 
-  const total = services.length;
-  const pages = Math.ceil(total / visible);
+  const closePanel = useCallback(() => {
+    setIsOpen(false);
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      setActiveService(null);
+    }, 400);
+  }, []);
 
-  // ── Slide ──────────────────────────────────────────────────────────────────
-  const slideTo = useCallback((idx) => {
-    if (!trackRef.current) return;
-    const safe = ((idx % total) + total) % total;
-    setActive(safe);
-    const pct = safe * (100 / visible);
-    gsap.to(trackRef.current, { x: `-${pct}%`, duration: 0.65, ease: 'power2.inOut' });
-  }, [total, visible]);
-
-  // ── Auto-play ──────────────────────────────────────────────────────────────
-  const startAuto = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!isHovered.current) {
-        setActive(prev => {
-          const next = (prev + 1) % total;
-          slideTo(next);
-          return next;
-        });
-      }
-    }, 4500);
-  }, [slideTo, total]);
-
-  // ── Resize ────────────────────────────────────────────────────────────────
   useEffect(() => {
-    const update = () => {
-      const v = getVisible();
-      setVisible(v);
-      setActive(0);
-      if (trackRef.current) gsap.set(trackRef.current, { x: 0 });
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') closePanel();
     };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-
-  // ── Entrance animation ────────────────────────────────────────────────────
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current.children,
-          { y: 30, opacity: 0 },
-          {
-            y: 0, opacity: 1, duration: 0.8, stagger: 0.18, ease: 'power3.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-          }
-        );
-      }
-      gsap.fromTo(
-        `.${styles.carouselWrapper}`,
-        { y: 40, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  // ── Start auto-play ───────────────────────────────────────────────────────
-  useEffect(() => {
-    startAuto();
-    return () => clearInterval(intervalRef.current);
-  }, [startAuto]);
-
-  const activeDot = Math.floor(active / visible) % pages;
-  const prev = () => { slideTo(active - 1); startAuto(); };
-  const next = () => { slideTo(active + 1); startAuto(); };
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, closePanel]);
 
   return (
-    <section className={styles.servicesSection} id="servicos" ref={sectionRef}>
-      <div className={`container ${styles.container}`}>
+    <section className={styles.servicesSection} id="servicos">
+      <div className={styles.container}>
 
-        {/* Header */}
-        <div className={styles.header} ref={headerRef}>
-          <span className="tag">O QUE OFERECEMOS</span>
-          <h2 className="title">
-            Tratamentos para cada{' '}
-            <span className={styles.textHighlight}>
-              sorriso único
-              <svg className={styles.curvyLine} width="100%" height="24" viewBox="0 0 220 24" fill="none" style={{ overflow: 'visible' }}>
-                <path
-                  d="M 10 5 C 70 28 150 28 210 2"
-                  stroke="url(#premiumSmile)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="premiumSmile" x1="0" y1="0" x2="220" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.1" />
-                    <stop offset="20%" stopColor="#60A5FA" stopOpacity="1" />
-                    <stop offset="80%" stopColor="#2563EB" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.1" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-          </h2>
-          <p className={styles.subtext}>
-            Do simples ao complexo, cuidamos do seu sorriso com tecnologia de última geração e atenção humanizada que você merece.
-          </p>
-        </div>
-
-        {/* Carousel */}
-        <div
-          className={styles.carouselWrapper}
-          onMouseEnter={() => { isHovered.current = true; }}
-          onMouseLeave={() => { isHovered.current = false; }}
-        >
-          {/* Prev */}
-          <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={prev} aria-label="Serviço anterior">
-            ‹
-          </button>
-
-          {/* Track */}
-          <div className={styles.carouselOuter}>
-            <div className={styles.track} ref={trackRef}>
-              {services.map((service, i) => (
-                <div
-                  key={service.id}
-                  className={`${styles.serviceCard} ${i === active ? styles.cardActive : ''}`}
-                  style={{ flex: `0 0 ${100 / visible}%` }}
-                >
-                  <div className={styles.cardInner}>
-                    {/* Top: Media */}
-                    <div className={styles.cardMedia} style={{ backgroundColor: service.placeholderColor }}>
-                      <img 
-                        src={service.thumbnail} 
-                        alt={service.title} 
-                        className={styles.thumbnail} 
-                        onError={(e) => { e.target.style.display = 'none'; }}
-                      />
-                    </div>
-                    
-                    {/* Bottom: Content */}
-                    <div className={styles.cardBody}>
-                        <span className="tag" style={{ alignSelf: 'flex-start', fontSize: '0.65rem', padding: '0.25rem 0.75rem', marginBottom: '1rem' }}>{service.tag}</span>
-                        <h3 className={styles.cardTitle}>{service.title}</h3>
-                        <p className={styles.cardDesc}>{service.desc}</p>
-                        <a href="#contato" className={styles.cardCta}>Agendar avaliação →</a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className={styles.sectionHeader}>
+          <div>
+            <div className={styles.sectionTag}>O que oferecemos</div>
+            <h2 className={styles.sectionTitle}>Tratamentos para cada <em>sorriso único</em></h2>
           </div>
-
-          {/* Next */}
-          <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={next} aria-label="Próximo serviço">
-            ›
-          </button>
+          <p className={styles.sectionDesc}>Do simples ao complexo, cuidamos do seu sorriso com tecnologia de última geração e atenção humanizada.</p>
         </div>
 
-        {/* Dots */}
-        <div className={styles.dots} role="tablist">
-          {Array.from({ length: pages }).map((_, i) => (
-            <button
-              key={i}
-              role="tab"
-              aria-selected={i === activeDot}
-              aria-label={`Página ${i + 1}`}
-              className={`${styles.dot} ${i === activeDot ? styles.dotActive : ''}`}
-              onClick={() => { slideTo(i * visible); startAuto(); }}
-            />
+        <div className={styles.servicesList}>
+          {services.map((s, idx) => (
+            <button 
+              key={idx}
+              className={`${styles.serviceItem} ${activeService?.number === s.number ? styles.serviceItemActive : ''}`}
+              onClick={() => openPanel(s)}
+              aria-expanded={activeService?.number === s.number && isOpen}
+            >
+              <span className={styles.serviceNumber}>{s.number}</span>
+              <span className={styles.serviceName}>{s.name}</span>
+              <div className={styles.serviceArrow} aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                </svg>
+              </div>
+            </button>
           ))}
         </div>
 
+      </div>
+
+      {/* OVERLAY */}
+      <div 
+        className={`${styles.overlay} ${isOpen ? styles.overlayShow : ''}`} 
+        onClick={closePanel}
+      ></div>
+
+      {/* PANEL */}
+      <div 
+        className={`${styles.servicePanel} ${isOpen ? styles.servicePanelOpen : ''}`} 
+        role="dialog" 
+        aria-modal="true"
+      >
+        <div className={styles.panelVideoWrap}>
+          {isOpen && activeService && (
+            getEmbedUrl(activeService.video) ? (
+              <iframe 
+                src={getEmbedUrl(activeService.video)} 
+                allow="autoplay; fullscreen" 
+                allowFullScreen
+                title={activeService.name}
+              ></iframe>
+            ) : (
+              <div className={styles.videoPlaceholder}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
+                </svg>
+                <span>Vídeo em breve</span>
+              </div>
+            )
+          )}
+        </div>
+
+        <div className={styles.panelContent}>
+          <div className={styles.panelTop}>
+            <span className={styles.panelTag}>{activeService?.tag}</span>
+            <button className={styles.panelClose} onClick={closePanel} aria-label="Fechar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <h3 className={styles.panelTitle}>{activeService?.name}</h3>
+          <p className={styles.panelDesc}>{activeService?.desc}</p>
+          
+          <div className={styles.panelDetails}>
+            {activeService?.details.map((d, i) => (
+              <div key={i} className={styles.panelDetailRow}>
+                <span className={styles.panelDetailLabel}>{d.label}</span>
+                <span className={styles.panelDetailValue}>{d.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <a href="#contato" className={styles.panelCta} onClick={closePanel}>
+            Agendar avaliação
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );
