@@ -109,8 +109,8 @@ export default function BeforeAfter() {
             >
               <div className={styles.sliderLine} />
               <div className={styles.sliderKnob}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18l5-6-5-6M9 18l-5-6 5-6" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M5 12l4-4M5 12l4 4M19 12l-4-4M19 12l4 4" />
                 </svg>
               </div>
             </div>
