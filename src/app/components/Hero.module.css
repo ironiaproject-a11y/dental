@@ -256,7 +256,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end; /* Ancorando no fundo */
-    padding-bottom: 20px; /* Reduzido para descer o texto e liberar o rosto */
+    padding-bottom: 72px; /* Aumentado para 72px para não cortar o pill */
     align-items: flex-start;
   }
   
@@ -273,12 +273,14 @@
 
   .ctaRow {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center; /* Centralizado */
+    width: 100%;
     gap: 1rem;
   }
 
   .primaryCta {
     width: 100%;
+    max-width: 320px; /* Limitado a 320px */
     padding: 0.875rem 24px;
   }
 
