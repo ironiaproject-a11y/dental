@@ -49,7 +49,7 @@
 .plansTag {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: 0.8125rem; /* 13px */
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -59,10 +59,10 @@
 
 .plansTitle {
   font-family: var(--font-display);
-  font-size: var(--text-h2);               /* clamp(36px→56px) — sistema fluid */
+  font-size: var(--text-h2);
   font-weight: 800;
-  letter-spacing: var(--tracking-heading); /* -0.03em — consistente com sistema */
-  line-height: var(--line-height-tight);   /* 1.1 */
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--line-height-tight);
   margin-bottom: 1.5rem;
   color: var(--color-text-primary);
 }
@@ -75,13 +75,13 @@
 }
 
 .plansText {
-  font-family: var(--font-body);           /* Lora — persuasivo e elegante */
-  font-size: var(--text-lead);             /* 18px — unificado */
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
   color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed); /* 1.85 — corpo longo com serif */
+  line-height: var(--line-height-relaxed);
   margin-bottom: 2.25rem;
   max-width: 31.25rem;
-  letter-spacing: 0;                       /* serif: sem tracking negativo */
+  letter-spacing: 0;
 }
 
 .socialProof {
@@ -103,7 +103,7 @@
 }
 
 .avatar {
-  width: 3rem; /* 48px */
+  width: 3rem;
   height: 3rem;
   border-radius: 50%;
   border: 2px solid #FFFFFF;
@@ -130,7 +130,7 @@
 
 .plansSocialText {
   font-family: var(--font-display);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--color-text-primary);
 }
@@ -161,7 +161,7 @@
   background: #FFFFFF;
   border-radius: 20px;
   padding: 2.25rem;
-  border: 2px solid #E5E7EB;
+  border: 1.5px solid rgba(26, 86, 219, 0.15); /* Updated per request */
   transition: transform 0.3s ease;
 }
 
@@ -171,7 +171,7 @@
 
 .percentTextWhite {
   font-family: var(--font-display);
-  font-size: 5rem; /* 80px */
+  font-size: 5rem;
   font-weight: 800;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -181,7 +181,7 @@
 
 .percentTextBlue {
   font-family: var(--font-display);
-  font-size: 5rem; /* 80px */
+  font-size: 5rem;
   font-weight: 800;
   line-height: 1;
   color: var(--color-primary);
@@ -191,7 +191,7 @@
 
 .cardTitleWhite {
   font-family: var(--font-display);
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.625rem;
   color: #FFFFFF;
@@ -199,7 +199,7 @@
 
 .cardTitleDark {
   font-family: var(--font-display);
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-text-primary);
   margin-bottom: 0.625rem;
@@ -216,8 +216,6 @@
   font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 400;
-  text-transform: none;
-  letter-spacing: normal;
   color: var(--color-text-secondary);
   display: block;
   margin-bottom: 0.25rem;
@@ -246,28 +244,15 @@
 .cardDescWhite {
   font-family: var(--font-body);
   color: rgba(255, 255, 255, 0.75);
-  font-size: var(--text-base);             /* 15px — token */
-  line-height: var(--line-height-body);    /* 1.75 — padrão */
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
 }
 
 .cardDescDark {
   font-family: var(--font-body);
   color: var(--color-text-secondary);
-  font-size: var(--text-base);             /* 15px — token */
-  line-height: var(--line-height-body);    /* 1.75 — padrão */
-}
-
-.priceTag {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: rgba(37, 99, 235, 0.08); /* 8% opacity of primary blue */
-  color: var(--color-primary);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9375rem;
-  border-radius: 100px;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(37, 99, 235, 0.15);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
 }
 
 .cardPrioritario {
@@ -299,12 +284,11 @@
   color: #FFFFFF;
   flex-shrink: 0;
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .cardTitleWhiteCompact {
   font-family: var(--font-display);
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
   color: #FFFFFF;
@@ -334,6 +318,14 @@
   .plansTitle {
     font-size: 2.25rem;
   }
+
+  .socialProof {
+    padding-right: 80px; /* Space for WhatsApp button */
+    width: auto;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   
   .rightCol {
     width: 100%;
@@ -341,7 +333,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced gap */
     margin: 0 auto;
     padding: 0;
   }
@@ -352,14 +344,29 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 2.5rem 1.5rem;
+    padding: 1.5rem 1.25rem; /* Reduced vertical padding per request */
     width: 100%;
+    max-height: 60vh; /* Limit height per request */
     max-width: 25rem;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .percentTextWhite, .percentTextBlue {
-    font-size: 4rem;
+    font-size: 3rem; /* Reduced font size to save space */
+  }
+
+  .cardTitleWhite, .cardTitleDark {
+    font-size: 1.125rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cardDescWhite, .cardDescDark {
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .cardPrioritario {
@@ -368,9 +375,10 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1.5rem;
-    gap: 1rem;
+    padding: 1.25rem 1.25rem; /* Reduced vertical padding */
+    gap: 0.75rem;
     width: 100%;
+    max-height: 60vh; /* Limit height */
     max-width: 25rem;
     margin: 0 auto;
   }
