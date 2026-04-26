@@ -51,10 +51,9 @@
 }
 
 .title span {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #C9A96E;              /* dourado — padrão luxury */
+  -webkit-text-fill-color: #C9A96E;
+  background: none;
 }
 
 .text {
@@ -87,12 +86,12 @@
   width: 1.375rem;
   height: 1.375rem;
   min-width: 1.375rem;
-  background: #EFF6FF;
+  background: rgba(201, 169, 110, 0.12); /* fundo dourado suave */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2563EB;
+  color: #92701E;              /* ícone dourado — luxury checklist */
   font-size: 0.8125rem;
   font-weight: 700;
   margin-top: 0.125rem;

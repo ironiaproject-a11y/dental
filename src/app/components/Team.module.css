@@ -37,8 +37,8 @@
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.08); /* Glow de grife azulado leve */
-  border-color: rgba(37, 99, 235, 0.15);
+  box-shadow: 0 20px 60px rgba(201, 169, 110, 0.12); /* Glow dourado luxury */
+  border-color: rgba(201, 169, 110, 0.3);
 }
 
 .photo {
@@ -69,26 +69,31 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.25rem;         /* H3 — bold, #111827 */
   font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: 0.25rem;
+  color: #111827;
+  margin-bottom: 0.35rem;
   line-height: 1.2;
 }
 
-.role {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--color-primary);
-  font-weight: 500;
-  margin-bottom: 0.125rem;
-}
-
+/* CRO: elemento de confiança — aparece ANTES da especialidade */
 .cro {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.75rem;         /* 12px */
+  font-weight: 500;
+  color: #374151;             /* #374151 — visível, WCAG AA ✓ */
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Especialidade: 14px, dourado, sem bold */
+.role {
+  font-family: var(--font-display);
+  font-size: 0.875rem;        /* 14px */
+  color: #92701E;             /* dourado escuro — luxury cue */
   font-weight: 400;
-  color: var(--color-text-light);
   margin-bottom: 1rem;
 }
 
@@ -117,7 +122,7 @@
 }
 
 .icon:hover {
-  color: #1D4ED8;
+  color: #C9A96E;             /* dourado no hover */
   transform: translateY(-2px);
 }
 
@@ -146,12 +151,14 @@
     font-size: 1.25rem; /* Strict hierarchy */
   }
 
-  .role {
-    font-size: 1rem; /* Strict hierarchy */
+  .cro {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
   }
 
-  .cro {
-    font-size: 0.75rem; /* Strict hierarchy */
+  .role {
+    font-size: 0.875rem;
+    margin-bottom: 0.875rem;
   }
 
   .bio {

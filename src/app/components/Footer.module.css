@@ -40,10 +40,9 @@
 }
 
 .logo span {
-  background: var(--color-primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #C9A96E;              /* dourado — logo no footer, sem gradiente azul */
+  -webkit-text-fill-color: #C9A96E;
+  background: none;
 }
 
 .desc {

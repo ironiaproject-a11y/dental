@@ -97,8 +97,11 @@ export default function Team() {
               </div>
               <div className={styles.content}>
                 <h3 className={styles.name}>{doc.name}</h3>
+                <div className={styles.cro}>
+                  <span style={{ color: '#10B981', fontWeight: 700 }}>✓</span>
+                  {doc.cro}
+                </div>
                 <div className={styles.role}>{doc.role}</div>
-                <div className={styles.cro}>{doc.cro}</div>
                 <p className={styles.bio}>{doc.bio}</p>
                 <div className={styles.socials}>
                   <FiInstagram className={styles.icon} />

@@ -45,7 +45,7 @@
 }
 
 .scrolled .logo {
-  color: var(--color-primary);
+  color: #C9A96E;              /* dourado — logo destaque, não azul */
 }
 
 .scrolled .logo span {
@@ -86,7 +86,7 @@
 }
 
 .scrolled .link::after {
-  background: #2563EB;
+  background: #C9A96E;         /* sublinhado dourado no hover scrolled */
 }
 
 .link:hover {
@@ -95,7 +95,7 @@
 }
 
 .scrolled .link:hover {
-  color: #2563EB;
+  color: #92701E;              /* hover dourado — azul só em CTAs */
   opacity: 1;
 }
 

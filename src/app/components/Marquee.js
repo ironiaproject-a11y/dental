@@ -1,7 +1,7 @@
 import styles from './Marquee.module.css';
 
 export default function Marquee() {
-  const content = "SMILEPRO • LUXURY DENTISTRY • PERFECT HARMONY • HIGH-END CARE • THE ART OF THE SMILE • ";
+  const content = "SMILEPRO • ODONTOLOGIA DE LUXO • HARMONIA PERFEITA • CUIDADO DE ALTO PADRÃO • A ARTE DO SORRISO • ";
   const repeatedContent = content.repeat(4);
 
   return (
